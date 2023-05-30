@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Navbar2.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +11,14 @@ const Navbar = () => {
 
 	return (
 		<nav className="navbar">
+			<link
+				rel="stylesheet"
+				href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+				integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+				crossorigin="anonymous"
+				referrerpolicy="no-referrer"
+			/>
+
 			<div className="navbar-container">
 				<div className="logo-section">
 					<a href="htt" className="logo">
@@ -33,8 +42,13 @@ const Navbar = () => {
 							<a href="htt">My Rides</a>
 						</li>
 						<div className="spacer"></div>
+						<li className="login-out-ID">
+							<a href="htt" className="login-out-text-ID">
+								Log In
+							</a>
+						</li>
 						<li>
-							<a href="htt">Log Out</a>
+							<a href="htt">Sign Up</a>
 						</li>
 						<li>
 							<a href="htt">Profile</a>

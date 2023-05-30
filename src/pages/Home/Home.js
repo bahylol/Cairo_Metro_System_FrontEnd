@@ -43,7 +43,7 @@ const Home = () => {
 						<input type="datetime-local" />
 					</div>
 
-					<a href="htt">Purchase</a>
+					<a href="htt">Get Ticket</a>
 				</div>
 			</div>
 

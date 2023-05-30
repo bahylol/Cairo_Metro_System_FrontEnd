@@ -4,6 +4,7 @@ import Navbar from './pages/Navbar/Navbar2.js';
 import Home from './pages/Home/Home.js';
 // import Signup from './pages/Signup-Login/Signup';
 // import Login from './pages/Signup-Login/Login';
+import Refund_Request_Page from './pages/Refund_Request/Refund_Request.js';
 
 function App() {
 	return (
@@ -11,7 +12,7 @@ function App() {
 			<div className="Navbar">
 				<Navbar />
 				<div className="content">
-					<Home />
+					<Refund_Request_Page />
 				</div>
 			</div>
 		</div>

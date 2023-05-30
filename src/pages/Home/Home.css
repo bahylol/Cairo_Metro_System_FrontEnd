@@ -1,0 +1,155 @@
+.image1 {
+	width: 100%;
+}
+
+:root {
+	/* Light-Mode Colors: */
+	--primary-color: #da2c43;
+	--secondary-color: #f9f7f3;
+	--trim-color: #da2c43;
+	--textBox-color: #fff;
+	--text-color: #fff;
+	/* Dark-Mode Colors:*/
+	/* --primary-color: #171717;
+	--secondary-color: #444444;
+	--trim-color: #da2c43;
+	--textBox-color: #c9cfca;
+	--text-color: #ededed; */
+}
+
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+/* * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+} */
+
+.column {
+	flex-wrap: wrap;
+}
+
+.booking-shortcut-div {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+
+	min-height: 50vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+.home-container {
+	position: relative;
+	max-width: 700px;
+	width: 100%;
+	background: var(--secondary-color);
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+	/* Adjusted min-width for login */
+	min-width: 1200px;
+}
+
+/* Media query for screens smaller than 400px */
+@media (max-width: 1200px) {
+	.home-container {
+		min-width: auto;
+	}
+}
+
+.home-container header {
+	font-size: 1.5rem;
+	color: var(--text-color);
+	font-weight: 500;
+	text-align: center;
+}
+
+.home-form {
+	margin-top: 30px;
+}
+
+/* .input1 {
+	padding: 20px;
+} */
+
+.home-input-box {
+	width: 100%;
+	margin-top: 20px;
+	margin-right: 0px;
+	padding-right: 0px;
+}
+
+.home-input-box label {
+	color: var(--text-color);
+}
+
+.home-input-box input {
+	background-color: var(--textBox-color);
+}
+
+.home-input-box input,
+.home-input-box select {
+	position: relative;
+	height: 50px;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	color: #707070;
+	margin-top: 8px;
+	border: 1px solid #dddddd;
+	border-radius: 6px;
+	padding: 0px;
+	padding-left: 5px;
+}
+
+.home-input-box input:focus {
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.home-container button {
+	height: 55px;
+	width: 100%;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-top: 30px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	background: var(--primary-color);
+}
+
+.home-container button:hover {
+	background: var(--primary-color);
+}
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+	.home-form .home-input-box {
+		flex-wrap: wrap;
+	}
+}
+/* ---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+--------------------------------------------------------------------------------- */
+
+.upcoming-rides-shortcut-div {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+
+	min-height: 50vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}

@@ -63,7 +63,7 @@
 	width: 70%; /* Subtract the margin from the total width */
 	max-width: 700px;
 	margin: 5vh auto; /* Center the container vertically and horizontally */
-	background: var(--secondary-color);
+	background: #924b00;
 	padding: 25px;
 	border-radius: 8px;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -71,6 +71,12 @@
 	/* i added this extra so the login isnt so small */
 	width: 600px;
 	height: 250px;
+
+	transition: 0.3s;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-ms-transition: 0.3s;
+	-o-transition: 0.3s;
 }
 /* I also added this part. for the login width */
 /* Media query for screens smaller than 400px */
@@ -82,7 +88,12 @@
 }
 
 .RRcontainer:hover {
-	background: red;
+	background: #ff474e;
+	transition: 0.3s;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-ms-transition: 0.3s;
+	-o-transition: 0.3s;
 	/* ALSO ON CLICK. POP UP WINDOW ASK IF REFUND */
 }
 

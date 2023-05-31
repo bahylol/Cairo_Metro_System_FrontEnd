@@ -13,7 +13,25 @@
 	--text-color: #ededed; */
 }
 /* Import Google font - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+/* font-family: 'Space Mono', monospace; */
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+/* font-family: 'Concert One', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+/* font-family: 'Fira Mono', monospace; */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+/* font-family: 'Share Tech Mono', monospace; */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+/* font-family: 'Black Ops One', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap');
+/* font-family: 'DM Mono', monospace; */
+
+* {
+	font-family: 'Share Tech Mono', monospace;
+}
+/* body {
+	background-image: url('../../Assets/5418748.jpg');
+} */
 /* * {
 	margin: 0;
 	padding: 0;
@@ -37,6 +55,10 @@
 } */
 
 .RRcontainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	position: relative;
 	width: 70%; /* Subtract the margin from the total width */
 	max-width: 700px;
@@ -47,21 +69,29 @@
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
 	/* i added this extra so the login isnt so small */
-	min-width: 1300px;
+	width: 600px;
+	height: 250px;
 }
 /* I also added this part. for the login width */
 /* Media query for screens smaller than 400px */
-@media (max-width: 1300px) {
+@media (max-width: 300px) {
 	.RRcontainer {
 		min-width: auto; /* Adjust the width for smaller screens */
 		margin: 5vh auto; /* Center the container vertically and horizontally */
 	}
 }
-.RRcontainer header {
-	font-size: 1.5rem;
+
+.RRcontainer:hover {
+	background: red;
+	/* ALSO ON CLICK. POP UP WINDOW ASK IF REFUND */
+}
+
+header {
+	font-size: 2rem;
 	color: #333;
-	font-weight: 500;
+	font-weight: bolder;
 	text-align: center;
+	margin: 20px;
 }
 .RRcontainer .RRform {
 	margin-top: 30px;
@@ -101,4 +131,18 @@
 	cursor: pointer;
 	transition: all 0.2s ease;
 	background: var(--primary-color);
+}
+
+.ticket-instance {
+	position: relative;
+	width: 50%; /* Subtract the margin from the total width */
+	max-width: 500px;
+	margin: 5vh auto; /* Center the container vertically and horizontally */
+	background: var(--primary-color);
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+	/* i added this extra so the login isnt so small */
+	min-width: 1000px;
 }

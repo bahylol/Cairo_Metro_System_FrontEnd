@@ -1,22 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Signup-Login.css';
 
+
 function RegistrationForm() {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		fetch('http://localhost:3000/api/v1/users/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				"email": email,
+				"password": password,
+			})
+		})
+			.then(data => console.log(data))
+			.catch(error => console.error(error))
+	};
+
+	const handleEmail = (event) => {
+		setEmail(event.target.value);
+	};
+	const handlePassword = (event) => {
+		setPassword(event.target.value);
+	};
 	return (
 		<section className="container">
 			<header>Login Form</header>
-			<form action="#" className="form">
+			<form className="form">
 				<div className="input-box">
 					<label>Email</label>
-					<input type="text" placeholder="Enter email" required />
+					<input type="text" placeholder="Enter email" value={email} onChange={handleEmail} required />
 				</div>
 
 				<div className="input-box">
 					<label>Password</label>
-					<input type="password" placeholder="Enter password" required />
+					<input type="password" placeholder="Enter password" value={password} onChange={handlePassword} required />
 				</div>
 
-				<button>Log in</button>
+				<button onClick={handleSubmit}>Log in</button>
 			</form>
 		</section>
 	);

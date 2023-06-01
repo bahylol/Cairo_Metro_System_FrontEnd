@@ -13,14 +13,6 @@
 	--text-color: #ededed; */
 }
 
-/* Import Google font - Poppins */
-/* * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
-} */
-
 .column {
 	flex-wrap: wrap;
 }

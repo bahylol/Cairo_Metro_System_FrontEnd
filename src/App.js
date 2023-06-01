@@ -7,6 +7,7 @@ import Login from './pages/Signup-Login/Login';
 import RefundRequestPage from './pages/Refund_Request/Refund_Request.js';
 import GetTicket from './pages/Get_Ticket/Get_Ticket.js';
 import General_Page from './pages/General_Page/General_Page.js';
+import Transactions from './pages/Transactions/Transactions.js';
 
 function App() {
 	return (
@@ -14,7 +15,7 @@ function App() {
 			<div className="Navbar">
 				<Navbar />
 				<div className="content">
-					<Signup />
+					<Transactions />
 				</div>
 			</div>
 		</div>

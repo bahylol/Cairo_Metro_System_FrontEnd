@@ -15,16 +15,15 @@
 /* Import Google font - Poppins */
 
 .RRmodal {
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	position: fixed; /* Make the modal fixed position */
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	z-index: 9999; /* Set a higher z-index to make it appear in front */
-	background: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for overlay effect */
+	background: rgba(0, 0, 0, 0.2); /* Add a semi-transparent background for overlay effect */
+
+	width: 100%;
 }
 
 .RRmodal .RRoverlay {
@@ -43,6 +42,11 @@
 	border-radius: 8px;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 	/* Removed the min-width property */
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .RRmodal header {
@@ -76,27 +80,21 @@
 }
 
 .div .modal-Refundcolumn {
-	display: flex;
-	justify-content: center; /* Align items horizontally */
-	column-gap: 15px;
-	flex-wrap: wrap; /* Wrap the buttons if there is not enough space */
+	width: 1000px;
 }
 .RR-modal-form button {
-	flex-basis: 50%; /* Set the width of each button to 50% minus half of the column gap */
-
 	height: 55px;
-	width: 30%;
+	width: 200px;
 	color: #fff;
 	font-size: 1rem;
 	font-weight: 400;
-	margin-top: 30px;
 	border: none;
 	cursor: pointer;
 	transition: all 0.2s ease;
 	background: var(--primary-color);
-	margin-left: 30px;
-
-	align-self: center;
+	padding: 15px;
+	margin-left: 20px;
+	margin-right: 20px;
 
 	transition: 0.3s;
 	-webkit-transition: 0.3s;
@@ -104,11 +102,12 @@
 	-ms-transition: 0.3s;
 	-o-transition: 0.3s;
 }
+
 .RR-modal-form button:hover {
 	background-color: rgb(162, 50, 65);
 }
 /*Responsive*/
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 90%) {
 	.div .modal-Refundcolumn {
 		flex-wrap: wrap;
 	}

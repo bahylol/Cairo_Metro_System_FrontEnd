@@ -32,27 +32,10 @@
 /* body {
 	background-image: url('../../Assets/5418748.jpg');
 } */
-/* * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
-} */
-/* body {
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 20px;
-	background: var(--primary-color);
-} */
 
-/* body {
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	margin: 0;
-} */
+.RR-page-body {
+	height: 500px;
+}
 
 .RRcontainer {
 	display: flex;
@@ -60,7 +43,6 @@
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	width: 70%; /* Subtract the margin from the total width */
 	max-width: 700px;
 	margin: 5vh auto; /* Center the container vertically and horizontally */
 	background: #924b00;
@@ -69,8 +51,8 @@
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
 	/* i added this extra so the login isnt so small */
-	width: 600px;
-	height: 250px;
+	width: 620px;
+	height: 270px;
 
 	transition: 0.3s;
 	-webkit-transition: 0.3s;
@@ -80,7 +62,7 @@
 }
 /* I also added this part. for the login width */
 /* Media query for screens smaller than 400px */
-@media (max-width: 300px) {
+@media (max-width: 700px) {
 	.RRcontainer {
 		min-width: auto; /* Adjust the width for smaller screens */
 		margin: 5vh auto; /* Center the container vertically and horizontally */

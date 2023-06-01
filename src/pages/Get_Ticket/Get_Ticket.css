@@ -1,0 +1,101 @@
+:root {
+	/* Light-Mode Colors: */
+	--GT-primary-color: #da2c43;
+	--GT-secondary-color: #f9f7f3;
+	--GT-trim-color: #da2c43;
+	--GT-textBox-color: #fff;
+	--GT-text-color: #333;
+	/* Dark-Mode Colors:*/
+	/* --primary-color: #171717;
+	--secondary-color: #444444;
+	--trim-color: #da2c43;
+	--textBox-color: #c9cfca;
+	--text-color: #ededed; */
+}
+.GT-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	height: 600px;
+	padding: 50px;
+}
+.GT-container {
+	position: relative;
+	max-width: 1300px;
+	width: 100%;
+	background: var(--GT-secondary-color);
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+	/* i added this extra so the login isnt so small */
+	min-width: 1300px;
+}
+/* I also added this part. for the login width */
+/* Media query for screens smaller than 400px */
+@media (max-width: 1300px) {
+	.GT-container {
+		min-width: auto; /* Remove the minimum width */
+	}
+}
+.GT-container header {
+	font-size: 1.5rem;
+	color: var(--GT-text-color);
+	font-weight: 500;
+	text-align: center;
+}
+.GT-container .GT-form {
+	margin-top: 30px;
+}
+.GT-form .GT-input-box {
+	width: 100%;
+	margin-top: 20px;
+}
+.GT-input-box label {
+	color: var(--GT-text-color);
+}
+.GT-input-box input {
+	background-color: var(--GT-textBox-color);
+}
+.GT-form :where(.GT-input-box input, .select-box) {
+	position: relative;
+	height: 50px;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	color: #707070;
+	margin-top: 8px;
+	border: 1px solid #dddddd;
+	border-radius: 6px;
+	padding: 0 15px;
+}
+.GT-input-box input:focus {
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.GT-form .GT-column {
+	display: flex;
+	column-gap: 15px;
+}
+
+.GT-form button {
+	height: 55px;
+	width: 100%;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-top: 30px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	background: var(--GT-primary-color);
+}
+.GT-form button:hover {
+	background: var(--GT-primary-color);
+}
+/*Responsive*/
+@media screen and (max-width: 500px) {
+	.GT-form .GT-column {
+		flex-wrap: wrap;
+	}
+}

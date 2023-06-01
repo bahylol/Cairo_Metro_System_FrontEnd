@@ -12,23 +12,7 @@
 	--textBox-color: #c9cfca;
 	--text-color: #ededed; */
 }
-/* Import Google font - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
-/* font-family: 'Space Mono', monospace; */
-@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
-/* font-family: 'Concert One', cursive; */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
-/* font-family: 'Fira Mono', monospace; */
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-/* font-family: 'Share Tech Mono', monospace; */
-@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
-/* font-family: 'Black Ops One', cursive; */
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap');
-/* font-family: 'DM Mono', monospace; */
 
-* {
-	font-family: 'Share Tech Mono', monospace;
-}
 /* body {
 	background-image: url('../../Assets/5418748.jpg');
 } */

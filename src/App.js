@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 import Navbar from './pages/Navbar/Navbar2.js';
 import Footer from './pages/Footer/Footer.js';
 import Home from './pages/Home/Home.js';
@@ -12,7 +12,7 @@ function App() {
 			<div className="Navbar">
 				<Navbar />
 				<div className="content">
-					<RefundRequestPage />
+					<Home />
 				</div>
 			</div>
 		</div>

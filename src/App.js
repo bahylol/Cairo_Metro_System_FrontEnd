@@ -14,7 +14,7 @@ function App() {
 			<div className="Navbar">
 				<Navbar />
 				<div className="content">
-					<General_Page />
+					<Signup />
 				</div>
 			</div>
 		</div>

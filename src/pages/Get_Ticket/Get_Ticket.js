@@ -4,6 +4,7 @@ const GetTicket = () => {
 	return (
 		<>
 			<div className="Get-Ticket-Whole-Page">
+				<header>Purchase Ticket</header>
 				<div className="GTSection1">
 					<div className="GTBoxPickup">
 						<p>Where do you want to go?</p>
@@ -15,9 +16,6 @@ const GetTicket = () => {
 								placeholder="Station / stop / address"
 							/>
 							<i className="fa-solid fa-arrows-up-down"></i>
-							{/* <i className="fa-solid fa-arrows-minimize"></i> */}
-							{/* <FontAwesomeIcon icon="fa-solid fa-arrow-up-arrow-down" rotation={90} /> */}
-							{/* <i className="fa-solid fa-arrow-up-arrow-down fa-rotate-90 fa-2xs"></i> */}
 							<input
 								type="text"
 								className="GTBoxFrom"

@@ -12,57 +12,63 @@
 	--textBox-color: #c9cfca;
 	--text-color: #ededed; */
 }
-/* Import Google font - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-/* * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
-} */
-/* body {
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 20px;
-	background: var(--primary-color);
-} */
 
 /* body {
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	margin: 0;
+	background-image: url('../../Assets/5418748.jpg');
 } */
+
+.RR-page-body {
+	height: 500px;
+}
 
 .RRcontainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	position: relative;
-	width: 70%; /* Subtract the margin from the total width */
 	max-width: 700px;
 	margin: 5vh auto; /* Center the container vertically and horizontally */
-	background: var(--secondary-color);
+	background: #924b00;
 	padding: 25px;
 	border-radius: 8px;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
 	/* i added this extra so the login isnt so small */
-	min-width: 1550px;
-	min-height: 600px;
+	width: 620px;
+	height: 270px;
+
+	transition: 0.3s;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-ms-transition: 0.3s;
+	-o-transition: 0.3s;
 }
 /* I also added this part. for the login width */
 /* Media query for screens smaller than 400px */
-@media (max-width: 500px) {
+@media (max-width: 700px) {
 	.RRcontainer {
 		min-width: auto; /* Adjust the width for smaller screens */
 		margin: 5vh auto; /* Center the container vertically and horizontally */
 	}
 }
-.RRcontainer header {
-	font-size: 1.5rem;
+
+.RRcontainer:hover {
+	background: #ff474e;
+	transition: 0.3s;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-ms-transition: 0.3s;
+	-o-transition: 0.3s;
+	/* ALSO ON CLICK. POP UP WINDOW ASK IF REFUND */
+}
+
+header {
+	font-size: 2rem;
 	color: #333;
-	font-weight: 500;
+	font-weight: bolder;
 	text-align: center;
+	margin: 20px;
 }
 .RRcontainer .RRform {
 	margin-top: 30px;
@@ -102,4 +108,18 @@
 	cursor: pointer;
 	transition: all 0.2s ease;
 	background: var(--primary-color);
+}
+
+.ticket-instance {
+	position: relative;
+	width: 50%; /* Subtract the margin from the total width */
+	max-width: 500px;
+	margin: 5vh auto; /* Center the container vertically and horizontally */
+	background: var(--primary-color);
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+	/* i added this extra so the login isnt so small */
+	min-width: 1000px;
 }

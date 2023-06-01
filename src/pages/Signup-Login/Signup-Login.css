@@ -1,10 +1,10 @@
 :root {
 	/* Light-Mode Colors: */
-	--primary-color: #da2c43;
-	--secondary-color: #f9f7f3;
-	--trim-color: #da2c43;
-	--textBox-color: #fff;
-	--text-color: #333;
+	--SL-primary-color: #da2c43;
+	--SL-secondary-color: #f9f7f3;
+	--SL-trim-color: #da2c43;
+	--SL-textBox-color: #fff;
+	--SL-text-color: #333;
 	/* Dark-Mode Colors:*/
 	/* --primary-color: #171717;
 	--secondary-color: #444444;
@@ -12,27 +12,24 @@
 	--textBox-color: #c9cfca;
 	--text-color: #ededed; */
 }
-/* Import Google font - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
 * {
-	margin: 0;
-	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
 }
-body {
-	min-height: 100vh;
+
+.SL-Page {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 20px;
-	background: var(--primary-color);
+
+	height: 900px;
+	padding: 50px;
 }
-.container {
+.SL-container {
 	position: relative;
 	max-width: 700px;
 	width: 100%;
-	background: var(--secondary-color);
+	background: var(--SL-secondary-color);
 	padding: 25px;
 	border-radius: 8px;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -43,30 +40,30 @@ body {
 /* I also added this part. for the login width */
 /* Media query for screens smaller than 400px */
 @media (max-width: 500px) {
-	.container {
+	.SL-container {
 		min-width: auto; /* Remove the minimum width */
 	}
 }
-.container header {
+.SL-container header {
 	font-size: 1.5rem;
-	color: var(--text-color);
+	color: var(--SL-text-color);
 	font-weight: 500;
 	text-align: center;
 }
-.container .form {
+.SL-container .SL-form {
 	margin-top: 30px;
 }
-.form .input-box {
+.SL-form .SL-input-box {
 	width: 100%;
 	margin-top: 20px;
 }
-.input-box label {
-	color: var(--text-color);
+.SL-input-box label {
+	color: var(--SL-text-color);
 }
-.input-box input {
-	background-color: var(--textBox-color);
+.SL-input-box input {
+	background-color: var(--SL-textBox-color);
 }
-.form :where(.input-box input, .select-box) {
+.SL-form :where(.SL-input-box input, .select-box) {
 	position: relative;
 	height: 50px;
 	width: 100%;
@@ -78,39 +75,39 @@ body {
 	border-radius: 6px;
 	padding: 0 15px;
 }
-.input-box input:focus {
+.SL-input-box input:focus {
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
-.form .column {
+.SL-form .SL-column {
 	display: flex;
 	column-gap: 15px;
 }
-.form .gender-box {
+.SL-form .SL-gender-box {
 	margin-top: 20px;
 }
-.gender-box h3 {
-	color: var(--text-color);
+.SL-gender-box h3 {
+	color: var(--SL-text-color);
 	font-size: 1rem;
 	font-weight: 400;
 	margin-bottom: 8px;
 }
-.form :where(.gender-option, .gender) {
+.SL-form :where(.SL-gender-option, .SL-gender) {
 	display: flex;
 	align-items: center;
 	column-gap: 50px;
 	flex-wrap: wrap;
 }
-.form .gender {
+.SL-form .SL-gender {
 	column-gap: 5px;
 }
-.gender input {
-	accent-color: var(--trim-color);
+.SL-gender input {
+	accent-color: var(--SL-trim-color);
 }
-.form :where(.gender input, .gender label) {
+.SL-form :where(.SL-gender input, .SL-gender label) {
 	cursor: pointer;
 }
-.gender label {
-	color: var(--text-color);
+.SL-gender label {
+	color: var(--SL-text-color);
 }
 .address :where(input, .select-box) {
 	margin-top: 15px;
@@ -120,10 +117,10 @@ body {
 	width: 100%;
 	outline: none;
 	border: none;
-	color: var(--text-color);
+	color: var(--SL-text-color);
 	font-size: 1rem;
 }
-.form button {
+.SL-form button {
 	height: 55px;
 	width: 100%;
 	color: #fff;
@@ -133,17 +130,17 @@ body {
 	border: none;
 	cursor: pointer;
 	transition: all 0.2s ease;
-	background: var(--primary-color);
+	background: var(--SL-primary-color);
 }
-.form button:hover {
-	background: var(--primary-color);
+.SL-form button:hover {
+	background: var(--SL-primary-color);
 }
 /*Responsive*/
 @media screen and (max-width: 500px) {
-	.form .column {
+	.SL-form .SL-column {
 		flex-wrap: wrap;
 	}
-	.form :where(.gender-option, .gender) {
+	.SL-form :where(.SL-gender-option, .SL-gender) {
 		row-gap: 15px;
 	}
 }

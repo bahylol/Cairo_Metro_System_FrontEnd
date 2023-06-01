@@ -20,18 +20,18 @@ const Navbar = () => {
 			/>
 
 			<div className="navbar-container">
-				<div className="logo-section">
-					<a href="htt" className="logo">
+				<div className="navbar-logo-section">
+					<a href="htt" className="navbar-logo">
 						Logo
 					</a>
 				</div>
-				<div className={`menu ${isOpen ? 'open' : ''}`}>
-					<div className="hamburger" onClick={toggleMenu}>
-						<span className="line"></span>
-						<span className="line"></span>
-						<span className="line"></span>
+				<div className={`navbar-menu ${isOpen ? 'open' : ''}`}>
+					<div className="navbar-hamburger-menu" onClick={toggleMenu}>
+						<span className="navbar-line"></span>
+						<span className="navbar-line"></span>
+						<span className="navbar-line"></span>
 					</div>
-					<ul className="nav-links">
+					<ul className="navbar-nav-links">
 						<li>
 							<a href="htt">Home</a>
 						</li>
@@ -41,9 +41,9 @@ const Navbar = () => {
 						<li>
 							<a href="htt">My Rides</a>
 						</li>
-						<div className="spacer"></div>
-						<li className="login-out-ID">
-							<a href="htt" className="login-out-text-ID">
+						<div className="navbar-spacer"></div>
+						<li className="navbar-login-out-ID">
+							<a href="htt" className="navbar-login-out-text-ID">
 								Log In
 							</a>
 						</li>

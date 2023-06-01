@@ -1,10 +1,10 @@
-import '../Footer/Footer.css';
+import './Footer.css';
 
 const Footer = () => {
 	return (
 		<footer className="site-footer">
-			<div className="container">
-				<div className="row">
+			<div className="footer-container">
+				<div className="footer-row">
 					<div className="col-sm-12 col-md-6">
 						<h6>About</h6>
 						<p className="text-justify">
@@ -64,8 +64,8 @@ const Footer = () => {
 				</div>
 				{/* <hr> */}
 			</div>
-			<div className="container">
-				<div className="row">
+			<div className="footer-container">
+				<div className="footer-row">
 					<div className="col-md-8 col-sm-6 col-xs-12">
 						<p className="copyright-text">
 							Copyright &copy; 2017 All Rights Reserved by

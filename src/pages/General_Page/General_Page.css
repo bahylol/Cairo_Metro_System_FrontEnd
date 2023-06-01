@@ -1,0 +1,131 @@
+:root {
+	/* Light-Mode Colors: */
+	--general-GP-primary-color: #da2c43;
+	--general-GP-secondary-color: #f9f7f3;
+	--general-GP-trim-color: #da2c43;
+	--general-GP-textBox-color: #fff;
+	--general-GP-text-color: #333;
+	/* Dark-Mode Colors:*/
+	/* --primary-color: #171717;
+	--secondary-color: #444444;
+	--trim-color: #da2c43;
+	--textBox-color: #c9cfca;
+	--text-color: #ededed; */
+}
+.general-GP-page {
+	display: flexbox;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	height: 600px;
+	padding: 50px;
+}
+.general-GP-container {
+	display: flexbox;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	position: relative;
+	left: auto;
+	right: auto;
+	max-width: 1300px;
+	background: var(--general-GP-secondary-color);
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+	min-width: 1100px;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-bottom: 50px;
+}
+@media (max-width: 1300px) {
+	.general-GP-container {
+		min-width: auto;
+	}
+}
+.general-GP-container header {
+	font-size: 1.5rem;
+	color: var(--general-GP-text-color);
+	font-weight: 500;
+	text-align: center;
+}
+.general-GP-container .general-GP-form {
+	margin-top: 30px;
+}
+.general-GP-form .general-GP-input-box {
+	width: 100%;
+	margin-top: 20px;
+}
+.general-GP-input-box label {
+	color: var(--general-GP-text-color);
+}
+.general-GP-input-box input {
+	background-color: var(--general-GP-textBox-color);
+}
+.general-GP-form :where(.general-GP-input-box input, .select-box) {
+	position: relative;
+	height: 50px;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	color: #707070;
+	margin-top: 8px;
+	border: 1px solid #dddddd;
+	border-radius: 6px;
+	padding: 0 15px;
+}
+.general-GP-input-box input:focus {
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.general-GP-form .general-GP-column {
+	display: flex;
+	column-gap: 15px;
+}
+
+.general-GP-form button {
+	height: 55px;
+	width: 100%;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-top: 30px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	background: var(--general-GP-primary-color);
+}
+.general-GP-form button:hover {
+	background-color: rgb(162, 50, 65);
+
+	transition: 0.3s;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-ms-transition: 0.3s;
+	-o-transition: 0.3s;
+}
+/*Responsive*/
+@media screen and (max-width: 500px) {
+	.general-GP-form .general-GP-column {
+		flex-wrap: wrap;
+	}
+}
+
+/* Column CSS */
+.general-form .general-column {
+	display: flex;
+	column-gap: 15px;
+}
+
+/* Side button CSS */
+.general-GP-side-button {
+	/* padding: 15px;
+	margin-left: 20px;
+	margin-right: 20px; */
+	position: relative;
+	top: 14px;
+	width: 100px;
+	border-radius: 20px;
+}

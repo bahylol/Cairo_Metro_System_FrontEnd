@@ -14,8 +14,6 @@ function RegistrationForm() {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log(name);
-		console.log(value);
 		setUser(prevState => ({
 			...prevState,
 			[name]: value
@@ -29,6 +27,13 @@ function RegistrationForm() {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		const someNull = Object.values(user).some(x => x === "");
+		if(someNull===true){
+			let nullKeys = '';
+			Object.entries(user).filter(([k, v]) => v === "").forEach(([k]) => nullKeys += `${k} `);
+			alert(`Please fill the following data : ${nullKeys}`);
+		return;
+		}
 		if (user.password !== user.confirmPassword) {
 			alert("passwords don't match");
 			return;

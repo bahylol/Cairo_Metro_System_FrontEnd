@@ -6,6 +6,14 @@ function RegistrationForm() {
 	const [password, setPassword] = useState('');
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		if(email===""){
+			alert("Please Enter Your Email");
+			return;
+		}
+		if(password===""){
+			alert("Please Enter Your Password");
+			return;
+		}
 		fetch('http://localhost:3000/api/v1/users/login', {
 			method: 'POST',
 			headers: {

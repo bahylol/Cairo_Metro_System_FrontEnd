@@ -15,7 +15,7 @@ function App() {
 			<div className="Navbar">
 				<Navbar />
 				<div className="content">
-					<Transactions />
+					<GetTicket />
 				</div>
 			</div>
 		</div>

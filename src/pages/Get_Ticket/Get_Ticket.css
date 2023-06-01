@@ -99,3 +99,126 @@
 		flex-wrap: wrap;
 	}
 }
+
+/* ----------------------------------------------------------------------------- */
+/* GET TICKET SECTION BOX CSS */
+.Get-Ticket-Whole-Page {
+	display: flexbox;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	height: 340px;
+	padding: 50px;
+}
+
+.GTSection1 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.GTSection1 .GTBoxPickup {
+	-webkit-box-shadow: 0px 3px 11px 0px rgba(117, 117, 117, 1);
+	-moz-box-shadow: 0px 3px 11px 0px rgba(117, 117, 117, 1);
+	box-shadow: 0px 3px 11px 0px rgba(117, 117, 117, 1);
+	padding: 15px;
+	width: 1000px;
+	background-color: var(--secondary-color);
+}
+
+.GTSection1 .GTBoxPickup p {
+	font-weight: bold;
+	margin: 10px 20px;
+}
+
+.GTSection1 .GTBoxPickup .GTBoxFromTo {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 20px 0;
+}
+
+.GTSection1 .GTBoxPickup .GTBoxFromTo i {
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+}
+
+.GTSection1 .GTBoxPickup .GTBoxFromTo input {
+	width: 40%;
+	height: 45px;
+	background-color: #f0f3f5;
+	border: 0;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-o-border-radius: 6px;
+	padding: 10px;
+	outline: 0;
+}
+
+.GTSection1 .GTBoxPickup .GTBoxFromTo input:focus {
+	border: 2px solid#D52941;
+}
+
+.GTSection1 .GTBoxPickup .GTBoxFromTo input:focus::placeholder {
+	color: black;
+	font-weight: bold;
+}
+
+.GTSection1 .GT-box-pickup .GTBoxDate {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+.GTSection1 .GTBoxPickup .GTBoxDate input {
+	width: 40%;
+	margin: 5px 20px;
+	height: 45px;
+	padding: 5px;
+	background-color: #f0f3f5;
+	border: 0;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-o-border-radius: 6px;
+	padding: 10px;
+	outline: 0;
+}
+
+.GTSection1 .GTBoxPickup .GTBoxDate input:focus {
+	border: 2px solid #d52941;
+}
+
+.GTSection1 .GTBoxPickup .GTBoxDate input:focus::placeholder {
+	color: black;
+	font-weight: bold;
+}
+
+.GTSection1 a {
+	display: block;
+	margin-left: auto;
+	width: fit-content;
+	text-decoration: none;
+	color: white;
+	background-color: #d52941;
+	padding: 10px 15px;
+	border-radius: 6px;
+	transition: 0.3s;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-ms-transition: 0.3s;
+	-o-transition: 0.3s;
+	margin-top: 8px;
+}
+
+.GTSection1 a:hover {
+	background-color: rgb(162, 50, 65);
+}

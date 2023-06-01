@@ -8,7 +8,6 @@ const GetTicket = () => {
 				<div className="GTSection1">
 					<div className="GTBoxPickup">
 						<p>Where do you want to go?</p>
-
 						<div className="GTBoxFromTo">
 							<input
 								type="text"
@@ -28,7 +27,7 @@ const GetTicket = () => {
 							<input type="datetime-local" />
 						</div>
 
-						<a href="htt">Purchase Ticket</a>
+						<a href="htt">Print Ticket</a>
 						<a href="htt">Use Subscription</a>
 					</div>
 				</div>

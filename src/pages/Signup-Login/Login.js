@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Signup-Login.css';
 
-
 function RegistrationForm() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -10,15 +9,15 @@ function RegistrationForm() {
 		fetch('http://localhost:3000/api/v1/users/login', {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				"email": email,
-				"password": password,
-			})
+				email: email,
+				password: password,
+			}),
 		})
-			.then(data => console.log(data))
-			.catch(error => console.error(error))
+			.then((data) => console.log(data))
+			.catch((error) => console.error(error));
 	};
 
 	const handleEmail = (event) => {
@@ -28,22 +27,36 @@ function RegistrationForm() {
 		setPassword(event.target.value);
 	};
 	return (
-		<section className="container">
-			<header>Login Form</header>
-			<form className="form">
-				<div className="input-box">
-					<label>Email</label>
-					<input type="text" placeholder="Enter email" value={email} onChange={handleEmail} required />
-				</div>
+		<div className="SL-Page">
+			<section className="SL-container">
+				<header>Login Form</header>
+				<form className="SL-form">
+					<div className="SL-input-box">
+						<label>Email</label>
+						<input
+							type="text"
+							placeholder="Enter email"
+							value={email}
+							onChange={handleEmail}
+							required
+						/>
+					</div>
 
-				<div className="input-box">
-					<label>Password</label>
-					<input type="password" placeholder="Enter password" value={password} onChange={handlePassword} required />
-				</div>
+					<div className="SL-input-box">
+						<label>Password</label>
+						<input
+							type="password"
+							placeholder="Enter password"
+							value={password}
+							onChange={handlePassword}
+							required
+						/>
+					</div>
 
-				<button onClick={handleSubmit}>Log in</button>
-			</form>
-		</section>
+					<button onClick={handleSubmit}>Log in</button>
+				</form>
+			</section>
+		</div>
 	);
 }
 

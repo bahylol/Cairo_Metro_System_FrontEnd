@@ -13,17 +13,14 @@
 	--text-color: #ededed; */
 }
 
-body {
-	font-family: 'Open Sans', sans-serif;
-}
-
-.container {
+/* Get Ticket container CSS */
+.home-get-ticket-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.container .pickup {
+.home-get-ticket-container .home-pickup {
 	-webkit-box-shadow: 0px 3px 11px 0px rgba(117, 117, 117, 1);
 	-moz-box-shadow: 0px 3px 11px 0px rgba(117, 117, 117, 1);
 	box-shadow: 0px 3px 11px 0px rgba(117, 117, 117, 1);
@@ -32,19 +29,19 @@ body {
 	background-color: var(--secondary-color);
 }
 
-.container .pickup p {
+.home-get-ticket-container .home-pickup p {
 	font-weight: bold;
 	margin: 10px 20px;
 }
 
-.container .pickup .from-to {
+.home-get-ticket-container .home-pickup .home-from-to {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	margin: 20px 0;
 }
 
-.container .pickup .from-to i {
+.home-get-ticket-container .home-pickup .home-from-to i {
 	transform: rotate(90deg);
 	-webkit-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
@@ -52,7 +49,7 @@ body {
 	-o-transform: rotate(90deg);
 }
 
-.container .pickup .from-to input {
+.home-get-ticket-container .home-pickup .home-from-to input {
 	width: 40%;
 	height: 45px;
 	background-color: #f0f3f5;
@@ -66,23 +63,23 @@ body {
 	outline: 0;
 }
 
-.container .pickup .from-to input:focus {
+.home-get-ticket-container .home-pickup .home-from-to input:focus {
 	border: 2px solid#D52941;
 }
 
-.container .pickup .from-to input:focus::placeholder {
+.home-get-ticket-container .home-pickup .home-from-to input:focus::placeholder {
 	color: black;
 	font-weight: bold;
 }
 
-.container .pickup .date {
+.home-get-ticket-container .pickup .home-date {
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
 	flex-direction: column;
 }
 
-.container .pickup .date input {
+.home-get-ticket-container .home-pickup .home-date input {
 	width: 40%;
 	margin: 5px 20px;
 	height: 45px;
@@ -98,16 +95,16 @@ body {
 	outline: 0;
 }
 
-.container .pickup .date input:focus {
+.home-get-ticket-container .home-pickup .home-date input:focus {
 	border: 2px solid #d52941;
 }
 
-.container .pickup .date input:focus::placeholder {
+.home-get-ticket-container .home-pickup .home-date input:focus::placeholder {
 	color: black;
 	font-weight: bold;
 }
 
-.container a {
+.home-get-ticket-container a {
 	display: block;
 	margin-left: auto;
 	width: fit-content;
@@ -123,6 +120,11 @@ body {
 	-o-transition: 0.3s;
 }
 
-.container a:hover {
+.home-get-ticket-container a:hover {
 	background-color: rgb(162, 50, 65);
+}
+
+/* train background CSS*/
+.home-train-image {
+	width: 100%;
 }

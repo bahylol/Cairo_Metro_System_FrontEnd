@@ -21,24 +21,24 @@ const Home = () => {
 				referrerpolicy="no-referrer"
 			/>
 
-			<div className="Image">
-				<img className="image1" src={image} alt="TRAIN-IMAGE" />
+			<div>
+				<img className="home-train-image" src={image} alt="TRAIN-IMAGE" />
 			</div>
 
-			<div className="container" style={{ height: '10vh' }}>
-				<div className="pickup">
+			<div className="home-get-ticket-container" style={{ height: '10vh' }}>
+				<div className="home-pickup">
 					<p>Where do you want to go?</p>
 
-					<div className="from-to">
-						<input type="text" className="from" placeholder="Station / stop / address" />
+					<div className="home-from-to">
+						<input type="text" className="home-from" placeholder="Station / stop / address" />
 						<i className="fa-solid fa-arrows-up-down"></i>
 						{/* <i className="fa-solid fa-arrows-minimize"></i> */}
 						{/* <FontAwesomeIcon icon="fa-solid fa-arrow-up-arrow-down" rotation={90} /> */}
 						{/* <i className="fa-solid fa-arrow-up-arrow-down fa-rotate-90 fa-2xs"></i> */}
-						<input type="text" className="to" placeholder="Station / stop / address" />
+						<input type="text" className="home-to" placeholder="Station / stop / address" />
 					</div>
 
-					<div className="date">
+					<div className="home-date">
 						<p>Outbound journey</p>
 						<input type="datetime-local" />
 					</div>

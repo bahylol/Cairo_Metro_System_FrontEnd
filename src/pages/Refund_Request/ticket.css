@@ -4,7 +4,7 @@
 	background: #fff;
 } */
 
-.box {
+.ticket-box {
 	position: absolute;
 	top: calc(50% - 125px);
 	top: -webkit-calc(50% - 125px);
@@ -22,7 +22,7 @@
 	border-bottom: 1px solid #e89f3d;
 }
 
-.left {
+.ticket-left {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -31,27 +31,27 @@
 	left: -5px;
 }
 
-.left li {
+.ticket-left li {
 	width: 0px;
 	height: 0px;
 }
 
-.left li:nth-child(-n + 2) {
+.ticket-left li:nth-child(-n + 2) {
 	margin-top: 8px;
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-right: 5px solid #ffb300;
 }
 
-.left li:nth-child(3),
-.left li:nth-child(6) {
+.ticket-left li:nth-child(3),
+.ticket-left li:nth-child(6) {
 	margin-top: 8px;
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-right: 5px solid #eeeeee;
 }
 
-.left li:nth-child(4) {
+.ticket-left li:nth-child(4) {
 	margin-top: 8px;
 	margin-left: 2px;
 	border-top: 5px solid transparent;
@@ -59,7 +59,7 @@
 	border-right: 5px solid #eeeeee;
 }
 
-.left li:nth-child(5) {
+.ticket-left li:nth-child(5) {
 	margin-top: 8px;
 	margin-left: -1px;
 	border-top: 6px solid transparent;
@@ -67,17 +67,17 @@
 	border-right: 6px solid #eeeeee;
 }
 
-.left li:nth-child(7),
-.left li:nth-child(9),
-.left li:nth-child(11),
-.left li:nth-child(12) {
+.ticket-left li:nth-child(7),
+.ticket-left li:nth-child(9),
+.ticket-left li:nth-child(11),
+.ticket-left li:nth-child(12) {
 	margin-top: 7px;
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-right: 5px solid #e5e5e5;
 }
 
-.left li:nth-child(8) {
+.ticket-left li:nth-child(8) {
 	margin-top: 7px;
 	margin-left: 2px;
 	border-top: 5px solid transparent;
@@ -85,7 +85,7 @@
 	border-right: 5px solid #e5e5e5;
 }
 
-.left li:nth-child(10) {
+.ticket-left li:nth-child(10) {
 	margin-top: 7px;
 	margin-left: 1px;
 	border-top: 5px solid transparent;
@@ -93,7 +93,7 @@
 	border-right: 5px solid #e5e5e5;
 }
 
-.left li:nth-child(13) {
+.ticket-left li:nth-child(13) {
 	margin-top: 7px;
 	margin-left: 2px;
 	border-top: 5px solid transparent;
@@ -101,14 +101,14 @@
 	border-right: 5px solid #ffb300;
 }
 
-.left li:nth-child(14) {
+.ticket-left li:nth-child(14) {
 	margin-top: 7px;
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-right: 5px solid #ffb300;
 }
 
-.right {
+.ticket-right {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -117,23 +117,23 @@
 	right: -5px;
 }
 
-.right li:nth-child(-n + 2) {
+.ticket-right li:nth-child(-n + 2) {
 	margin-top: 8px;
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-left: 5px solid #ffb300;
 }
 
-.right li:nth-child(3),
-.right li:nth-child(4),
-.right li:nth-child(6) {
+.ticket-right li:nth-child(3),
+.ticket-right li:nth-child(4),
+.ticket-right li:nth-child(6) {
 	margin-top: 8px;
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-left: 5px solid #eeeeee;
 }
 
-.right li:nth-child(5) {
+.ticket-right li:nth-child(5) {
 	margin-top: 8px;
 	margin-left: -2px;
 	border-top: 5px solid transparent;
@@ -141,16 +141,16 @@
 	border-left: 5px solid #eeeeee;
 }
 
-.right li:nth-child(8),
-.right li:nth-child(9),
-.right li:nth-child(11) {
+.ticket-right li:nth-child(8),
+.ticket-right li:nth-child(9),
+.ticket-right li:nth-child(11) {
 	margin-top: 7px;
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-left: 5px solid #e5e5e5;
 }
 
-.right li:nth-child(7) {
+.ticket-right li:nth-child(7) {
 	margin-top: 7px;
 	margin-left: -3px;
 	border-top: 5px solid transparent;
@@ -158,7 +158,7 @@
 	border-left: 5px solid #e5e5e5;
 }
 
-.right li:nth-child(10) {
+.ticket-right li:nth-child(10) {
 	margin-top: 7px;
 	margin-left: -2px;
 	border-top: 5px solid transparent;
@@ -166,15 +166,15 @@
 	border-left: 5px solid #e5e5e5;
 }
 
-.right li:nth-child(12) {
+.ticket-right li:nth-child(12) {
 	margin-top: 7px;
 	border-top: 6px solid transparent;
 	border-bottom: 6px solid transparent;
 	border-left: 6px solid #e5e5e5;
 }
 
-.right li:nth-child(13),
-.right li:nth-child(14) {
+.ticket-right li:nth-child(13),
+.ticket-right li:nth-child(14) {
 	margin-top: 7px;
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
@@ -273,7 +273,7 @@
 	display: flex;
 } */
 
-.sub-content {
+.ticket-sub-content {
 	background: #e5e5e5;
 	width: 100%;
 	height: 100px;

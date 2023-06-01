@@ -1,0 +1,114 @@
+:root {
+	/* Light-Mode Colors: */
+	--primary-color: #da2c43;
+	--secondary-color: #f9f7f3;
+	--trim-color: #da2c43;
+	--textBox-color: #fff;
+	--text-color: #f9f7f3;
+	/* Dark-Mode Colors:*/
+	/* --primary-color: #171717;
+	--secondary-color: #444444;
+	--trim-color: #da2c43;
+	--textBox-color: #c9cfca;
+	--text-color: #ededed; */
+}
+/* Import Google font - Poppins */
+
+.RRmodal {
+	position: fixed; /* Make the modal fixed position */
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999; /* Set a higher z-index to make it appear in front */
+	background: rgba(0, 0, 0, 0.2); /* Add a semi-transparent background for overlay effect */
+
+	width: 100%;
+}
+
+.RRmodal .RRoverlay {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.RRmodal .RR-modal-form {
+	max-width: 700px;
+	width: 100%;
+	background: var(--secondary-color);
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	/* Removed the min-width property */
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.RRmodal header {
+	font-size: 1.5rem;
+	color: var(--text-color);
+	font-weight: 500;
+	text-align: center;
+}
+
+.RR-modal-form .input-box {
+	width: 100%;
+	margin-top: 20px;
+}
+.input-box label {
+	color: var(--text-color);
+}
+.input-box input {
+	background-color: var(--textBox-color);
+}
+.RR-modal-form :where(.input-box input, .select-box) {
+	position: relative;
+	height: 50px;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	color: #707070;
+	margin-top: 8px;
+	border: 1px solid #dddddd;
+	border-radius: 6px;
+	padding: 0 15px;
+}
+
+.div .modal-Refundcolumn {
+	width: 1000px;
+}
+.RR-modal-form button {
+	height: 55px;
+	width: 200px;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 400;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	background: var(--primary-color);
+	padding: 15px;
+	margin-left: 20px;
+	margin-right: 20px;
+
+	transition: 0.3s;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-ms-transition: 0.3s;
+	-o-transition: 0.3s;
+}
+
+.RR-modal-form button:hover {
+	background-color: rgb(162, 50, 65);
+}
+/*Responsive*/
+@media screen and (max-width: 90%) {
+	.div .modal-Refundcolumn {
+		flex-wrap: wrap;
+	}
+}

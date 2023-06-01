@@ -14,7 +14,7 @@
 }
 /* Import Google font - Poppins */
 
-.modal {
+.RRmodal {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -27,7 +27,7 @@
 	background: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for overlay effect */
 }
 
-.modal .overlay {
+.RRmodal .RRoverlay {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -35,7 +35,7 @@
 	height: 100%;
 }
 
-.modal .form {
+.RRmodal .RR-modal-form {
 	max-width: 700px;
 	width: 100%;
 	background: var(--secondary-color);
@@ -45,14 +45,14 @@
 	/* Removed the min-width property */
 }
 
-.modal header {
+.RRmodal header {
 	font-size: 1.5rem;
 	color: var(--text-color);
 	font-weight: 500;
 	text-align: center;
 }
 
-.form .input-box {
+.RR-modal-form .input-box {
 	width: 100%;
 	margin-top: 20px;
 }
@@ -62,7 +62,7 @@
 .input-box input {
 	background-color: var(--textBox-color);
 }
-.form :where(.input-box input, .select-box) {
+.RR-modal-form :where(.input-box input, .select-box) {
 	position: relative;
 	height: 50px;
 	width: 100%;
@@ -75,13 +75,13 @@
 	padding: 0 15px;
 }
 
-.div .Refundcolumn {
+.div .modal-Refundcolumn {
 	display: flex;
 	justify-content: center; /* Align items horizontally */
 	column-gap: 15px;
 	flex-wrap: wrap; /* Wrap the buttons if there is not enough space */
 }
-.form button {
+.RR-modal-form button {
 	flex-basis: 50%; /* Set the width of each button to 50% minus half of the column gap */
 
 	height: 55px;
@@ -104,12 +104,12 @@
 	-ms-transition: 0.3s;
 	-o-transition: 0.3s;
 }
-.form button:hover {
+.RR-modal-form button:hover {
 	background-color: rgb(162, 50, 65);
 }
 /*Responsive*/
 @media screen and (max-width: 500px) {
-	.div .Refundcolumn {
+	.div .modal-Refundcolumn {
 		flex-wrap: wrap;
 	}
 }

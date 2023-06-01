@@ -1,4 +1,4 @@
-import './RR.css';
+import './RefundRequest.css';
 // import Ticket from './ticket.js';
 import './ticket.css';
 import './modal.css';
@@ -108,8 +108,8 @@ const Refund_Request = () => {
 
 				{ticketsData.map((ticket) => (
 					<div className="RRcontainer" key={ticket.ticket_id}>
-						<div className="box">
-							<ul className="left">
+						<div className="ticket-box">
+							<ul className="ticket-left">
 								<li></li>
 								<li></li>
 								<li></li>
@@ -126,7 +126,7 @@ const Refund_Request = () => {
 								<li></li>
 							</ul>
 
-							<ul className="right">
+							<ul className="ticket-right">
 								<li></li>
 								<li></li>
 								<li></li>
@@ -143,7 +143,7 @@ const Refund_Request = () => {
 								<li></li>
 							</ul>
 							<div className="ticket" onClick={toggleRefundModal}>
-								<span>WetroMetro</span>
+								<span className="airline">WetroMetro</span>
 								<span className="airline airlineslip">WetroMetro</span>
 								<span className="boarding">Boarding pass</span>
 								<div className="contentTicket">
@@ -216,7 +216,7 @@ const Refund_Request = () => {
 										</svg>
 									</span>
 									<span className="sfo sfoslip">------</span>
-									<div className="sub-content">
+									<div className="ticket-sub-content">
 										<span className="watermark">WetroMetro</span>
 										<span className="name">
 											PASSENGER NAME
@@ -269,12 +269,12 @@ const Refund_Request = () => {
 				))}
 			</body>
 			{refundModal && (
-				<div className="modal">
-					<div onClick={toggleRefundModal} className="overlay">
-						<div className="form">
+				<div className="RRmodal">
+					<div onClick={toggleRefundModal} className="RRoverlay">
+						<div className="RR-modal-form">
 							<h2>Are you sure you want to request a refund for this ticket?</h2>
 							<p>--Refund requests may take up to 2-4 business days to be processed.--</p>
-							<div className="Refundcolumn">
+							<div className="modal-Refundcolumn">
 								<button className="close-model" onClick={toggleRefundModal}>
 									Cancel
 								</button>

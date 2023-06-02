@@ -41,7 +41,7 @@
 	margin-right: 50px;
 	margin-bottom: 50px;
 }
-@media (max-width: 1300px) {
+@media (max-width: 767px) {
 	.general-GP-container {
 		min-width: auto;
 	}

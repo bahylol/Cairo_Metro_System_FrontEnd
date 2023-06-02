@@ -36,9 +36,9 @@
 	min-width: 1000px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 767px) {
 	.navbar {
-		min-width: auto; /* Remove the minimum width */
+		min-width: fit-content; /* Remove the minimum width */
 	}
 }
 

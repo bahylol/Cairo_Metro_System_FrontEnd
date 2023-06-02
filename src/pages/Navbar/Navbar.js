@@ -3,11 +3,62 @@ import './Navbar.css';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-const Navbar = () => {
-	const [isOpen, setIsOpen] = useState(false);
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
-	const toggleMenu = () => {
-		setIsOpen(!isOpen);
+const Navbar = () => {
+	const [state, setState] = React.useState({
+		top: false,
+		left: false,
+		bottom: false,
+		right: false,
+	});
+
+	const list = (anchor) => (
+		<Box
+			sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+			role="presentation"
+			onClick={toggleDrawer(anchor, false)}
+			onKeyDown={toggleDrawer(anchor, false)}
+		>
+			<List>
+				{['Home', 'Tickets', 'Subscriptions', 'Transactions'].map((text, index) => (
+					<ListItem key={text} disablePadding>
+						<ListItemButton>
+							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+							<ListItemText primary={text} />
+						</ListItemButton>
+					</ListItem>
+				))}
+			</List>
+			<Divider />
+			<List>
+				{['All mail', 'Trash', 'Spam'].map((text, index) => (
+					<ListItem key={text} disablePadding>
+						<ListItemButton>
+							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+							<ListItemText primary={text} />
+						</ListItemButton>
+					</ListItem>
+				))}
+			</List>
+		</Box>
+	);
+
+	const toggleDrawer = (anchor, open) => (event) => {
+		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+			return;
+		}
+		event.preventDefault();
+		setState({ ...state, [anchor]: open });
 	};
 
 	return (
@@ -23,11 +74,11 @@ const Navbar = () => {
 			<div className="navbar-container">
 				<div className="navbar-logo-section">
 					<a href="htt" className="navbar-logo">
-						Logo
+						RetroMetro
 					</a>
 				</div>
-				<div className={`navbar-menu ${isOpen ? 'open' : ''}`}>
-					<div className="navbar-hamburger-menu" onClick={toggleMenu}>
+				<div className={`navbar-menu`}>
+					<div className="navbar-hamburger-menu" onClick={toggleDrawer('left', true)}>
 						<span className="navbar-line"></span>
 						<span className="navbar-line"></span>
 						<span className="navbar-line"></span>
@@ -66,8 +117,31 @@ const Navbar = () => {
 					</ul>
 				</div>
 			</div>
+
+			<div>
+				<React.Fragment>
+					<Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
+						{list('left')}
+					</Drawer>
+				</React.Fragment>
+			</div>
 		</nav>
 	);
 };
 
 export default Navbar;
+
+/*
+Home
+
+Tickets
+	My Tickets			(view all tickets, refund request)
+	Purchase Ticket	(buy a ticket --transaction/subscription--)
+
+Subscription 			(view sub, cancel sub, buy sub)
+
+Transactions			(7oatah fel profile in dashboard)
+
+
+
+*/

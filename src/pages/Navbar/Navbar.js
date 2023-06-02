@@ -1,197 +1,73 @@
-// import React, { useState } from 'react';
-// import '../css_files/Navbar.css';
+import React, { useState } from 'react';
+import './Navbar.css';
+import SettingsIcon from '@mui/icons-material/Settings';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-// const Navbar = () => {
-// 	const [isOpen, setIsOpen] = useState(false);
+const Navbar = () => {
+	const [isOpen, setIsOpen] = useState(false);
 
-// 	const toggleMenu = () => {
-// 		setIsOpen(!isOpen);
-// 	};
+	const toggleMenu = () => {
+		setIsOpen(!isOpen);
+	};
 
-// 	const handleSubmenuClick = (event) => {
-// 		event.stopPropagation();
-// 		event.preventDefault();
-// 		const submenu = event.target.nextSibling;
-// 		submenu.classList.toggle('show');
-// 	};
+	return (
+		<nav className="navbar">
+			<link
+				rel="stylesheet"
+				href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+				integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+				crossorigin="anonymous"
+				referrerpolicy="no-referrer"
+			/>
 
-// 	return (
-// 		<div className="menu-container">
-// 			<div className="menu">
-// 				<a href="#" className="logo">
-// 					Logo
-// 				</a>
-// 				<ul className={isOpen ? 'clearfix show' : 'clearfix'}>
-// 					<li>
-// 						<a href="#">Home</a>
-// 					</li>
-// 					<li>
-// 						<a href="#" onClick={handleSubmenuClick}>
-// 							About
-// 						</a>
-// 						<ul className="submenu">
-// 							<li>
-// 								<a href="#" onClick={handleSubmenuClick}>
-// 									School
-// 								</a>
-// 								<ul className="submenu">
-// 									<li>
-// 										<a href="#">Leadership</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">History</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Locations</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Careers</a>
-// 									</li>
-// 								</ul>
-// 							</li>
-// 							<li>
-// 								<a href="#" onClick={handleSubmenuClick}>
-// 									Study
-// 								</a>
-// 								<ul className="submenu">
-// 									<li>
-// 										<a href="#">Undergraduate</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Masters</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">International</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Online</a>
-// 									</li>
-// 								</ul>
-// 							</li>
-// 							<li>
-// 								<a href="#" onClick={handleSubmenuClick}>
-// 									Research
-// 								</a>
-// 								<ul className="submenu">
-// 									<li>
-// 										<a href="#">Undergraduate research</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Masters research</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Funding</a>
-// 									</li>
-// 								</ul>
-// 							</li>
-// 							<li>
-// 								<a href="#" onClick={handleSubmenuClick}>
-// 									Something
-// 								</a>
-// 								<ul className="submenu">
-// 									<li>
-// 										<img src="https://placeimg.com/300/200/nature" alt="Nature" />
-// 									</li>
-// 								</ul>
-// 							</li>
-// 						</ul>
-// 					</li>
-// 					<li>
-// 						<a href="#" onClick={handleSubmenuClick}>
-// 							News
-// 						</a>
-// 						<ul className="submenu">
-// 							<li>
-// 								<a href="#">Today</a>
-// 							</li>
-// 							<li>
-// 								<a href="#">Calendar</a>
-// 							</li>
-// 							<li>
-// 								<a href="#">Sport</a>
-// 							</li>
-// 						</ul>
-// 					</li>
-// 					<li>
-// 						<a href="#" onClick={handleSubmenuClick}>
-// 							Contact
-// 						</a>
-// 						<ul className="submenu">
-// 							<li>
-// 								<a href="#" onClick={handleSubmenuClick}>
-// 									School
-// 								</a>
-// 								<ul className="submenu">
-// 									<li>
-// 										<a href="#">Leadership</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">History</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Locations</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Careers</a>
-// 									</li>
-// 								</ul>
-// 							</li>
-// 							<li>
-// 								<a href="#" onClick={handleSubmenuClick}>
-// 									Study
-// 								</a>
-// 								<ul className="submenu">
-// 									<li>
-// 										<a href="#">Undergraduate</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Masters</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">International</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Online</a>
-// 									</li>
-// 								</ul>
-// 							</li>
-// 							<li>
-// 								<a href="#" onClick={handleSubmenuClick}>
-// 									Research
-// 								</a>
-// 								<ul className="submenu">
-// 									<li>
-// 										<a href="#">Undergraduate research</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Masters research</a>
-// 									</li>
-// 									<li>
-// 										<a href="#">Funding</a>
-// 									</li>
-// 								</ul>
-// 							</li>
-// 							<li>
-// 								<a href="#" onClick={handleSubmenuClick}>
-// 									Something
-// 								</a>
-// 								<ul className="submenu">
-// 									<li>
-// 										<img src="https://placeimg.com/300/200/nature" alt="Nature" />
-// 									</li>
-// 								</ul>
-// 							</li>
-// 						</ul>
-// 					</li>
-// 				</ul>
-// 				<div className="hamburger" onClick={toggleMenu}>
-// 					<div className={isOpen ? 'line line-1' : 'line'}></div>
-// 					<div className={isOpen ? 'line line-2' : 'line'}></div>
-// 					<div className={isOpen ? 'line line-3' : 'line'}></div>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// };
+			<div className="navbar-container">
+				<div className="navbar-logo-section">
+					<a href="htt" className="navbar-logo">
+						Logo
+					</a>
+				</div>
+				<div className={`navbar-menu ${isOpen ? 'open' : ''}`}>
+					<div className="navbar-hamburger-menu" onClick={toggleMenu}>
+						<span className="navbar-line"></span>
+						<span className="navbar-line"></span>
+						<span className="navbar-line"></span>
+					</div>
+					<ul className="navbar-nav-links">
+						<li>
+							<a href="htt">Home</a>
+						</li>
+						<li>
+							<a href="htt">Tickets</a>
+						</li>
+						<li>
+							<a href="htt">My Rides</a>
+						</li>
+						<div className="navbar-spacer"></div>
+						<li className="navbar-login-out-ID">
+							<a href="htt" className="navbar-login-out-text-ID no-hover-animation">
+								Log In
+							</a>
+						</li>
+						<li>
+							<a href="htt" className="special-link signUpLink">
+								Sign Up
+							</a>
+						</li>
+						<li>
+							<a href="htt" className="special-link">
+								<AccountCircleIcon className="profileIcon" />
+							</a>
+						</li>
+						<li>
+							<a href="htt" className="special-link">
+								<SettingsIcon className="settingsIcon" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	);
+};
 
-// export default Navbar;
+export default Navbar;

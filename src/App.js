@@ -1,5 +1,5 @@
 import './App.css';
-import Navbar from './pages/Navbar/Navbar2.js';
+import Navbar from './pages/Navbar/Navbar.js';
 import Footer from './pages/Footer/Footer.js';
 import Home from './pages/Home/Home.js';
 import Signup from './pages/Signup-Login/Signup';
@@ -16,7 +16,7 @@ function App() {
 			<div className="Navbar">
 				<Navbar />
 				<div className="content">
-					<ViewSubscription />
+					<Home />
 				</div>
 			</div>
 		</div>

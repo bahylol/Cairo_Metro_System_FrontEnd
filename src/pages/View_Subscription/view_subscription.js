@@ -1,7 +1,11 @@
 import './view_subscription.css';
+import './cards.css';
 
 import image from '../../Assets/tickets.webp';
 import trainSub from '../../Assets/trainSub.jpg';
+import rookieSub from '../../Assets/rookieSub.jpg';
+import interSub from '../../Assets/interSub.webp';
+import proSub from '../../Assets/proSub.webp';
 
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
@@ -25,6 +29,15 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 import Button from '@mui/material/Button';
+
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+
+import FormGroup from '@mui/material/FormGroup';
+import Switch from '@mui/material/Switch';
 
 const View_subscription = () => {
 	const subscriptionData = {
@@ -51,6 +64,13 @@ const View_subscription = () => {
 		day: 'numeric',
 	});
 
+	const currentDate = new Date();
+	const formattedCurrentDate = currentDate.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+
 	const ExpandMore = styled((props) => {
 		const { expand, ...other } = props;
 		return <IconButton {...other} />;
@@ -67,6 +87,17 @@ const View_subscription = () => {
 
 	const toggleRefundModal = () => {
 		setRefundModal(!refundModal);
+	};
+
+	const [subscribeModal, setSubscribeModal] = React.useState(false);
+	const [modalDuration, setModalDuration] = React.useState('');
+	const [modalRides, setModalRides] = React.useState('');
+
+	const toggleSubscribeModal = (e, duration, rides) => {
+		e.preventDefault();
+		setModalDuration(duration);
+		setModalRides(rides);
+		setSubscribeModal(!subscribeModal);
 	};
 
 	const handleExpandClick = () => {
@@ -86,6 +117,14 @@ const View_subscription = () => {
 			•
 		</Box>
 	);
+
+	const [spacing, setSpacing] = React.useState(2);
+
+	const handleChange = (event) => {
+		setSpacing(Number(event.target.value));
+	};
+
+	const jsx = `<Grid container spacing={${spacing}}>`;
 
 	return (
 		<div className="viewSubscriptionSVPage">
@@ -259,6 +298,173 @@ const View_subscription = () => {
 					</div>
 				</div>
 			)}
+
+			{subscribeModal && (
+				<div className="VSmodal">
+					<div onClick={toggleSubscribeModal} className="VSoverlay">
+						<div className="VS-modal-form">
+							<h2>Subscribe to the following plan</h2>
+							<p>--Plan Information--</p>
+							<p>
+								Type: {modalDuration} <br />
+								You will recieve {modalRides}
+							</p>
+
+							<div className="VSmodal-Refundcolumn">
+								<button className="close-model" onClick={toggleSubscribeModal}>
+									Back
+								</button>
+								<button className="close-model">Subscribe</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
+			<div className="SVPageContainer">
+				<header className="VSCardsHeader">Available Subscriptions</header>
+				<Grid sx={{ flexGrow: 1 }} container spacing={2}>
+					<Grid item xs={12}>
+						<Grid container justifyContent="center" spacing={spacing}>
+							<Grid item>
+								<Paper
+									sx={{
+										height: 600,
+										width: 370,
+									}}
+								>
+									<div className="singleSubCard">
+										<div className="card-grid-space">
+											<div className="num">MONTHLY</div>
+											<a
+												className="card"
+												href="https"
+												style={{
+													'--bg-img': `url(${rookieSub})`,
+												}}
+												onClick={(e) =>
+													toggleSubscribeModal(e, 'monthly', '15 Rides/1 Month')
+												}
+											>
+												<div>
+													<h1>Affordable and flexible travel options</h1>
+													<p>Convenient and easy rides</p>
+													<div className="date">{formattedCurrentDate}</div>
+													<div className="tags">
+														<div className="tag">15 Rides/1 Month</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</Paper>
+							</Grid>
+							<Grid item>
+								<Paper
+									sx={{
+										height: 600,
+										width: 350,
+									}}
+								>
+									<div className="singleSubCard">
+										<div className="card-grid-space">
+											<div className="num">QUARTERLY</div>
+											<a
+												className="card"
+												href="https"
+												style={{
+													'--bg-img': `url(${interSub})`,
+												}}
+												onClick={(e) =>
+													toggleSubscribeModal(e, 'quarterly', '150 Rides/3 Months')
+												}
+											>
+												<div>
+													<h1>Unlock massive savings on frequent rides</h1>
+													<p>Enjoy hassle-free commuting for 3 months</p>
+													<div className="date">{formattedCurrentDate}</div>
+													<div className="tags">
+														<div className="tag">150 Rides/3 Months</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</Paper>
+							</Grid>
+							<Grid item>
+								<Paper
+									sx={{
+										height: 600,
+										width: 350,
+									}}
+								>
+									<div className="singleSubCard">
+										<div className="card-grid-space">
+											<div className="num">ANNUALLY</div>
+											<a
+												className="card"
+												href="https"
+												style={{
+													'--bg-img': `url(${proSub})`,
+												}}
+												onClick={(e) =>
+													toggleSubscribeModal(e, 'yearly', '400 Rides/12 Months')
+												}
+											>
+												<div>
+													<h1>Unlimited rides all year round!</h1>
+													<p>Maximize your savings and ride with ease</p>
+													<div className="date">{formattedCurrentDate}</div>
+													<div className="tags">
+														<div className="tag">400 Rides/12 Months</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</Paper>
+							</Grid>
+						</Grid>
+					</Grid>
+				</Grid>
+			</div>
+			<div className="SVPageContainer">
+				<header className="VSCardsHeader">Payment Information</header>
+				<form className="GT-form">
+					<div className="GT-column">
+						<div className="GT-input-box">
+							<label>Card Type</label>
+							<input type="text" placeholder="Enter card type" required />
+						</div>
+
+						<div className="GT-input-box">
+							<label>Holder Name</label>
+							<input type="text" placeholder="Enter holder name" required />
+						</div>
+
+						<div className="GT-input-box">
+							<label>Expiration Date</label>
+							<input type="date" placeholder="Enter expiration date" required />
+						</div>
+					</div>
+
+					<div className="GT-column">
+						<div className="GT-input-box">
+							<label>Card Number</label>
+							<input type="text" placeholder="Enter card number" required />
+						</div>
+					</div>
+					<div>
+						<FormGroup>
+							<FormControlLabel
+								className="rememberSwitch"
+								control={<Switch defaultChecked />}
+								label="Remember My Payment Information"
+							/>
+						</FormGroup>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 };

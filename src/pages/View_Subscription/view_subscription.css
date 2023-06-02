@@ -179,3 +179,15 @@
 	border-top-left-radius: 100px;
 	border-bottom-right-radius: 100px;
 }
+
+/* SUBSCRIPTION CARDS CSS */
+.singleSubCard {
+	padding: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.singleSubCard div {
+}

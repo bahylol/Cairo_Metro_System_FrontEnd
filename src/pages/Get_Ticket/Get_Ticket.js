@@ -1,5 +1,9 @@
 import './Get_Ticket.css';
 
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+
 const GetTicket = () => {
 	return (
 		<>
@@ -59,6 +63,15 @@ const GetTicket = () => {
 								<label>Card Number</label>
 								<input type="text" placeholder="Enter card number" required />
 							</div>
+						</div>
+						<div>
+							<FormGroup>
+								<FormControlLabel
+									className="rememberSwitch"
+									control={<Switch defaultChecked />}
+									label="Remember My Payment Information"
+								/>
+							</FormGroup>
 						</div>
 					</form>
 				</section>

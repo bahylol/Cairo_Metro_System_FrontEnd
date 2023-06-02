@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+/* font-family: 'Share Tech Mono', monospace; */
+
+.viewSubscriptionSVPage {
+	display: flexbox;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+
+	height: 600px;
+	padding: 50px;
+}
+
+.SVPageContainer {
+	display: flexbox;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+
+	position: relative;
+	left: auto;
+	right: auto;
+	max-width: 3000px;
+	background: var(--general-GP-secondary-color);
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+	min-width: 1100px;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-bottom: 50px;
+}
+
+/* POPUP MODAL CSS */
+
+:root {
+	/* Light-Mode Colors: */
+	--VS-primary-color: #da2c43;
+	--VS-secondary-color: #f9f7f3;
+	--VS-trim-color: #da2c43;
+	--VS-textBox-color: #fff;
+	--VS-text-color: #f9f7f3;
+	/* Dark-Mode Colors:*/
+	/* --primary-color: #171717;
+	--secondary-color: #444444;
+	--trim-color: #da2c43;
+	--textBox-color: #c9cfca;
+	--text-color: #ededed; */
+}
+
+.VSmodal {
+	position: fixed; /* Make the modal fixed position */
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999; /* Set a higher z-index to make it appear in front */
+	background: rgba(0, 0, 0, 0.2); /* Add a semi-transparent background for overlay effect */
+
+	width: 100%;
+}
+
+.VSmodal .VSoverlay {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.VSmodal .VS-modal-form {
+	max-width: 700px;
+	width: 100%;
+	background: var(--VS-secondary-color);
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	/* Removed the min-width property */
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.VSmodal header {
+	font-size: 1.5rem;
+	color: var(--VS-text-color);
+	font-weight: 500;
+	text-align: center;
+}
+
+.VS-modal-form .input-box {
+	width: 100%;
+	margin-top: 20px;
+}
+.VS-modal-form :where(.input-box input, .select-box) {
+	position: relative;
+	height: 50px;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	color: #707070;
+	margin-top: 8px;
+	border: 1px solid #dddddd;
+	border-radius: 6px;
+	padding: 0 15px;
+}
+
+.div .VSmodal-Refundcolumn {
+	width: 1000px;
+}
+.VS-modal-form button {
+	height: 55px;
+	width: 200px;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 400;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	background: var(--VS-primary-color);
+	padding: 15px;
+	margin-left: 20px;
+	margin-right: 20px;
+
+	transition: 0.3s;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-ms-transition: 0.3s;
+	-o-transition: 0.3s;
+}
+
+.VS-modal-form button:hover {
+	background-color: rgb(162, 50, 65);
+}
+/*Responsive*/
+@media screen and (max-width: 90%) {
+	.div .VSmodal-Refundcolumn {
+		flex-wrap: wrap;
+	}
+}
+
+/* CARD TICKET IMAGE CSS */
+.VSImage1 {
+	width: 100%;
+}
+
+/* .VSImage2 {
+	width: 100%;
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+.VSImage2 img {
+	display: block;
+	width: 100%;
+	object-fit: cover;
+	border: 92px solid #a1c4a8;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+} */
+
+.VSSubTrainImage {
+	width: 100%;
+	margin-top: 40px;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+}
+.VSImage2 {
+	width: 100%;
+	object-fit: cover;
+	border: 10px solid #4c4c4c;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	/* Add margin to crop from top and bottom */
+	margin-top: -20px;
+	margin-bottom: -20px;
+	border-top-left-radius: 100px;
+	border-bottom-right-radius: 100px;
+}

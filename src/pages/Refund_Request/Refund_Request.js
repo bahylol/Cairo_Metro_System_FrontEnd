@@ -5,8 +5,13 @@ import './modal.css';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 const Refund_Request = () => {
+	// when i get the ticket data from the
+	// DB i have to add the rating variable to each one.
 	const [ticketsData, setTicketsData] = useState([
 		{
 			ticket_id: 1,
@@ -17,6 +22,7 @@ const Refund_Request = () => {
 			zone_id: 1,
 			origin: 'Rehaab',
 			destination: '6 Octobar',
+			rating: 0,
 		},
 		{
 			ticket_id: 2,
@@ -27,6 +33,7 @@ const Refund_Request = () => {
 			zone_id: 1,
 			origin: '3en Shams',
 			destination: 'Zamalek',
+			rating: 0,
 		},
 		{
 			ticket_id: 3,
@@ -37,6 +44,7 @@ const Refund_Request = () => {
 			zone_id: 1,
 			origin: 'Maadi',
 			destination: 'Tagamo3',
+			rating: 0,
 		},
 		{
 			ticket_id: 4,
@@ -47,12 +55,23 @@ const Refund_Request = () => {
 			zone_id: 1,
 			origin: 'El shams',
 			destination: 'El Gesh',
+			rating: 0,
 		},
 	]);
 
 	const [refundModal, setRefundModal] = useState(false);
 	const [modalOpen, setModalOpen] = useState(false);
 	const [selectedTicketId, setSelectedTicketId] = useState(null);
+
+	const [value, setValue] = useState(2);
+
+	const handleRatingChange = (ticketId, newValue) => {
+		setTicketsData((prevData) =>
+			prevData.map((ticket) =>
+				ticket.ticket_id === ticketId ? { ...ticket, rating: newValue } : ticket
+			)
+		);
+	};
 
 	const toggleRefundModal = () => {
 		setRefundModal(!refundModal);
@@ -276,6 +295,25 @@ const Refund_Request = () => {
 							<div className="barcode slip"></div>
 						</div>
 					</div>
+					<div className="RRratingScale">
+						<Box
+							sx={{
+								'& > legend': { mt: 2 },
+								'& .MuiRating-iconFilled': {
+									color: '#269BE3',
+								},
+							}}
+						>
+							<Typography component="legend"></Typography>
+							<Rating
+								name={`rating-${ticket.ticket_id}`}
+								value={ticket.rating}
+								onChange={(event, newValue) => {
+									handleRatingChange(ticket.ticket_id, newValue);
+								}}
+							/>
+						</Box>
+					</div>
 					{modalOpen && (
 						<div className="RRmodal">
 							<div onClick={toggleRefundModal} className="RRoverlay">
@@ -287,7 +325,7 @@ const Refund_Request = () => {
 									</p>
 									<div className="modal-Refundcolumn">
 										<button className="close-model" onClick={closeModal}>
-											Cancel
+											Back
 										</button>
 										<button className="close-model">Request Refund</button>
 									</div>

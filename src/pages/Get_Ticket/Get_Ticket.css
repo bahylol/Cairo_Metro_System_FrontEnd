@@ -22,7 +22,7 @@
 }
 .GT-container {
 	position: relative;
-	max-width: 1300px;
+	max-width: 700px;
 	width: 100%;
 	background: var(--GT-secondary-color);
 	padding: 25px;
@@ -30,11 +30,11 @@
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
 	/* i added this extra so the login isnt so small */
-	min-width: 1300px;
+	min-width: 700px;
 }
 /* I also added this part. for the login width */
 /* Media query for screens smaller than 400px */
-@media (max-width: 1300px) {
+@media (max-width: 700px) {
 	.GT-container {
 		min-width: auto; /* Remove the minimum width */
 	}
@@ -100,6 +100,9 @@
 	}
 }
 
+/* ----------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------------- */
 /* GET TICKET SECTION BOX CSS */
 .Get-Ticket-Whole-Page {
@@ -222,3 +225,7 @@
 .GTSection1 a:hover {
 	background-color: rgb(162, 50, 65);
 }
+
+/* REMEMBER PAYMENT INFO SWITCH CSS */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+/* font-family: 'Share Tech Mono', monospace; */

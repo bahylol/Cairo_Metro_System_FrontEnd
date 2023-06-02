@@ -123,3 +123,10 @@ header {
 	/* i added this extra so the login isnt so small */
 	min-width: 1000px;
 }
+
+/* RATING SCALE CSS */
+
+.RRratingScale {
+	margin-left: 430px;
+	margin-top: 300px;
+}

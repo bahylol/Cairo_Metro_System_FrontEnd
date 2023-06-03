@@ -10,12 +10,12 @@ function RegistrationForm() {
 	const [password, setPassword] = useState('');
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if (email === "") {
-			alert("Please Enter Your Email");
+		if (email === '') {
+			alert('Please Enter Your Email');
 			return;
 		}
-		if (password === "") {
-			alert("Please Enter Your Password");
+		if (password === '') {
+			alert('Please Enter Your Password');
 			return;
 		}
 		fetch('http://localhost:3000/api/v1/users/login', {
@@ -24,8 +24,8 @@ function RegistrationForm() {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				email: email,
-				password: password,
+				email: 'a',
+				password: 'a',
 			}),
 		})
 			// .then(response => {
@@ -59,14 +59,12 @@ function RegistrationForm() {
 			// 	// if (response.status === 200)
 			// 	// 	navigate("/test");
 			// })
-			.then(response => response.json())
+			.then((response) => response.json())
 			.then((data) => {
-				localStorage.setItem("session_token", data[0])
-				if (data[1] === 200)
-					navigate("/test");
+				localStorage.setItem('session_token', data[0]);
+				if (data[1] === 200) navigate('/test');
 			})
 			.catch((error) => console.error(error));
-
 	};
 
 	const handleEmail = (event) => {

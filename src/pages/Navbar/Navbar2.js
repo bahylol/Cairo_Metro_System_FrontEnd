@@ -43,12 +43,12 @@ const Navbar = () => {
 						</li>
 						<div className="navbar-spacer"></div>
 						<li className="navbar-login-out-ID">
-							<a href="htt" className="navbar-login-out-text-ID">
+							<a href="login" className="navbar-login-out-text-ID">
 								Log In
 							</a>
 						</li>
 						<li>
-							<a href="htt">Sign Up</a>
+							<a href="register">Sign Up</a>
 						</li>
 						<li>
 							<a href="htt">Profile</a>

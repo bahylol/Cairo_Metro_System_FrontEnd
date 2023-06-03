@@ -16,7 +16,7 @@ function App() {
 			<div className="Navbar">
 				<Navbar />
 				<div className="content">
-					<ViewSubscription />
+					<Login />
 				</div>
 			</div>
 		</div>

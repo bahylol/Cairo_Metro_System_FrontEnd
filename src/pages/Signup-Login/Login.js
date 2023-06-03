@@ -24,8 +24,8 @@ function RegistrationForm() {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				email: email,
-				password: password,
+				email: 'a',
+				password: 'a',
 			}),
 		})
 			// .then(response => {

@@ -231,3 +231,8 @@
 .sublinks a:hover {
 	color: #ff9898;
 }
+
+/* NAVBAR LOGO CSS */
+.transparentLogo {
+	width: 110px;
+}

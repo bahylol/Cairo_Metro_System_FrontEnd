@@ -1,105 +1,141 @@
 import './Footer.css';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 const Footer = () => {
 	return (
-		<footer className="site-footer">
-			<div className="footer-container">
-				<div className="footer-row">
-					<div className="col-sm-12 col-md-6">
-						<h6>About</h6>
-						<p className="text-justify">
-							Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the
-							upcoming programmers with the code. Scanfcode focuses on providing the most
-							efficient code or snippets as the code wants to be simple. We will help
-							programmers build up concepts in different programming languages that include
-							C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and
-							Algorithm.
-						</p>
-					</div>
+		<div>
+			<footer className="footer">
+				<div className="footer__addr">
+					<h1 className="footer__logo">RetroMetro</h1>
 
-					<div className="col-xs-6 col-md-3">
-						<h6>Categories</h6>
-						<ul className="footer-links">
+					<h2>Contact Us</h2>
+
+					<address>
+						5534 Somewhere In. The World 22193-10212
+						<br />
+						<a className="footer__btn" href="metronoreplystation@gmail.com">
+							Email Us
+						</a>
+					</address>
+				</div>
+
+				<ul className="footer__nav">
+					<li className="nav__item">
+						<h2 className="nav__title">Media</h2>
+
+						<ul className="nav__ul">
 							<li>
-								<a href="http://scanfcode.com/category/c-language/">C</a>
+								<a href="#">Online</a>
 							</li>
+
 							<li>
-								<a href="http://scanfcode.com/category/front-end-development/">UI Design</a>
+								<a href="#">Print</a>
 							</li>
+
 							<li>
-								<a href="http://scanfcode.com/category/back-end-development/">PHP</a>
-							</li>
-							<li>
-								<a href="http://scanfcode.com/category/java-programming-language/">Java</a>
-							</li>
-							<li>
-								<a href="http://scanfcode.com/category/android/">Android</a>
-							</li>
-							<li>
-								<a href="http://scanfcode.com/category/templates/">Templates</a>
+								<a href="#">Alternative Ads</a>
 							</li>
 						</ul>
-					</div>
+					</li>
 
-					<div className="col-xs-6 col-md-3">
-						<h6>Quick Links</h6>
-						<ul className="footer-links">
+					<li className="nav__item nav__item--extra">
+						<h2 className="nav__title">Technology</h2>
+
+						<ul className="nav__ul nav__ul--extra">
 							<li>
-								<a href="http://scanfcode.com/about/">About Us</a>
+								<a href="#">Hardware Design</a>
 							</li>
+
 							<li>
-								<a href="http://scanfcode.com/contact/">Contact Us</a>
+								<a href="#">Software Design</a>
 							</li>
+
 							<li>
-								<a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a>
+								<a href="#">Digital Signage</a>
 							</li>
+
 							<li>
-								<a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a>
+								<a href="#">Automation</a>
 							</li>
+
 							<li>
-								<a href="http://scanfcode.com/sitemap/">Sitemap</a>
+								<a href="#">Artificial Intelligence</a>
+							</li>
+
+							<li>
+								<a href="#">IoT</a>
 							</li>
 						</ul>
+					</li>
+
+					<li className="nav__item">
+						<h2 className="nav__title">Legal</h2>
+
+						<ul className="nav__ul">
+							<li>
+								<a href="#">Privacy Policy</a>
+							</li>
+
+							<li>
+								<a href="#">Terms of Use</a>
+							</li>
+
+							<li>
+								<a href="#">Sitemap</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+				<div className="legal">
+					<p>&copy; 2019 Something. All rights probably not reserved.</p>
+					<div className="legal__links">
+						<span>
+							Made with <span className="heart">♥</span> remotely from Anywhere
+						</span>
 					</div>
 				</div>
-				{/* <hr> */}
-			</div>
-			<div className="footer-container">
-				<div className="footer-row">
-					<div className="col-md-8 col-sm-6 col-xs-12">
-						<p className="copyright-text">
-							Copyright &copy; 2017 All Rights Reserved by
-							<a href="htt">Scanfcode</a>.
-						</p>
-					</div>
-
-					<div className="col-md-4 col-sm-6 col-xs-12">
-						<ul className="social-icons">
-							<li>
-								<a className="facebook" href="htt">
-									<i className="fa fa-facebook"></i>
-								</a>
-							</li>
-							<li>
-								<a className="twitter" href="htt">
-									<i className="fa fa-twitter"></i>
-								</a>
-							</li>
-							<li>
-								<a className="dribbble" href="htt">
-									<i className="fa fa-dribbble"></i>
-								</a>
-							</li>
-							<li>
-								<a className="linkedin" href="htt">
-									<i className="fa fa-linkedin"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<ul class="social-icons">
+						<li>
+							<a class="facebook" href="#">
+								<FacebookIcon className="icon" />
+							</a>
+						</li>
+						<li>
+							<a class="twitter" href="#">
+								<TwitterIcon className="icon" />
+							</a>
+						</li>
+						<li>
+							<a class="linkedin" href="#">
+								<LinkedInIcon className="icon" />
+							</a>
+						</li>
+						<li>
+							<a class="insta" href="#">
+								<InstagramIcon className="icon" />
+							</a>
+						</li>
+						<li>
+							<a class="youtube" href="#">
+								<YouTubeIcon className="icon" />
+							</a>
+						</li>
+						<li>
+							<a class="git" href="#">
+								<GitHubIcon className="icon" />
+							</a>
+						</li>
+					</ul>
 				</div>
-			</div>
-		</footer>
+			</footer>
+		</div>
 	);
 };
 

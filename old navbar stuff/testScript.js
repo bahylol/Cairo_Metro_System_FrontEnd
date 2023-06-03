@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import './Navbar.css';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import AddHomeIcon from '@mui/icons-material/AddHome';
-import TrainIcon from '@mui/icons-material/Train';
-import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
-import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -22,35 +15,15 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
 const Navbar = () => {
-	const [userType, setUserType] = useState('user');
-
-	const userLoggedIn = () => {
-		setUserType('user');
-	};
-
-	const adminLoggedIn = () => {
-		setUserType('admin');
-	};
-
-	const [loggedIn, setLoggedIn] = useState(false);
-
-	const login = () => {
-		setLoggedIn(true);
-	};
-
-	const logout = () => {
-		setLoggedIn(false);
-	};
-
 	const [navSublinks, setNavSublinks] = useState([]);
 
-	const handleMouseEnterNavbarLink = (index) => {
+	const handleMouseEnter = (index) => {
 		const updatedSublinks = [...navSublinks];
 		updatedSublinks[index] = true;
 		setNavSublinks(updatedSublinks);
 	};
 
-	const handleMouseLeaveNavbarLink = (index) => {
+	const handleMouseLeave = (index) => {
 		const updatedSublinks = [...navSublinks];
 		updatedSublinks[index] = false;
 		setNavSublinks(updatedSublinks);
@@ -71,50 +44,21 @@ const Navbar = () => {
 			onKeyDown={toggleDrawer(anchor, false)}
 		>
 			<List>
-				{['Profile', 'Log In', 'Sign Up', 'Settings'].map((text, index) => (
+				{['Home', 'Tickets', 'Subscriptions', 'Transactions'].map((text, index) => (
 					<ListItem key={text} disablePadding>
 						<ListItemButton>
-							{index === 0 && (
-								<ListItemIcon>
-									<AccountCircleIcon />
-								</ListItemIcon>
-							)}
-							{!loggedIn && index === 1 && (
-								<ListItemIcon>
-									<LoginIcon />
-								</ListItemIcon>
-							)}
-							{loggedIn && index === 1 && (
-								<ListItemIcon>
-									<LogoutIcon />
-								</ListItemIcon>
-							)}
-							{index === 2 && (
-								<ListItemIcon>
-									<ExitToAppIcon />
-								</ListItemIcon>
-							)}
-							{index === 3 && (
-								<ListItemIcon>
-									<SettingsIcon />
-								</ListItemIcon>
-							)}
-							<ListItemText
-								primary={index === 1 ? (loggedIn ? 'Log Out' : 'Log In') : text}
-							/>
+							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+							<ListItemText primary={text} />
 						</ListItemButton>
 					</ListItem>
 				))}
 			</List>
 			<Divider />
 			<List>
-				{['Home', 'My Tickets', 'Get Ticket', 'Subscriptions'].map((text, index) => (
+				{['All mail', 'Trash', 'Spam'].map((text, index) => (
 					<ListItem key={text} disablePadding>
 						<ListItemButton>
-							{index === 0 && <ListItemIcon>{<AddHomeIcon />}</ListItemIcon>}
-							{index === 1 && <ListItemIcon>{<TrainIcon />}</ListItemIcon>}
-							{index === 2 && <ListItemIcon>{<ConfirmationNumberIcon />}</ListItemIcon>}
-							{index === 3 && <ListItemIcon>{<SubscriptionsIcon />}</ListItemIcon>}
+							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
 							<ListItemText primary={text} />
 						</ListItemButton>
 					</ListItem>
@@ -124,10 +68,10 @@ const Navbar = () => {
 	);
 
 	const toggleDrawer = (anchor, open) => (event) => {
-		event.preventDefault();
 		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
 			return;
 		}
+		event.preventDefault();
 		setState({ ...state, [anchor]: open });
 	};
 
@@ -157,53 +101,48 @@ const Navbar = () => {
 						<li>
 							<a href="htt">Home</a>
 						</li>
-						<li>
-							<a href="htt">My Rides</a>
-						</li>
-						<li>
-							<a href="htt">Get Ticket</a>
-						</li>
-						<li>
-							<a href="htt">Subscription</a>
-						</li>
 						<li
-							onMouseEnter={() => handleMouseEnterNavbarLink(1)}
-							onMouseLeave={() => handleMouseLeaveNavbarLink(1)}
+							onMouseEnter={() => handleMouseEnter(1)}
+							onMouseLeave={() => handleMouseLeave(1)}
 						>
-							<a href="htt">Manage Stations</a>
+							<a href="htt">Tickets</a>
 							{navSublinks[1] && (
 								<div className="sublinks-container">
 									<ul className="sublinks">
 										<li>
-											<a href="htt">Create Station</a>
+											<a href="htt">View Tickets</a>
 										</li>
 										<li>
-											<a href="htt">Update Station</a>
+											<a href="htt">Buy Tickets</a>
+										</li>
+									</ul>
+								</div>
+							)}
+						</li>
+						<li
+							onMouseEnter={() => handleMouseEnter(2)}
+							onMouseLeave={() => handleMouseLeave(2)}
+						>
+							<a href="htt">Subscription</a>
+							{navSublinks[2] && (
+								<div className="sublinks-container">
+									<ul className="sublinks">
+										<li>
+											<a href="htt">View Subscription</a>
 										</li>
 										<li>
-											<a href="htt">Delete Station</a>
+											<a href="htt">Buy Subscription</a>
 										</li>
 									</ul>
 								</div>
 							)}
 						</li>
 						<div className="navbar-spacer"></div>
-
-						{!loggedIn && (
-							<li className="navbar-login-out-ID">
-								<a href="htt" className="navbar-login-out-text-ID no-hover-animation">
-									Log In
-								</a>
-							</li>
-						)}
-						{loggedIn && (
-							<li className="navbar-login-out-ID">
-								<a href="htt" className="navbar-login-out-text-ID no-hover-animation">
-									Log Out
-								</a>
-							</li>
-						)}
-
+						<li className="navbar-login-out-ID">
+							<a href="htt" className="navbar-login-out-text-ID no-hover-animation">
+								Log In
+							</a>
+						</li>
 						<li>
 							<a href="htt" className="special-link signUpLink">
 								Sign Up
@@ -242,19 +181,11 @@ export default Navbar;
 /*
 Home
 
-My Rides			      (view all tickets, refund request)
-
-Get Ticket	         (buy a ticket --transaction/subscription--)
+Tickets
+	My Tickets			(view all tickets, refund request)
+	Purchase Ticket	(buy a ticket --transaction/subscription--)
 
 Subscription 			(view sub, cancel sub, buy sub)
-
-Log In / LogOut
-
-Sign Up
-
-Profile --> Dashboard
-
-Transactions
 
 Transactions			(7oatah fel profile in dashboard)
 

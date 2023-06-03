@@ -40,3 +40,7 @@
 	font-family: 'Share Tech Mono', monospace;
 }
 
+html {
+	background-image: url('./Assets/minimal-Dot-Pattern.webp');
+}
+

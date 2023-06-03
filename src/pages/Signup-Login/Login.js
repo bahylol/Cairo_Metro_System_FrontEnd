@@ -1,3 +1,5 @@
+import Footer from '../Footer/Footer.js';
+
 import React, { useState } from 'react';
 import './Signup-Login.css';
 import { useNavigate } from 'react-router-dom';
@@ -78,36 +80,39 @@ function RegistrationForm() {
 		setPassword(event.target.value);
 	};
 	return (
-		<div className="SL-Page">
-			<section className="SL-container">
-				<header>Login Form</header>
-				<form className="SL-form">
-					<div className="SL-input-box">
-						<label>Email</label>
-						<input
-							type="text"
-							placeholder="Enter email"
-							value={email}
-							onChange={handleEmail}
-							required
-						/>
-					</div>
+		<>
+			<div className="SL-Page">
+				<section className="SL-container">
+					<header>Login Form</header>
+					<form className="SL-form">
+						<div className="SL-input-box">
+							<label>Email</label>
+							<input
+								type="text"
+								placeholder="Enter email"
+								value={email}
+								onChange={handleEmail}
+								required
+							/>
+						</div>
 
-					<div className="SL-input-box">
-						<label>Password</label>
-						<input
-							type="password"
-							placeholder="Enter password"
-							value={password}
-							onChange={handlePassword}
-							required
-						/>
-					</div>
+						<div className="SL-input-box">
+							<label>Password</label>
+							<input
+								type="password"
+								placeholder="Enter password"
+								value={password}
+								onChange={handlePassword}
+								required
+							/>
+						</div>
 
-					<button onClick={handleSubmit}>Log in</button>
-				</form>
-			</section>
-		</div>
+						<button onClick={handleSubmit}>Log in</button>
+					</form>
+				</section>
+			</div>
+			<Footer />
+		</>
 	);
 }
 

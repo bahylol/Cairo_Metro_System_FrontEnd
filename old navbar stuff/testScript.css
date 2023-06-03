@@ -15,9 +15,7 @@
 }
 
 .navbar-spacer {
-	margin-left: 35px;
-	border-left: 2px solid white;
-	height: 30px;
+	margin-left: 90px; /* Adjust the height to increase or decrease the space */
 }
 
 .navbar {
@@ -84,8 +82,8 @@
 .navbar-nav-links {
 	display: flex;
 	list-style: none;
-	margin-right: 20px;
-	margin-left: 20px;
+	margin-right: 50px;
+	margin-left: 50px;
 
 	flex-direction: row;
 	align-items: center;
@@ -206,15 +204,14 @@
 	position: absolute;
 	top: 100%;
 	left: 0;
-	width: 150px;
+	width: 140px;
 	z-index: 999;
 }
 
 .sublinks {
 	list-style: none;
 	padding: 5px;
-	/* background-color: #ff6666; */
-	background: rgba(255, 98, 98, 0.9);
+	background-color: #ff6666;
 	border-radius: 7px;
 }
 

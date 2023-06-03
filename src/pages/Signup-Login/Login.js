@@ -26,10 +26,10 @@ function RegistrationForm() {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				// email: email,
-				// password: password,
-				email: "bahy@gmail.com",
-				password: "bahy",
+				email: email,
+				password: password,
+				// email: "bahy@gmail.com",
+				// password: "bahy",
 			}),
 		})
 			// .then(response => {
@@ -63,14 +63,12 @@ function RegistrationForm() {
 			// 	// if (response.status === 200)
 			// 	// 	navigate("/test");
 			// })
-			.then(response => response.json())
+			.then((response) => response.json())
 			.then((data) => {
-				localStorage.setItem("session_token", data[0])
-				if (data[1] === 200)
-					navigate("/test");
+				localStorage.setItem('session_token', data[0]);
+				if (data[1] === 200) navigate('/test');
 			})
 			.catch((error) => console.error(error));
-
 	};
 
 	const handleEmail = (event) => {

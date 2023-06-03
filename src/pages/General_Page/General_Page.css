@@ -12,6 +12,10 @@
 	--textBox-color: #c9cfca;
 	--text-color: #ededed; */
 }
+.pageCont {
+	padding: 50px;
+}
+
 .general-GP-page {
 	display: flexbox;
 	align-items: center;
@@ -19,7 +23,6 @@
 	flex-direction: column;
 
 	height: 600px;
-	padding: 50px;
 }
 .general-GP-container {
 	display: flexbox;

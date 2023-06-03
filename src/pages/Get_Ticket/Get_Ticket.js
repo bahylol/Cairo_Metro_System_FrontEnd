@@ -1,3 +1,5 @@
+import Footer from '../Footer/Footer.js';
+
 import './Get_Ticket.css';
 
 import FormGroup from '@mui/material/FormGroup';
@@ -76,6 +78,7 @@ const GetTicket = () => {
 					</form>
 				</section>
 			</div>
+			<Footer />
 		</>
 	);
 };

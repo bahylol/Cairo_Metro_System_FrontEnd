@@ -1,3 +1,5 @@
+import Footer from '../Footer/Footer.js';
+
 import './Transactions.css';
 
 import { DataGrid } from '@mui/x-data-grid';
@@ -202,22 +204,25 @@ const Transactions = () => {
 	const rows = updatedTransactionData;
 
 	return (
-		<div className="transactions-TP-page">
-			<header>Your Transactions</header>
-			<div className="transaction-TP-table" style={{ height: 400, width: '100%' }}>
-				<DataGrid
-					rows={rows}
-					columns={columns}
-					initialState={{
-						pagination: {
-							paginationModel: { page: 0, pageSize: 5 },
-						},
-					}}
-					pageSizeOptions={[5, 10]}
-					checkboxSelection
-				/>
+		<>
+			<div className="transactions-TP-page">
+				<header>Your Transactions</header>
+				<div className="transaction-TP-table" style={{ height: 400, width: '100%' }}>
+					<DataGrid
+						rows={rows}
+						columns={columns}
+						initialState={{
+							pagination: {
+								paginationModel: { page: 0, pageSize: 5 },
+							},
+						}}
+						pageSizeOptions={[5, 10]}
+						checkboxSelection
+					/>
+				</div>
 			</div>
-		</div>
+			<Footer />
+		</>
 	);
 };
 

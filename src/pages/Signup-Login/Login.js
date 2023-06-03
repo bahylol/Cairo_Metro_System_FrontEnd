@@ -1,5 +1,3 @@
-import Footer from '../Footer/Footer.js';
-
 import React, { useState } from 'react';
 import './Signup-Login.css';
 import { useNavigate } from 'react-router-dom';
@@ -12,24 +10,22 @@ function RegistrationForm() {
 	const [password, setPassword] = useState('');
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		// if (email === "") {
-		// 	alert("Please Enter Your Email");
-		// 	return;
-		// }
-		// if (password === "") {
-		// 	alert("Please Enter Your Password");
-		// 	return;
-		// }
+		if (email === "") {
+			alert("Please Enter Your Email");
+			return;
+		}
+		if (password === "") {
+			alert("Please Enter Your Password");
+			return;
+		}
 		fetch('http://localhost:3000/api/v1/users/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				// email: email,
-				// password: password,
-				email: "bahy@gmail.com",
-				password: "bahy",
+				email: email,
+				password: password,
 			}),
 		})
 			// .then(response => {
@@ -80,39 +76,36 @@ function RegistrationForm() {
 		setPassword(event.target.value);
 	};
 	return (
-		<>
-			<div className="SL-Page">
-				<section className="SL-container">
-					<header>Login Form</header>
-					<form className="SL-form">
-						<div className="SL-input-box">
-							<label>Email</label>
-							<input
-								type="text"
-								placeholder="Enter email"
-								value={email}
-								onChange={handleEmail}
-								required
-							/>
-						</div>
+		<div className="SL-Page">
+			<section className="SL-container">
+				<header>Login Form</header>
+				<form className="SL-form">
+					<div className="SL-input-box">
+						<label>Email</label>
+						<input
+							type="text"
+							placeholder="Enter email"
+							value={email}
+							onChange={handleEmail}
+							required
+						/>
+					</div>
 
-						<div className="SL-input-box">
-							<label>Password</label>
-							<input
-								type="password"
-								placeholder="Enter password"
-								value={password}
-								onChange={handlePassword}
-								required
-							/>
-						</div>
+					<div className="SL-input-box">
+						<label>Password</label>
+						<input
+							type="password"
+							placeholder="Enter password"
+							value={password}
+							onChange={handlePassword}
+							required
+						/>
+					</div>
 
-						<button onClick={handleSubmit}>Log in</button>
-					</form>
-				</section>
-			</div>
-			<Footer />
-		</>
+					<button onClick={handleSubmit}>Log in</button>
+				</form>
+			</section>
+		</div>
 	);
 }
 

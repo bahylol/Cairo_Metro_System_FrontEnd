@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-function RegistrationForm() {
+function RegistrationForm({ setIsLoggedIn, setUserType }) {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -26,8 +26,8 @@ function RegistrationForm() {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				email: 'a',
-				password: 'a',
+				email: email,
+				password: password,
 			}),
 		})
 			// .then(response => {
@@ -64,7 +64,8 @@ function RegistrationForm() {
 			.then((response) => response.json())
 			.then((data) => {
 				localStorage.setItem('session_token', data[0]);
-				if (data[1] === 200) navigate('/test');
+				setIsLoggedIn(true);
+				if (data[1] === 200) navigate('/');
 			})
 			.catch((error) => console.error(error));
 	};

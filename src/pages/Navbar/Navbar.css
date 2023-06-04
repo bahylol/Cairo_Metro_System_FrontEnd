@@ -236,3 +236,8 @@
 .transparentLogo {
 	width: 110px;
 }
+
+.link-style {
+	text-decoration: none;
+	color: inherit;
+}

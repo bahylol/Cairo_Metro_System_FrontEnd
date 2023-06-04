@@ -1,6 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './App.js';
 import Navbar from './pages/Navbar/Navbar.js';
@@ -14,27 +15,34 @@ import Transactions from './pages/Transactions/Transactions.js';
 import ViewSubscription from './pages/View_Subscription/view_subscription.js';
 import Footer from './pages/Footer/Footer.js';
 
-const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <App />,
-	},
-	{
-		path: '/login',
-		element: <Login />,
-	},
-	{
-		path: '/register',
-		element: <Signup />,
-	},
-	{
-		path: '/test',
-		element: <RefundRequestPage />,
-	},
-]);
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// const router = createBrowserRouter([
+// 	{
+// 		path: '/',
+// 		element: <App />,
+// 	},
+// 	{
+// 		path: '/login',
+// 		element: <Login />,
+// 	},
+// 	{
+// 		path: '/register',
+// 		element: <Signup />,
+// 	},
+// 	{
+// 		path: '/test',
+// 		element: <RefundRequestPage />,
+// 	},
+// ]);
+// const root = ReactDOM.createRoot(document.getElementById('root'));
 
-root.render(<RouterProvider router={router} />);
+// root.render(<RouterProvider router={router} />);
+
+ReactDOM.render(
+	<Router>
+		<App />
+	</Router>,
+	document.getElementById('root')
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,8 +1,20 @@
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
+import { Link } from 'react-router-dom';
+
 const NotFound = () => {
 	return (
-		<div className="NotFound-NF-Page">
-			It seems like you have clicked an invalid page url. Go back to HOME?
-		</div>
+		<Stack sx={{ width: '100%' }} spacing={2}>
+			<Alert severity="warning">
+				<AlertTitle>Page Not Found {':('}</AlertTitle>
+				It seems like you entered an invalid page url!
+				<strong>
+					{' '}
+					<Link to="/">Go Back To Home?</Link>
+				</strong>
+			</Alert>
+		</Stack>
 	);
 };
 

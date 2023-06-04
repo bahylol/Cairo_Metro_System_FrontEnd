@@ -44,3 +44,11 @@ html {
 	background-image: url('./Assets/minimal-Dot-Pattern.webp');
 }
 
+/* .content {
+	opacity: 0;
+	transition: opacity 0.1s ease;
+}
+
+.content.show {
+	opacity: 1;
+} */

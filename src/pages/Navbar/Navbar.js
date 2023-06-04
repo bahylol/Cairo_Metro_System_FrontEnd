@@ -155,16 +155,16 @@ const Navbar = () => {
 					</div>
 					<ul className="navbar-nav-links">
 						<li>
-							<a href="htt">Home</a>
+							<a href="/">Home</a>
 						</li>
 						<li>
-							<a href="htt">My Rides</a>
+							<a href="/tickets">My Rides</a>
 						</li>
 						<li>
-							<a href="htt">Get Ticket</a>
+							<a href="/tickets/purchase">Get Ticket</a>
 						</li>
 						<li>
-							<a href="htt">Subscription</a>
+							<a href="/subscription">Subscription</a>
 						</li>
 						<li
 							onMouseEnter={() => handleMouseEnterNavbarLink(1)}
@@ -191,31 +191,34 @@ const Navbar = () => {
 
 						{!loggedIn && (
 							<li className="navbar-login-out-ID">
-								<a href="htt" className="navbar-login-out-text-ID no-hover-animation">
+								<a href="/login" className="navbar-login-out-text-ID no-hover-animation">
 									Log In
 								</a>
 							</li>
 						)}
 						{loggedIn && (
 							<li className="navbar-login-out-ID">
-								<a href="htt" className="navbar-login-out-text-ID no-hover-animation">
+								<a
+									href="ONCLICK METHOD"
+									className="navbar-login-out-text-ID no-hover-animation"
+								>
 									Log Out
 								</a>
 							</li>
 						)}
 
 						<li>
-							<a href="htt" className="special-link signUpLink">
+							<a href="/signup" className="special-link signUpLink">
 								Sign Up
 							</a>
 						</li>
 						<li>
-							<a href="htt" className="special-link">
+							<a href="LESSA" className="special-link">
 								<AccountCircleIcon className="profileIcon" />
 							</a>
 						</li>
 						<li>
-							<a href="htt" className="special-link">
+							<a href="LESSA" className="special-link">
 								<SettingsIcon
 									className="settingsIcon"
 									onClick={toggleDrawer('left', true)}

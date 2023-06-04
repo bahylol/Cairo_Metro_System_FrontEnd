@@ -1,3 +1,28 @@
+import React from 'react';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
+
+export default function Animations() {
+	return (
+		<Box
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				alignItems: 'center',
+				justifyContent: 'center',
+				width: '100%',
+				padding: '0 20px',
+			}}
+		>
+			<Box sx={{ width: '100%', maxWidth: '1400px' }}>
+				<Skeleton animation="wave" sx={{ width: '100%', height: '70px' }} />
+			</Box>
+		</Box>
+	);
+}
+
+/*
+
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
@@ -24,7 +49,7 @@ function App() {
 			setIsLoading(true);
 			setTimeout(() => {
 				setIsLoading(false);
-			}, 2000);
+			}, 1500);
 		};
 
 		handleRouteChange();
@@ -62,28 +87,30 @@ function App() {
 
 	return (
 		<div className="App">
+			<div className={`loader ${isLoading ? 'show' : ''}`}>
+				<NavBarLoadingSkeleton />
+			</div>
 			<div className={`content ${isLoading ? 'hide' : ''}`}>
-				<div className="Navbar">{isLoading ? <NavBarLoadingSkeleton /> : <Navbar />}</div>
-				<div className="Page">
-					{isLoading ? (
-						<PageLoadingSkeleton />
-					) : (
-						<Routes location={location}>
-							<Route path="/" element={<Home />} />
-							<Route path="/login" element={<Login />} />
-							<Route path="/signup" element={<Signup />} />
-							<Route path="/general-page" element={<GeneralPage />} />
-							<Route path="/tickets/" element={<RefundRequestPage />} />
-							<Route path="/tickets/purchase" element={<GetTicket />} />
-							<Route path="/transacions" element={<Transactions />} />
-							<Route path="/subscription" element={<ViewSubscription />} />
-							<Route path="*" element={<NotFound />} />
-						</Routes>
-					)}
-				</div>
+				<div className="Navbar">{isLoading ? <PageLoadingSkeleton /> : <Navbar />}</div>
+				{!isLoading && (
+					<Routes location={location}>
+						<Route path="/" element={<Home />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/signup" element={<Signup />} />
+						<Route path="/general-page" element={<GeneralPage />} />
+						<Route path="/tickets/" element={<RefundRequestPage />} />
+						<Route path="/tickets/purchase" element={<GetTicket />} />
+						<Route path="/transacions" element={<Transactions />} />
+						<Route path="/subscription" element={<ViewSubscription />} />
+						<Route path="*" element={<NotFound />} />
+					</Routes>
+				)}
 			</div>
 		</div>
 	);
 }
 
 export default App;
+
+
+*/

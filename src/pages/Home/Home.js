@@ -88,7 +88,7 @@ const Home = () => {
 							<input type="datetime-local" />
 						</div>
 
-						<a href="htt">Get Ticket</a>
+						<a href="/tickets/purchase">Get Ticket</a>
 					</div>
 				</div>
 				{/* --------------------------------------------------------------------------------- */}

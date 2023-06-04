@@ -126,9 +126,9 @@ const Home = () => {
 										</a>
 									</p>
 									<p>
-										SIGN UP NOW for a seamless metro ticket booking experience. Join us
-										and enjoy convenience, personalized recommendations, and exclusive
-										benefits. Start your journey today!
+										SIGN UP NOW for a seamless metro experience. Join us and enjoy
+										convenience, personalized recommendations, and exclusive benefits.
+										Start your journey today!
 									</p>
 									<a href="#" className="btn btn--with-icon">
 										<i className="btn-icon fa fa-long-arrow-right"></i>

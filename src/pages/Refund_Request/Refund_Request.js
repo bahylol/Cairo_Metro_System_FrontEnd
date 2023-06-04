@@ -14,6 +14,14 @@ import Typography from '@mui/material/Typography';
 const Refund_Request = () => {
 	// when i get the ticket data from the
 	// DB i have to add the rating variable to each one.
+	fetch('http://localhost:3000/zones/1', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			token: `session_token=${localStorage.getItem("session_token")}`,
+		},
+	}).then(response=>response.json())
+	.then((data)=>console.log(data));
 	const [ticketsData, setTicketsData] = useState([
 		{
 			ticket_id: 1,

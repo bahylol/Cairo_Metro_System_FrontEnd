@@ -12,6 +12,7 @@ import GetTicket from './pages/Get_Ticket/Get_Ticket.js';
 import Transactions from './pages/Transactions/Transactions.js';
 import ViewSubscription from './pages/View_Subscription/view_subscription.js';
 import Footer from './pages/Footer/Footer.js';
+import NotFound from './pages/NotFound/notFoundPage.js';
 
 function App() {
 	return (
@@ -23,7 +24,7 @@ function App() {
 						<Route exact path="/" element={<Home />} />
 						<Route exact path="/login" element={<Login />} />
 						<Route exact path="/signup" element={<Signup />} />
-						{/* <Route path="*" element={<NotFound/>}/> */}
+						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</div>
 			</div>

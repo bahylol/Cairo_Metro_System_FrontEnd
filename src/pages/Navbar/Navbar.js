@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import './Navbar.css';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -24,6 +25,7 @@ import ListItemText from '@mui/material/ListItemText';
 import logo from '../../Assets/logo2.png';
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
+	const navigate = useNavigate();
 	const menuItems = [
 		{ text: 'Profile', path: '/' },
 		{ text: 'Log In', path: '/login' },
@@ -63,6 +65,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 		e.preventDefault();
 		setIsLoggedIn(false);
 		setUserType('user');
+		navigate('/');
 	};
 
 	const list = (anchor) => (
@@ -251,6 +254,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 										e.preventDefault();
 										setIsLoggedIn(false);
 										setUserType('user');
+										navigate('/');
 									}}
 								>
 									Log Out

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import './Navbar.css';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -21,26 +24,21 @@ import ListItemText from '@mui/material/ListItemText';
 
 import logo from '../../Assets/logo2.png';
 
-const Navbar = () => {
-	const [userType, setUserType] = useState('user');
+const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
+	const navigate = useNavigate();
+	const menuItems = [
+		{ text: 'Profile', path: '/' },
+		{ text: 'Log In', path: '/login' },
+		{ text: 'Sign Up', path: '/signup' },
+		{ text: 'Settings', path: '/' },
+	];
 
-	const userLoggedIn = () => {
-		setUserType('user');
-	};
-
-	const adminLoggedIn = () => {
-		setUserType('admin');
-	};
-
-	const [loggedIn, setLoggedIn] = useState(false);
-
-	const login = () => {
-		setLoggedIn(true);
-	};
-
-	const logout = () => {
-		setLoggedIn(false);
-	};
+	const secondaryMenuItems = [
+		{ text: 'Home', path: '/' },
+		{ text: 'My Tickets', path: '/tickets' },
+		{ text: 'Get Ticket', path: '/tickets/purchase' },
+		{ text: 'Subscriptions', path: '/subscriptions' },
+	];
 
 	const [navSublinks, setNavSublinks] = useState([]);
 
@@ -63,6 +61,13 @@ const Navbar = () => {
 		right: false,
 	});
 
+	const phoneLogOut = (e) => {
+		e.preventDefault();
+		setIsLoggedIn(false);
+		setUserType('user');
+		navigate('/');
+	};
+
 	const list = (anchor) => (
 		<Box
 			sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -71,52 +76,94 @@ const Navbar = () => {
 			onKeyDown={toggleDrawer(anchor, false)}
 		>
 			<List>
-				{['Profile', 'Log In', 'Sign Up', 'Settings'].map((text, index) => (
+				{menuItems.map(({ text, path }, index) => (
 					<ListItem key={text} disablePadding>
-						<ListItemButton>
-							{index === 0 && (
-								<ListItemIcon>
-									<AccountCircleIcon />
-								</ListItemIcon>
-							)}
-							{!loggedIn && index === 1 && (
-								<ListItemIcon>
-									<LoginIcon />
-								</ListItemIcon>
-							)}
-							{loggedIn && index === 1 && (
-								<ListItemIcon>
-									<LogoutIcon />
-								</ListItemIcon>
-							)}
-							{index === 2 && (
-								<ListItemIcon>
-									<ExitToAppIcon />
-								</ListItemIcon>
-							)}
-							{index === 3 && (
-								<ListItemIcon>
-									<SettingsIcon />
-								</ListItemIcon>
-							)}
-							<ListItemText
-								primary={index === 1 ? (loggedIn ? 'Log Out' : 'Log In') : text}
-							/>
-						</ListItemButton>
+						{path && !isLoggedIn ? (
+							<Link to={path} className="link-style">
+								<ListItemButton>
+									{index === 0 && (
+										<ListItemIcon>
+											<AccountCircleIcon />
+										</ListItemIcon>
+									)}
+									{!isLoggedIn && index === 1 && (
+										<ListItemIcon>
+											<LoginIcon />
+										</ListItemIcon>
+									)}
+									{isLoggedIn && index === 1 && (
+										<ListItemIcon>
+											<LogoutIcon />
+										</ListItemIcon>
+									)}
+									{index === 2 && (
+										<ListItemIcon>
+											<ExitToAppIcon />
+										</ListItemIcon>
+									)}
+									{index === 3 && (
+										<ListItemIcon>
+											<SettingsIcon />
+										</ListItemIcon>
+									)}
+									<ListItemText
+										primary={index === 1 ? (isLoggedIn ? 'Log Out' : 'Log In') : text}
+									/>
+								</ListItemButton>
+							</Link>
+						) : (
+							<ListItemButton
+								className="link-style"
+								onClick={(e) => {
+									phoneLogOut(e);
+								}}
+							>
+								{index === 0 && (
+									<ListItemIcon>
+										<AccountCircleIcon />
+									</ListItemIcon>
+								)}
+								{!isLoggedIn && index === 1 && (
+									<ListItemIcon>
+										<LoginIcon />
+									</ListItemIcon>
+								)}
+								{isLoggedIn && index === 1 && (
+									<ListItemIcon>
+										<LogoutIcon />
+									</ListItemIcon>
+								)}
+								{index === 2 && (
+									<ListItemIcon>
+										<ExitToAppIcon />
+									</ListItemIcon>
+								)}
+								{index === 3 && (
+									<ListItemIcon>
+										<SettingsIcon />
+									</ListItemIcon>
+								)}
+								<ListItemText
+									primary={index === 1 ? (isLoggedIn ? 'Log Out' : 'Log In') : text}
+								/>
+							</ListItemButton>
+						)}
 					</ListItem>
 				))}
 			</List>
 			<Divider />
 			<List>
-				{['Home', 'My Tickets', 'Get Ticket', 'Subscriptions'].map((text, index) => (
+				{secondaryMenuItems.map(({ text, path }, index) => (
 					<ListItem key={text} disablePadding>
-						<ListItemButton>
-							{index === 0 && <ListItemIcon>{<AddHomeIcon />}</ListItemIcon>}
-							{index === 1 && <ListItemIcon>{<TrainIcon />}</ListItemIcon>}
-							{index === 2 && <ListItemIcon>{<ConfirmationNumberIcon />}</ListItemIcon>}
-							{index === 3 && <ListItemIcon>{<SubscriptionsIcon />}</ListItemIcon>}
-							<ListItemText primary={text} />
-						</ListItemButton>
+						<Link to={path} className="link-style">
+							<ListItemButton>
+								{index === 0 && <ListItemIcon>{<AddHomeIcon />}</ListItemIcon>}
+								{index === 1 && <ListItemIcon>{<TrainIcon />}</ListItemIcon>}
+								{index === 2 && <ListItemIcon>{<ConfirmationNumberIcon />}</ListItemIcon>}
+								{index === 3 && <ListItemIcon>{<SubscriptionsIcon />}</ListItemIcon>}
+								<ListItemText primary={text} />
+							</ListItemButton>
+						</Link>
 					</ListItem>
 				))}
 			</List>
@@ -189,20 +236,26 @@ const Navbar = () => {
 								)}
 							</li>
 						)}
-						<div className="navbar-spacer"></div>
+						<div className="navbar-spacer" onClick={toggleDrawer('left', true)}></div>
 
-						{!loggedIn && (
+						{!isLoggedIn && (
 							<li className="navbar-login-out-ID">
 								<a href="/login" className="navbar-login-out-text-ID no-hover-animation">
 									Log In
 								</a>
 							</li>
 						)}
-						{loggedIn && (
+						{isLoggedIn && (
 							<li className="navbar-login-out-ID">
 								<a
 									href="ONCLICK METHOD"
 									className="navbar-login-out-text-ID no-hover-animation"
+									onClick={(e) => {
+										e.preventDefault();
+										setIsLoggedIn(false);
+										setUserType('user');
+										navigate('/');
+									}}
 								>
 									Log Out
 								</a>
@@ -215,16 +268,13 @@ const Navbar = () => {
 							</a>
 						</li>
 						<li>
-							<a href="LESSA" className="special-link">
+							<a href="/" className="special-link">
 								<AccountCircleIcon className="profileIcon" />
 							</a>
 						</li>
 						<li>
-							<a href="LESSA" className="special-link">
-								<SettingsIcon
-									className="settingsIcon"
-									onClick={toggleDrawer('left', true)}
-								/>
+							<a href="/" className="special-link">
+								<SettingsIcon className="settingsIcon" />
 							</a>
 						</li>
 					</ul>

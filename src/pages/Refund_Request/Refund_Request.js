@@ -5,6 +5,7 @@ import './RefundRequest.css';
 import './ticket.css';
 import './modal.css';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
@@ -12,62 +13,78 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
 const Refund_Request = () => {
+	const [ticketsData, setTicketsData] = useState([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch('http://localhost:3000/api/v1/users/tickets', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						token: `session_token=${localStorage.getItem('session_token')}`,
+					},
+				});
+				const data = await response.json();
+				setTicketsData(data);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
+
+		fetchData();
+	}, []);
+
+	console.log(ticketsData);
+	// -------------------------------------------------------------------------------------------------------------
 	// when i get the ticket data from the
 	// DB i have to add the rating variable to each one.
-	fetch('http://localhost:3000/zones/1', {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-			token: `session_token=${localStorage.getItem("session_token")}`,
-		},
-	}).then(response=>response.json())
-	.then((data)=>console.log(data));
-	const [ticketsData, setTicketsData] = useState([
-		{
-			ticket_id: 1,
-			trans_id: 1,
-			status: 'active',
-			user_id: 1,
-			sub_id: 1,
-			zone_id: 1,
-			origin: 'Rehaab',
-			destination: '6 Octobar',
-			rating: 0,
-		},
-		{
-			ticket_id: 2,
-			trans_id: 1,
-			status: 'active',
-			user_id: 1,
-			sub_id: 1,
-			zone_id: 1,
-			origin: '3en Shams',
-			destination: 'Zamalek',
-			rating: 0,
-		},
-		{
-			ticket_id: 3,
-			trans_id: 1,
-			status: 'expired',
-			user_id: 1,
-			sub_id: 1,
-			zone_id: 1,
-			origin: 'Maadi',
-			destination: 'Tagamo3',
-			rating: 0,
-		},
-		{
-			ticket_id: 4,
-			trans_id: 1,
-			status: 'expired',
-			user_id: 1,
-			sub_id: 1,
-			zone_id: 1,
-			origin: 'El shams',
-			destination: 'El Gesh',
-			rating: 0,
-		},
-	]);
+	// const [ticketsData, setTicketsData] = useState([
+	// 	{
+	// 		ticket_id: 1,
+	// 		trans_id: 1,
+	// 		status: 'active',
+	// 		user_id: 1,
+	// 		sub_id: 1,
+	// 		zone_id: 1,
+	// 		origin: 'Rehaab',
+	// 		destination: '6 Octobar',
+	// 		rating: 0,
+	// 	},
+	// 	{
+	// 		ticket_id: 2,
+	// 		trans_id: 1,
+	// 		status: 'active',
+	// 		user_id: 1,
+	// 		sub_id: 1,
+	// 		zone_id: 1,
+	// 		origin: '3en Shams',
+	// 		destination: 'Zamalek',
+	// 		rating: 0,
+	// 	},
+	// 	{
+	// 		ticket_id: 3,
+	// 		trans_id: 1,
+	// 		status: 'expired',
+	// 		user_id: 1,
+	// 		sub_id: 1,
+	// 		zone_id: 1,
+	// 		origin: 'Maadi',
+	// 		destination: 'Tagamo3',
+	// 		rating: 0,
+	// 	},
+	// 	{
+	// 		ticket_id: 4,
+	// 		trans_id: 1,
+	// 		status: 'expired',
+	// 		user_id: 1,
+	// 		sub_id: 1,
+	// 		zone_id: 1,
+	// 		origin: 'El shams',
+	// 		destination: 'El Gesh',
+	// 		rating: 0,
+	// 	},
+	// ]);
 
 	const [refundModal, setRefundModal] = useState(false);
 	const [modalOpen, setModalOpen] = useState(false);

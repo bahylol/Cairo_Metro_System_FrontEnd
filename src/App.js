@@ -16,6 +16,18 @@ import PageLoadingSkeleton from './pages/PageLoadingSkeleton.js/pageLoadSkel.js'
 import NavBarLoadingSkeleton from './pages/PageLoadingSkeleton.js/navbarLoadSkel';
 
 function App() {
+	// const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(() => {
+		// Retrieve the logged-in state from storage, defaulting to false if not found
+		const storedLoggedInState = localStorage.getItem('isLoggedIn');
+		return storedLoggedInState ? JSON.parse(storedLoggedInState) : false;
+	});
+	// const [userType, setUserType] = useState('user');
+	const [userType, setUserType] = useState(() => {
+		const storedUserType = localStorage.getItem('userType');
+		return storedUserType ? storedUserType : 'user';
+	});
+
 	const [isLoading, setIsLoading] = useState(true);
 	const location = useLocation();
 
@@ -60,6 +72,14 @@ function App() {
 		}
 	}, [isLoading]);
 
+	useEffect(() => {
+		// Store the logged-in state in localStorage whenever it changes
+		localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+	}, [isLoggedIn]);
+	useEffect(() => {
+		localStorage.setItem('userType', userType);
+	}, [userType]);
+
 	// useEffect(() => {
 	// 	const cancelRouteChange = (e) => {
 	// 		if (e.currentTarget.pathname === location.pathname) {
@@ -82,14 +102,28 @@ function App() {
 	return (
 		<div className="App">
 			<div className={`content ${isLoading ? 'hide' : ''}`}>
-				<div className="Navbar">{isLoading ? <NavBarLoadingSkeleton /> : <Navbar />}</div>
+				<div className="Navbar">
+					{isLoading ? (
+						<NavBarLoadingSkeleton />
+					) : (
+						<Navbar
+							isLoggedIn={isLoggedIn}
+							setIsLoggedIn={setIsLoggedIn}
+							userType={userType}
+							setUserType={setUserType}
+						/>
+					)}
+				</div>
 				<div className="Page">
 					{isLoading ? (
 						<PageLoadingSkeleton />
 					) : (
 						<Routes location={location}>
 							<Route path="/" element={<Home />} />
-							<Route path="/login" element={<Login />} />
+							<Route
+								path="/login"
+								element={<Login setIsLoggedIn={setIsLoggedIn} setUserType={setUserType} />}
+							/>
 							<Route path="/signup" element={<Signup />} />
 							<Route path="/general-page" element={<GeneralPage />} />
 							<Route path="/tickets/" element={<RefundRequestPage />} />

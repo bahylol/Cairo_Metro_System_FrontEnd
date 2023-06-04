@@ -143,7 +143,7 @@ const Navbar = () => {
 
 			<div className="navbar-container">
 				<div className="navbar-logo-section">
-					<a href="htt" className="navbar-logo">
+					<a href="/" className="navbar-logo">
 						<img className="transparentLogo" src={logo} alt="" />
 					</a>
 				</div>
@@ -166,27 +166,29 @@ const Navbar = () => {
 						<li>
 							<a href="/subscription">Subscription</a>
 						</li>
-						<li
-							onMouseEnter={() => handleMouseEnterNavbarLink(1)}
-							onMouseLeave={() => handleMouseLeaveNavbarLink(1)}
-						>
-							<a href="htt">Manage Stations</a>
-							{navSublinks[1] && (
-								<div className="sublinks-container">
-									<ul className="sublinks">
-										<li>
-											<a href="htt">Create Station</a>
-										</li>
-										<li>
-											<a href="htt">Update Station</a>
-										</li>
-										<li>
-											<a href="htt">Delete Station</a>
-										</li>
-									</ul>
-								</div>
-							)}
-						</li>
+						{(userType === 'admin' || userType === 'superadmin') && (
+							<li
+								onMouseEnter={() => handleMouseEnterNavbarLink(1)}
+								onMouseLeave={() => handleMouseLeaveNavbarLink(1)}
+							>
+								<a href="htt">Manage Stations</a>
+								{navSublinks[1] && (
+									<div className="sublinks-container">
+										<ul className="sublinks">
+											<li>
+												<a href="htt">Create Station</a>
+											</li>
+											<li>
+												<a href="htt">Update Station</a>
+											</li>
+											<li>
+												<a href="htt">Delete Station</a>
+											</li>
+										</ul>
+									</div>
+								)}
+							</li>
+						)}
 						<div className="navbar-spacer"></div>
 
 						{!loggedIn && (

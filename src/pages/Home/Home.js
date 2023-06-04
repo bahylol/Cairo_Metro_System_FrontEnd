@@ -1,4 +1,5 @@
 import Footer from '../Footer/Footer.js';
+import { Link } from 'react-router-dom';
 
 import './Home.css';
 import './style.css';
@@ -132,7 +133,9 @@ const Home = () => {
 									</p>
 									<a href="#" className="btn btn--with-icon">
 										<i className="btn-icon fa fa-long-arrow-right"></i>
-										<span className="btn-text">SIGN UP</span>
+										<Link to="/signup" className="btn-text">
+											SIGN UP
+										</Link>
 									</a>
 								</div>
 							</article>

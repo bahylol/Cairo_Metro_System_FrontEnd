@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import Navbar from './pages/Navbar/Navbar.js';
 import GeneralPage from './pages/General_Page/General_Page.js';
@@ -24,7 +24,7 @@ function App() {
 			setIsLoading(true);
 			setTimeout(() => {
 				setIsLoading(false);
-			}, 2000);
+			}, 1000);
 		};
 
 		handleRouteChange();
@@ -59,6 +59,25 @@ function App() {
 			}, 0);
 		}
 	}, [isLoading]);
+
+	// useEffect(() => {
+	// 	const cancelRouteChange = (e) => {
+	// 		if (e.currentTarget.pathname === location.pathname) {
+	// 			e.preventDefault();
+	// 		}
+	// 	};
+
+	// 	const links = document.querySelectorAll('a');
+	// 	links.forEach((link) => {
+	// 		link.addEventListener('click', cancelRouteChange);
+	// 	});
+
+	// 	return () => {
+	// 		links.forEach((link) => {
+	// 			link.removeEventListener('click', cancelRouteChange);
+	// 		});
+	// 	};
+	// }, [location]);
 
 	return (
 		<div className="App">

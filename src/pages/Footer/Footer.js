@@ -18,7 +18,7 @@ const Footer = () => {
 					<address>
 						5534 Somewhere In. The World 22193-10212
 						<br />
-						<a className="footer__btn" href="metronoreplystation@gmail.com">
+						<a className="footer__btn" href="mailto:metronoreplystation@gmail.com">
 							Email Us
 						</a>
 					</address>
@@ -103,32 +103,32 @@ const Footer = () => {
 				<div class="col-md-4 col-sm-6 col-xs-12">
 					<ul class="social-icons">
 						<li>
-							<a class="facebook" href="#">
+							<a class="facebook" href="https://www.facebook.com/">
 								<FacebookIcon className="icon" />
 							</a>
 						</li>
 						<li>
-							<a class="twitter" href="#">
+							<a class="twitter" href="https://www.twitter.com/">
 								<TwitterIcon className="icon" />
 							</a>
 						</li>
 						<li>
-							<a class="linkedin" href="#">
+							<a class="linkedin" href="https://www.linkedin.com/">
 								<LinkedInIcon className="icon" />
 							</a>
 						</li>
 						<li>
-							<a class="insta" href="#">
+							<a class="insta" href="https://www.instagram.com/">
 								<InstagramIcon className="icon" />
 							</a>
 						</li>
 						<li>
-							<a class="youtube" href="#">
+							<a class="youtube" href="https://www.youtube.com/">
 								<YouTubeIcon className="icon" />
 							</a>
 						</li>
 						<li>
-							<a class="git" href="#">
+							<a class="git" href="https://www.github.com/">
 								<GitHubIcon className="icon" />
 							</a>
 						</li>

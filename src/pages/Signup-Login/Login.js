@@ -1,10 +1,6 @@
-import Footer from '../Footer/Footer.js';
-
 import React, { useState } from 'react';
 import './Signup-Login.css';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import axios from 'axios';
 
 function RegistrationForm() {
 	const navigate = useNavigate();
@@ -12,12 +8,12 @@ function RegistrationForm() {
 	const [password, setPassword] = useState('');
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if (email === '') {
-			alert('Please Enter Your Email');
+		if (email === "") {
+			alert("Please Enter Your Email");
 			return;
 		}
-		if (password === '') {
-			alert('Please Enter Your Password');
+		if (password === "") {
+			alert("Please Enter Your Password");
 			return;
 		}
 		fetch('http://localhost:3000/api/v1/users/login', {
@@ -26,8 +22,8 @@ function RegistrationForm() {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				email: 'a',
-				password: 'a',
+				email: email,
+				password: password,
 			}),
 		})
 			// .then(response => {
@@ -61,12 +57,14 @@ function RegistrationForm() {
 			// 	// if (response.status === 200)
 			// 	// 	navigate("/test");
 			// })
-			.then((response) => response.json())
+			.then(response => response.json())
 			.then((data) => {
-				localStorage.setItem('session_token', data[0]);
-				if (data[1] === 200) navigate('/test');
+				localStorage.setItem("session_token", data[0])
+				if (data[1] === 200)
+					navigate("/test");
 			})
 			.catch((error) => console.error(error));
+
 	};
 
 	const handleEmail = (event) => {
@@ -76,39 +74,36 @@ function RegistrationForm() {
 		setPassword(event.target.value);
 	};
 	return (
-		<>
-			<div className="SL-Page">
-				<section className="SL-container">
-					<header>Login Form</header>
-					<form className="SL-form">
-						<div className="SL-input-box">
-							<label>Email</label>
-							<input
-								type="text"
-								placeholder="Enter email"
-								value={email}
-								onChange={handleEmail}
-								required
-							/>
-						</div>
+		<div className="SL-Page">
+			<section className="SL-container">
+				<header>Login Form</header>
+				<form className="SL-form">
+					<div className="SL-input-box">
+						<label>Email</label>
+						<input
+							type="text"
+							placeholder="Enter email"
+							value={email}
+							onChange={handleEmail}
+							required
+						/>
+					</div>
 
-						<div className="SL-input-box">
-							<label>Password</label>
-							<input
-								type="password"
-								placeholder="Enter password"
-								value={password}
-								onChange={handlePassword}
-								required
-							/>
-						</div>
+					<div className="SL-input-box">
+						<label>Password</label>
+						<input
+							type="password"
+							placeholder="Enter password"
+							value={password}
+							onChange={handlePassword}
+							required
+						/>
+					</div>
 
-						<button onClick={handleSubmit}>Log in</button>
-					</form>
-				</section>
-			</div>
-			<Footer />
-		</>
+					<button onClick={handleSubmit}>Log in</button>
+				</form>
+			</section>
+		</div>
 	);
 }
 

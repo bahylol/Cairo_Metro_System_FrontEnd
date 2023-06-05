@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 import './Signup-Login.css';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function RegistrationForm({ setIsLoggedIn, setUserType }) {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const notify = (alert) => {
+		toast.error(alert, {
+			position: "top-center",
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "colored",
+		});
+	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if (email === '') {
-			alert('Please Enter Your Email');
-			return;
-		}
-		if (password === '') {
-			alert('Please Enter Your Password');
-			return;
-		}
 		fetch('http://localhost:3000/api/v1/users/login', {
 			method: 'POST',
 			headers: {
@@ -59,11 +65,15 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 			// })
 			.then((response) => response.json())
 			.then((data) => {
-				localStorage.setItem('session_token', data[0]);
-				setIsLoggedIn(true);
-				if (data[1] === 200) navigate('/');
+				if (data[0] === 200) {
+					localStorage.setItem('session_token', data[0]);
+					setIsLoggedIn(true);
+					navigate('/');
+				}
+				else { notify(data[1]); }
+
 			})
-			.catch((error) => console.error(error));
+			.catch((error) => console.log(error));
 	};
 
 	const handleEmail = (event) => {
@@ -73,36 +83,39 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 		setPassword(event.target.value);
 	};
 	return (
-		<div className="SL-Page">
-			<section className="SL-container">
-				<header>Login Form</header>
-				<form className="SL-form">
-					<div className="SL-input-box">
-						<label>Email</label>
-						<input
-							type="text"
-							placeholder="Enter email"
-							value={email}
-							onChange={handleEmail}
-							required
-						/>
-					</div>
+		<>
+			<div className="SL-Page">
+				<section className="SL-container">
+					<header>Login Form</header>
+					<form className="SL-form">
+						<div className="SL-input-box">
+							<label>Email</label>
+							<input
+								type="text"
+								placeholder="Enter email"
+								value={email}
+								onChange={handleEmail}
+								required
+							/>
+						</div>
 
-					<div className="SL-input-box">
-						<label>Password</label>
-						<input
-							type="password"
-							placeholder="Enter password"
-							value={password}
-							onChange={handlePassword}
-							required
-						/>
-					</div>
+						<div className="SL-input-box">
+							<label>Password</label>
+							<input
+								type="password"
+								placeholder="Enter password"
+								value={password}
+								onChange={handlePassword}
+								required
+							/>
+						</div>
 
-					<button onClick={handleSubmit}>Log in</button>
-				</form>
-			</section>
-		</div>
+						<button onClick={handleSubmit}>Log in</button>
+					</form>
+				</section>
+			</div>
+			<ToastContainer />
+		</>
 	);
 }
 

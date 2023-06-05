@@ -1,10 +1,13 @@
 import Footer from '../Footer/Footer.js';
-
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import React from 'react';
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import './Signup-Login.css';
 
 function RegistrationForm() {
+	const navigate = useNavigate();
 	const [user, setUser] = useState({
 		username: '',
 		email: '',
@@ -28,6 +31,31 @@ function RegistrationForm() {
 		setGender(event.target.value);
 		console.log(setGender);
 	};
+	const notify = (alert) => {
+		toast.error(alert, {
+			position: "top-center",
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "colored",
+		});
+	};
+	const confirm = () => {
+		toast.success('Your account has been created succesfully you will be redirected to the login page', {
+			position: "top-center",
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "colored",
+			});
+	};
+	
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const someNull = Object.values(user).some((x) => x === '');
@@ -36,11 +64,15 @@ function RegistrationForm() {
 			Object.entries(user)
 				.filter(([k, v]) => v === '')
 				.forEach(([k]) => (nullKeys += `${k} `));
-			alert(`Please fill the following data : ${nullKeys}`);
+			notify(`Please fill the following data : ${nullKeys}`);
+			return;
+		}
+		if (gender === '') {
+			notify("please fill the gender");
 			return;
 		}
 		if (user.password !== user.confirmPassword) {
-			alert("passwords don't match");
+			notify("passwords don't match");
 			return;
 		}
 		fetch('http://localhost:3000/api/v1/users/signup', {
@@ -60,7 +92,16 @@ function RegistrationForm() {
 				userrole: 'user',
 			}),
 		})
-			.then((data) => console.log(data))
+			.then((response) => response.json())
+			.then((data) => {
+				if (data[0] === 200) {
+					confirm();
+					setTimeout(function() {
+						navigate('/');
+					  }, 3001);				}
+				else { notify(data[1]); }
+
+			})
 			.catch((error) => console.error(error));
 	};
 
@@ -206,6 +247,7 @@ function RegistrationForm() {
 				</section>
 			</div>
 			<Footer />
+			<ToastContainer />
 		</>
 	);
 }

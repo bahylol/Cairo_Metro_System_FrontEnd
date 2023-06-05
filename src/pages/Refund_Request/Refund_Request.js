@@ -11,8 +11,45 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
 
 const Refund_Request = () => {
+	const [refundModal, setRefundModal] = useState(false);
+	const [modalOpen, setModalOpen] = useState(false);
+	const [selectedTicketId, setSelectedTicketId] = useState(null);
+	const [description, setDescription] = useState('');
+
+	const handleRefundRequested = () => {
+		if (description === '') {
+			alert('Description is required!');
+		}
+
+		fetch('http://localhost:3000/api/v1/users/refund_request/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				token: `session_token=${localStorage.getItem('session_token')}`,
+			},
+			body: JSON.stringify({
+				ticket_id: selectedTicketId,
+				description: description,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				localStorage.setItem('session_token', data[0]);
+				if (data[0] === 200) {
+					closeModal();
+					alert('Refund Request Sent!');
+				} else if (data[0] === 400) {
+					alert('Refund rejected! Ticket already expired/used');
+				} else if (data[0] === 402) {
+					alert('Refund was already requested and is being processed at the moment...');
+				}
+			})
+			.catch((error) => console.error(error));
+	};
+
 	const [ticketsData, setTicketsData] = useState([]);
 
 	useEffect(() => {
@@ -35,62 +72,9 @@ const Refund_Request = () => {
 		fetchData();
 	}, []);
 
+	console.log('TICKETS DATA');
 	console.log(ticketsData);
 	// -------------------------------------------------------------------------------------------------------------
-	// when i get the ticket data from the
-	// DB i have to add the rating variable to each one.
-	// const [ticketsData, setTicketsData] = useState([
-	// 	{
-	// 		ticket_id: 1,
-	// 		trans_id: 1,
-	// 		status: 'active',
-	// 		user_id: 1,
-	// 		sub_id: 1,
-	// 		zone_id: 1,
-	// 		origin: 'Rehaab',
-	// 		destination: '6 Octobar',
-	// 		rating: 0,
-	// 	},
-	// 	{
-	// 		ticket_id: 2,
-	// 		trans_id: 1,
-	// 		status: 'active',
-	// 		user_id: 1,
-	// 		sub_id: 1,
-	// 		zone_id: 1,
-	// 		origin: '3en Shams',
-	// 		destination: 'Zamalek',
-	// 		rating: 0,
-	// 	},
-	// 	{
-	// 		ticket_id: 3,
-	// 		trans_id: 1,
-	// 		status: 'expired',
-	// 		user_id: 1,
-	// 		sub_id: 1,
-	// 		zone_id: 1,
-	// 		origin: 'Maadi',
-	// 		destination: 'Tagamo3',
-	// 		rating: 0,
-	// 	},
-	// 	{
-	// 		ticket_id: 4,
-	// 		trans_id: 1,
-	// 		status: 'expired',
-	// 		user_id: 1,
-	// 		sub_id: 1,
-	// 		zone_id: 1,
-	// 		origin: 'El shams',
-	// 		destination: 'El Gesh',
-	// 		rating: 0,
-	// 	},
-	// ]);
-
-	const [refundModal, setRefundModal] = useState(false);
-	const [modalOpen, setModalOpen] = useState(false);
-	const [selectedTicketId, setSelectedTicketId] = useState(null);
-
-	const [value, setValue] = useState(2);
 
 	const handleRatingChange = (ticketId, newValue) => {
 		setTicketsData((prevData) =>
@@ -112,43 +96,6 @@ const Refund_Request = () => {
 	const closeModal = () => {
 		setModalOpen(false);
 	};
-
-	// const [ticketsData, setTicketsData] = useState([]);
-
-	// useEffect(() => {
-	// 	console.log('USE EFFECT CALLED');
-	// 	getTickets();
-	// }, []);
-
-	// const getTickets = async () => {
-	// 	try {
-	// 		const response = await fetch('http://localhost:3000/api/v1/users/tickets', {
-	// 			method: 'GET',
-	// 		});
-	// 		const jsonData = await response.json();
-	// 		setTicketsData(jsonData);
-	// 		console.log(jsonData);
-	// 		console.log('HEREEEEE');
-	// 	} catch (error) {
-	// 		console.error('Error fetching data!!!:', error);
-	// 	}
-	// };
-
-	// useEffect(() => {
-	// 	fetchData();
-	// }, []);
-
-	// const fetchData = async () => {
-	// 	try {
-	// 		const response = await fetch('http://localhost:3000/api/v1/users/refund_request/', {
-	// 			method: 'POST',
-	// 		});
-	// 		const jsonData = await response.json();
-	// 		setData(jsonData);
-	// 	} catch (error) {
-	// 		console.error('Error fetching data!!!:', error);
-	// 	}
-	// };
 
 	return (
 		<>
@@ -201,7 +148,7 @@ const Refund_Request = () => {
 							</ul>
 							<div className="ticket" onClick={() => openModal(ticket.ticket_id)}>
 								{/* <span className="airline">WetroMetro</span> */}
-								<span className="airline">{ticket.ticket_id}</span>
+								<span className="airline">Ticket ID: {ticket.ticket_id}</span>
 								<span className="airline airlineslip">WetroMetro</span>
 								<span className="boarding">Boarding pass</span>
 								<div className="contentTicket">
@@ -209,28 +156,36 @@ const Refund_Request = () => {
 										<span className="jfk">{ticket.origin}</span>
 										<span className="plane">
 											<svg
-												clip-rule="evenodd"
-												fill-rule="evenodd"
-												height="60"
-												width="60"
-												image-rendering="optimizeQuality"
+												xmlns="http://www.w3.org/2000/svg"
+												width="50"
+												height="50"
+												viewBox="0 0 500 500"
 												shape-rendering="geometricPrecision"
 												text-rendering="geometricPrecision"
-												viewBox="0 0 500 500"
-												xmlns="http://www.w3.org/2000/svg"
+												image-rendering="optimizeQuality"
+												fill-rule="evenodd"
+												clip-rule="evenodd"
 											>
 												<g stroke="#222">
 													<line
+														x1="445"
+														y1="200"
+														x2="145"
+														y2="200"
 														fill="none"
 														stroke-linecap="round"
 														stroke-width="30"
-														x1="300"
-														x2="55"
-														y1="390"
-														y2="390"
+													/>
+													<line
+														x1="445"
+														y1="250"
+														x2="145"
+														y2="250"
+														fill="none"
+														stroke-linecap="round"
+														stroke-width="30"
 													/>
 													<path
-														d="M98 325c-9 10 10 16 25 6l311-156c24-17 35-25 42-50 2-15-46-11-78-7-15 1-34 10-42 16l-56 35 1-1-169-31c-14-3-24-5-37-1-10 5-18 10-27 18l122 72c4 3 5 7 1 9l-44 27-75-15c-10-2-18-4-28 0-8 4-14 9-20 15l74 63z"
 														fill="#222"
 														stroke-linejoin="round"
 														stroke-width="10"
@@ -244,32 +199,36 @@ const Refund_Request = () => {
 									<span className="jfk jfkslip">------</span>
 									<span className="plane planeslip">
 										<svg
-											clip-rule="evenodd"
-											fill-rule="evenodd"
-											height="50"
+											xmlns="http://www.w3.org/2000/svg"
 											width="50"
-											image-rendering="optimizeQuality"
+											height="50"
+											viewBox="0 0 500 500"
 											shape-rendering="geometricPrecision"
 											text-rendering="geometricPrecision"
-											viewBox="0 0 500 500"
-											xmlns="http://www.w3.org/2000/svg"
+											image-rendering="optimizeQuality"
+											fill-rule="evenodd"
+											clip-rule="evenodd"
 										>
 											<g stroke="#222">
 												<line
+													x1="445"
+													y1="200"
+													x2="145"
+													y2="200"
 													fill="none"
 													stroke-linecap="round"
 													stroke-width="30"
-													x1="300"
-													x2="55"
-													y1="390"
-													y2="390"
 												/>
-												<path
-													d="M98 325c-9 10 10 16 25 6l311-156c24-17 35-25 42-50 2-15-46-11-78-7-15 1-34 10-42 16l-56 35 1-1-169-31c-14-3-24-5-37-1-10 5-18 10-27 18l122 72c4 3 5 7 1 9l-44 27-75-15c-10-2-18-4-28 0-8 4-14 9-20 15l74 63z"
-													fill="#222"
-													stroke-linejoin="round"
-													stroke-width="10"
+												<line
+													x1="445"
+													y1="250"
+													x2="145"
+													y2="250"
+													fill="none"
+													stroke-linecap="round"
+													stroke-width="30"
 												/>
+												<path fill="#222" stroke-linejoin="round" stroke-width="10" />
 											</g>
 										</svg>
 									</span>
@@ -279,12 +238,12 @@ const Refund_Request = () => {
 										<span className="name">
 											PASSENGER NAME
 											<br />
-											<span>Rex, Anonasaurus</span>
+											<span>{ticket.username}</span>
 										</span>
 										<span className="flight">
-											FLIGHT N&deg;
+											STATUS
 											<br />
-											<span>X3-65C3</span>
+											<span>{ticket.status}</span>
 										</span>
 										<span className="gate">
 											GATE
@@ -299,13 +258,18 @@ const Refund_Request = () => {
 										<span className="boardingtime">
 											BOARDING TIME
 											<br />
-											<span>8:25PM ON AUGUST 2013</span>
+											<span>
+												{new Date(ticket.start_time).toLocaleDateString('en-US', {
+													year: 'numeric',
+													month: 'long',
+													day: 'numeric',
+												})}
+											</span>
 										</span>
 
 										<span className="flight flightslip">
-											FLIGHT N&deg;
-											<br />
-											<span>X3-65C3</span>
+											Status <br />
+											<span>{ticket.status}</span>
 										</span>
 										<span className="seat seatslip">
 											SEAT
@@ -315,7 +279,7 @@ const Refund_Request = () => {
 										<span className="name nameslip">
 											PASSENGER NAME
 											<br />
-											<span>Rex, Anonasaurus</span>
+											<span>{ticket.username}</span>
 										</span>
 									</div>
 								</div>
@@ -352,11 +316,39 @@ const Refund_Request = () => {
 											--Refund requests may take up to 2-4 business days to be
 											processed.--
 										</p>
+										<Box
+											component="form"
+											sx={{
+												'& .MuiTextField-root': { m: 1, width: '45ch' },
+											}}
+											noValidate
+											autoComplete="off"
+										>
+											<TextField
+												id="filled-textarea"
+												label="Why would you like a refund?"
+												placeholder="Enter Description"
+												multiline
+												onChange={(event) => setDescription(event.target.value)}
+												variant="filled"
+												InputLabelProps={{
+													style: {
+														color: '#EE766D',
+													},
+												}}
+												maxRows={10}
+											/>
+										</Box>
 										<div className="modal-Refundcolumn">
 											<button className="close-model" onClick={closeModal}>
 												Back
 											</button>
-											<button className="close-model">Request Refund</button>
+											<button
+												className="close-model"
+												onClick={(e) => handleRefundRequested(e)}
+											>
+												Request Refund
+											</button>
 										</div>
 									</div>
 								</div>

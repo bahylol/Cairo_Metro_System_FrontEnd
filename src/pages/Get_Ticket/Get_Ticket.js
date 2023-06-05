@@ -63,7 +63,11 @@ const GetTicket = () => {
 						<div className="GT-column">
 							<div className="GT-input-box">
 								<label>Card Number</label>
-								<input type="text" placeholder="Enter card number" required />
+								<input type="number" placeholder="0000 0000 0000 0000" required />
+							</div>
+							<div className="GT-input-box">
+								<label>CVV</label>
+								<input type="number" placeholder="000" required />
 							</div>
 						</div>
 						<div>

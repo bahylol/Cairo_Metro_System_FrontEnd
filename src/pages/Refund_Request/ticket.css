@@ -247,26 +247,26 @@
 
 .jfk {
 	position: absolute;
-	top: 22px;
+	top: 27px;
 	left: 20px;
 	font-family: Arial;
-	font-size: 25px;
+	font-size: 16px;
 	color: #222;
 }
 
 .sfo {
 	position: absolute;
-	top: 22px;
-	left: 270px;
+	top: 27px;
+	left: 250px;
 	font-family: Arial;
-	font-size: 25px;
+	font-size: 16px;
 	color: #222;
 }
 
 .plane {
 	position: absolute;
 	left: 177px;
-	top: 7px;
+	top: 15px;
 }
 
 /* .routeSection {
@@ -309,7 +309,7 @@
 .flight {
 	position: absolute;
 	top: 10px;
-	left: 180px;
+	left: 160px;
 	font-family: Arial Narrow, Arial;
 	font-weight: bold;
 	font-size: 14px;
@@ -420,8 +420,8 @@
 }
 
 .planeslip {
-	top: 10px;
-	left: 475px;
+	top: 15px;
+	left: 470px;
 }
 
 .airlineslip {

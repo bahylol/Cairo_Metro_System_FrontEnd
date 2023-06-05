@@ -268,7 +268,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 							</a>
 						</li>
 						<li>
-							<a href="/" className="special-link">
+							<a href="/transactions" className="special-link">
 								<AccountCircleIcon className="profileIcon" />
 							</a>
 						</li>

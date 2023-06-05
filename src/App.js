@@ -129,7 +129,7 @@ function App() {
 							<Route path="/general-page" element={<GeneralPage />} />
 							<Route path="/tickets/" element={<RefundRequestPage />} />
 							<Route path="/tickets/purchase" element={<GetTicket />} />
-							<Route path="/transacions" element={<Transactions />} />
+							<Route path="/transactions" element={<Transactions />} />
 							<Route path="/subscription" element={<ViewSubscription />} />
 							<Route path="/admin/managerequest" element={<AdminManageRequest />} />
 							<Route path="*" element={<NotFound />} />

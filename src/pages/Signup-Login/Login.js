@@ -61,7 +61,27 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 			.then((data) => {
 				localStorage.setItem('session_token', data[0]);
 				setIsLoggedIn(true);
-				if (data[1] === 200) navigate('/');
+				if (data[1] === 200) {
+					const fetchData = async () => {
+						try {
+							const response = await fetch('http://localhost:3000/get_cur_user', {
+								method: 'GET',
+								headers: {
+									'Content-Type': 'application/json',
+									token: `session_token=${localStorage.getItem('session_token')}`,
+								},
+							});
+							const data = await response.json();
+							console.log(data.userrole);
+							setUserType(data.userrole);
+						} catch (error) {
+							console.error('Error fetching data:', error);
+						}
+					};
+					fetchData();
+
+					navigate('/');
+				}
 			})
 			.catch((error) => console.error(error));
 	};

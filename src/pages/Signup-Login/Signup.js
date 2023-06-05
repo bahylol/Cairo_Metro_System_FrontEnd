@@ -46,7 +46,7 @@ function RegistrationForm() {
 	const confirm = () => {
 		toast.success('Your account has been created succesfully you will be redirected to the login page', {
 			position: "top-center",
-			autoClose: 3000,
+			autoClose: 2500,
 			hideProgressBar: false,
 			closeOnClick: true,
 			pauseOnHover: true,
@@ -97,8 +97,8 @@ function RegistrationForm() {
 				if (data[0] === 200) {
 					confirm();
 					setTimeout(function() {
-						navigate('/');
-					  }, 3001);				}
+						navigate('/login');
+					  }, 2501);				}
 				else { notify(data[1]); }
 
 			})

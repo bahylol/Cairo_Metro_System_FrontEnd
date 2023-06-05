@@ -20,6 +20,18 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 			theme: "colored",
 		});
 	};
+	const confirm = () => {
+		toast.success('Welcome back, You will be redirected to your home page', {
+			position: "top-center",
+			autoClose: 2500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "colored",
+			});
+	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		fetch('http://localhost:3000/api/v1/users/login', {
@@ -66,9 +78,12 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 			.then((response) => response.json())
 			.then((data) => {
 				if (data[0] === 200) {
+					confirm();
 					localStorage.setItem('session_token', data[0]);
 					setIsLoggedIn(true);
-					navigate('/');
+					setTimeout(function () {
+						navigate('/');
+					}, 2501);
 				}
 				else { notify(data[1]); }
 

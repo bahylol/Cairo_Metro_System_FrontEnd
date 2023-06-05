@@ -79,7 +79,7 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 			.then((data) => {
 				if (data[0] === 200) {
 					confirm();
-					localStorage.setItem('session_token', data[0]);
+					localStorage.setItem('session_token', data[1]);
 					setIsLoggedIn(true);
 					setTimeout(function () {
 						navigate('/');

@@ -3,6 +3,8 @@ import Footer from '../Footer/Footer.js';
 import './view_subscription.css';
 import './cards.css';
 
+import { useNavigate } from 'react-router-dom';
+
 import image from '../../Assets/tickets.webp';
 import trainSub from '../../Assets/trainSub.jpg';
 import rookieSub from '../../Assets/rookieSub.jpg';
@@ -44,6 +46,7 @@ import Switch from '@mui/material/Switch';
 import { useState, useEffect } from 'react';
 
 const View_subscription = () => {
+	const navigate = useNavigate();
 	const [subscriptionData, setSubscriptionData] = useState({});
 	const [expanded, setExpanded] = React.useState(false);
 	const [refundModal, setRefundModal] = React.useState(false);
@@ -53,6 +56,8 @@ const View_subscription = () => {
 	const [cardType, setCardType] = useState('');
 	const [holderName, setHolderName] = useState('');
 	const [cardNumber, setCardNumber] = useState('');
+	const [cardCVV, setCardCVV] = useState('');
+	const [expDate, setExpDate] = useState(true);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -78,7 +83,22 @@ const View_subscription = () => {
 	console.log(subscriptionData);
 
 	if (subscriptionData[0]) {
-		let subData = subscriptionData[0];
+		let subData = {
+			sub_id: '------',
+			duration: '------',
+			zone_id: '------',
+			trans_id: '------',
+			status: '-----',
+			maxnumberofusages: '------',
+			numberofusages: '------',
+			user_id: '------',
+			amount: '------',
+			transaction_to: '------',
+			trans_date: '------',
+			card_type: '------',
+			credit_card: '------',
+			holder_name: '------',
+		};
 		for (let i = 0; i < subscriptionData.length; i++) {
 			if (subscriptionData[i].status === 'active') {
 				subData = subscriptionData[i];
@@ -150,20 +170,60 @@ const View_subscription = () => {
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					localStorage.setItem('session_token', data[0]);
+					// localStorage.setItem('session_token', data[0]);
 					if (data[0] === 200) {
 						alert('Subscription Successfully Canceled!');
+						navigate('/subscription');
 					} else if (data[0] === 401) {
 						alert('You are currently not subscribed to an active plan');
 					} else if (data[0] === 402) {
 						alert('Error: Could not cancel subscription');
 					}
 				})
-				.catch((error) => console.error(error));
+				.catch((error) => console.error(error, 'THIS IS THE ERROR'));
+			// .catch((error) => {
+			// 	alert('You are currently not subscribed to an active plan');
+			// });
 		};
 
 		const handleSubscribed = () => {
-			// fetch POST SUBSCRIPTION
+			if (
+				cardType === '' ||
+				holderName === '' ||
+				expDate === '' ||
+				cardNumber === '' ||
+				cardCVV === ''
+			) {
+				alert('Incomplete Payment Information!');
+			} else {
+				fetch('http://localhost:3000/api/v1/payment/subscriptions/', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						token: `session_token=${localStorage.getItem('session_token')}`,
+					},
+					body: JSON.stringify({
+						duration: modalDuration,
+						card_type: cardType,
+						credit_card: cardNumber,
+						holder_name: holderName,
+					}),
+				})
+					.then((response) => response.json())
+					.then((data) => {
+						// localStorage.setItem('session_token', data[0]);
+						if (data[0] === 200) {
+							alert('Successfully subscribed to a plan');
+							navigate('/subscription');
+						} else if (data[0] === 400) {
+							alert('You are already subscribed to an active plan');
+						}
+					})
+					.catch((error) => console.error(error, 'THIS IS THE ERROR'));
+				// .catch((error) => {
+				// 	alert('BIG ERROR');
+				// });
+			}
 		};
 
 		return (
@@ -365,7 +425,9 @@ const View_subscription = () => {
 										<button className="close-model" onClick={toggleSubscribeModal}>
 											Back
 										</button>
-										<button className="close-model">Subscribe</button>
+										<button className="close-model" onClick={handleSubscribed}>
+											Subscribe
+										</button>
 									</div>
 								</div>
 							</div>
@@ -513,7 +575,12 @@ const View_subscription = () => {
 
 								<div className="GT-input-box">
 									<label>Expiration Date</label>
-									<input type="date" placeholder="Enter expiration date" required />
+									<input
+										type="date"
+										placeholder="Enter expiration date"
+										required
+										onChange={(event) => setExpDate(event.target.value)}
+									/>
 								</div>
 							</div>
 
@@ -521,10 +588,19 @@ const View_subscription = () => {
 								<div className="GT-input-box">
 									<label>Card Number</label>
 									<input
-										type="text"
-										placeholder="Enter card number"
+										type="number"
+										placeholder="0000 0000 0000 0000"
 										required
 										onChange={(event) => setCardNumber(event.target.value)}
+									/>
+								</div>
+								<div className="GT-input-box">
+									<label>CVV</label>
+									<input
+										type="number"
+										placeholder="000"
+										required
+										onChange={(event) => setCardCVV(event.target.value)}
 									/>
 								</div>
 							</div>

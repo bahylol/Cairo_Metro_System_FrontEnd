@@ -53,22 +53,19 @@ const Transactions = () => {
 
 	return (
 		<>
-			<div className="transactions-TP-page">
-				<header>Your Transactions</header>
-				<div className="transaction-TP-table" style={{ height: 400, width: '100%' }}>
-					<DataGrid
-						rows={rows}
-						columns={columns}
-						initialState={{
-							pagination: {
-								paginationModel: { page: 0, pageSize: 5 },
-							},
-						}}
-						pageSizeOptions={[5, 10]}
-						checkboxSelection
-					/>
-				</div>
-			</div>
+			<DataGrid
+				className="datagrid"
+				rows={rows}
+				columns={columns}
+				initialState={{
+					pagination: {
+						paginationModel: { page: 0, pageSize: 5 },
+					},
+				}}
+				pageSizeOptions={[5, 10]}
+				checkboxSelection
+			/>
+
 			<Footer />
 		</>
 	);

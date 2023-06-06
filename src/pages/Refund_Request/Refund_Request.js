@@ -1,10 +1,12 @@
 import Footer from '../Footer/Footer.js';
 
 import './RefundRequest.css';
-// import Ticket from './ticket.js';
+
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './ticket.css';
 import './modal.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
@@ -14,6 +16,31 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
 const Refund_Request = () => {
+	const notify = (alert) => {
+		toast.error(alert, {
+			position: 'top-center',
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
+	const confirm = (alert) => {
+		toast.success(alert, {
+			position: 'top-center',
+			autoClose: 2500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
+
 	const [refundModal, setRefundModal] = useState(false);
 	const [modalOpen, setModalOpen] = useState(false);
 	const [selectedTicketId, setSelectedTicketId] = useState(null);
@@ -21,7 +48,7 @@ const Refund_Request = () => {
 
 	const handleRefundRequested = () => {
 		if (description === '') {
-			alert('Description is required!');
+			notify('Description is required!');
 		}
 
 		fetch('http://localhost:3000/api/v1/users/refund_request/', {
@@ -37,14 +64,13 @@ const Refund_Request = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				localStorage.setItem('session_token', data[0]);
 				if (data[0] === 200) {
 					closeModal();
-					alert('Refund Request Sent!');
-				} else if (data[0] === 400) {
-					alert('Refund rejected! Ticket already expired/used');
+					confirm('Refund Request Sent!');
+				} else if (data[0] === 401) {
+					notify('Refund rejected! Ticket already expired/used');
 				} else if (data[0] === 402) {
-					alert('Refund was already requested and is being processed at the moment...');
+					notify('Refund was already requested and is being processed at the moment...');
 				}
 			})
 			.catch((error) => console.error(error));
@@ -94,6 +120,7 @@ const Refund_Request = () => {
 	};
 
 	const closeModal = () => {
+		setDescription('');
 		setModalOpen(false);
 	};
 
@@ -360,6 +387,7 @@ const Refund_Request = () => {
 					</div>
 				))}
 				<Footer />
+				<ToastContainer />
 			</div>
 		</>
 	);

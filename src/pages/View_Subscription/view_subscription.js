@@ -340,8 +340,7 @@ const View_subscription = () => {
 													<Typography paragraph>Type: {subData.duration}</Typography>
 													<Typography paragraph>
 														Zones: {subData.minimumstations}
-														{' - '}
-														{subData.maximumstations}
+														{'+'}
 													</Typography>
 													<Typography paragraph>Status: {subData.status}</Typography>
 													<Typography paragraph>

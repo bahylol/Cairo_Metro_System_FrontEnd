@@ -2,6 +2,7 @@ import Footer from '../Footer/Footer.js';
 
 import './Get_Ticket.css';
 
+import soundEffect from '../../Assets/ChooChoo.mp3';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -9,9 +10,11 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const GetTicket = () => {
+	const audioRef = useRef(null);
+
 	const notify = (alert) => {
 		toast.error(alert, {
 			position: 'top-center',
@@ -85,6 +88,7 @@ const GetTicket = () => {
 					// localStorage.setItem('session_token', data[0]);
 					if (data[0] === 200) {
 						confirm('Ticket successfully booked!');
+						audioRef.current.play();
 						setTimeout(function () {
 							navigate('/tickets/purchase');
 						}, 2500);
@@ -137,7 +141,8 @@ const GetTicket = () => {
 				.then((data) => {
 					// localStorage.setItem('session_token', data[0]);
 					if (data[0] === 200) {
-						notify('Ticket successfully booked!');
+						confirm('Ticket successfully booked!');
+						audioRef.current.play();
 						setTimeout(function () {
 							navigate('/tickets/purchase');
 						}, 2500);
@@ -162,6 +167,11 @@ const GetTicket = () => {
 
 	return (
 		<>
+			<header>
+				<audio id="soundEffectAudio" ref={audioRef}>
+					<source src={soundEffect} type="audio/mpeg" />
+				</audio>
+			</header>
 			<div className="GT-page">
 				<div className="Get-Ticket-Whole-Page">
 					<header>Book Ticket</header>

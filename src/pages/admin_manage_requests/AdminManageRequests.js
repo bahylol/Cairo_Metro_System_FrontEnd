@@ -5,7 +5,9 @@ import { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
-
+import Button from '@mui/material/Button';
+import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
+import CancelSharpIcon from '@mui/icons-material/CancelSharp';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AdminManageRequests = () => {
@@ -22,7 +24,7 @@ const AdminManageRequests = () => {
 			theme: "colored",
 		});
 	};
-	if(localStorage.getItem('session_token')==="null"){
+	if (localStorage.getItem('session_token') === "null") {
 		notify("You are not logged in");
 		setTimeout(function () {
 			navigate('/');
@@ -41,10 +43,10 @@ const AdminManageRequests = () => {
 					},
 				});
 				const data = await response.json();
-				if (data[0]=== 200) {
+				if (data[0] === 200) {
 					setSeniorRequests(data[1]);
 				}
-				else{
+				else {
 					notify(data[1]);
 				}
 			} catch (error) {
@@ -66,10 +68,10 @@ const AdminManageRequests = () => {
 					},
 				});
 				const data = await response.json();
-				if (data[0]=== 200) {
+				if (data[0] === 200) {
 					setRefundRequests(data[1]);
 				}
-				else{
+				else {
 					notify(data[1]);
 				}
 			} catch (error) {
@@ -81,11 +83,22 @@ const AdminManageRequests = () => {
 	}, []);
 
 	const seniorColumns = [
-		{ field: 'request_id', headerName: 'ID'},
-		{ field: 'request_state', headerName: 'request_state'},
-		{ field: 'id_picture_age', headerName: 'SSN' },
-		{ field: 'admin_id', headerName: 'Admin ID'},
-		{ field: 'user_id', headerName: 'User ID'},
+		{ field: 'id', headerName: 'Request ID', flex: 1 },
+		{ field: 'request_state', headerName: 'request_state', minWidth: 150, flex: 1 },
+		{ field: 'id_picture_age', headerName: 'SSN', flex: 1 },
+		{ field: 'admin_id', headerName: 'Admin ID', flex: 1 },
+		{ field: 'user_id', headerName: 'User ID', flex: 1 },
+		{
+			field: 'action',
+			headerName: 'Accept/Reject',
+			minWidth: 200,
+			flex: 1,
+			renderCell: (params) => (
+				<Button variant="contained" onClick={() => console.log(params.id)} color="primary" startIcon={<CheckCircleSharpIcon />} endIcon={<CancelSharpIcon />}>
+					Accept/Reject
+				</Button>
+			),
+		},
 	];
 
 	const UpdatedSeniorData = seniorRequests.map((seniorRequests) => {
@@ -96,12 +109,23 @@ const AdminManageRequests = () => {
 	const seniorRows = UpdatedSeniorData;
 
 	const refundColumns = [
-		{ field: 'request_id', headerName: 'ID'},
-		{ field: 'request_state', headerName: 'request_state'},
-		{ field: 'description', headerName: 'description' },
-		{ field: 'ticket_id', headerName: 'ticket_id' },
-		{ field: 'admin_id', headerName: 'Admin ID'},
-		{ field: 'user_id', headerName: 'User ID'},
+		{ field: 'id', headerName: 'Request ID', flex: 1 },
+		{ field: 'request_state', headerName: 'request_state', minWidth: 150, flex: 1 },
+		{ field: 'description', headerName: 'description', minWidth: 150, flex: 1 },
+		{ field: 'ticket_id', headerName: 'ticket_id', flex: 1 },
+		{ field: 'admin_id', headerName: 'Admin ID', flex: 1 },
+		{ field: 'user_id', headerName: 'User ID', flex: 1 },
+		{
+			field: 'action',
+			headerName: 'Accept/Reject',
+			minWidth: 200,
+			flex: 1,
+			renderCell: (params) => (
+				<Button variant="contained" onClick={() => console.log(params.id)} color="primary" startIcon={<CheckCircleSharpIcon />} endIcon={<CancelSharpIcon />}>
+					Accept/Reject
+				</Button>
+			),
+		},
 	];
 
 	const UpdatedRefundData = refundRequests.map((refundRequests) => {
@@ -114,7 +138,7 @@ const AdminManageRequests = () => {
 		<>
 			<div className="request-TP-page">
 				<header>Senior Requests</header>
-				<div className="request-TP-table" style={{ height: 400, width: '100%' }}>
+				<div className="request-TP-table" style={{ height: 400, width: '100%' }} >
 					<DataGrid
 						rows={seniorRows}
 						columns={seniorColumns}
@@ -124,6 +148,14 @@ const AdminManageRequests = () => {
 							},
 						}}
 						pageSizeOptions={[5, 10]}
+						// slots={{
+						// 	toolbar: GridToolbar,
+						//   }}
+						// slots={{
+						// 	noRowsOverlay: CustomNoRowsOverlay,
+						//   }}
+						//   {...data}
+						//   rows={[]}
 					/>
 				</div>
 			</div>

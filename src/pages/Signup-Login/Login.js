@@ -80,39 +80,70 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 			.then((response) => response.json())
 			.then((data) => {
 				if (data[0] === 200) {
-					confirm('Welcome back, You will be redirected to your home page');
+					// confirm('Welcome back, You will be redirected to your home page');
+					// localStorage.setItem('session_token', data[1]);
+					// setIsLoggedIn(true);
+					// setTimeout(function () {
+					// 	navigate('/');
+					// }, 2501);
+
 					localStorage.setItem('session_token', data[1]);
-					setIsLoggedIn(true);
-					setTimeout(function () {
-						navigate('/');
-					}, 2501);
+
+					if (data[0] === 200) {
+						let userType = 'user';
+						const fetchData = async () => {
+							try {
+								const response = await fetch('http://localhost:3000/get_cur_user', {
+									method: 'GET',
+									headers: {
+										'Content-Type': 'application/json',
+										token: `session_token=${localStorage.getItem('session_token')}`,
+									},
+								});
+								const data = await response.json();
+								console.log(data.userrole);
+								userType = data.userrole;
+							} catch (error) {
+								console.error('Error fetching data:', error);
+							}
+							confirm('Welcome back, You will be redirected to your home page');
+							localStorage.setItem('session_token', data[1]);
+
+							setTimeout(function () {
+								setIsLoggedIn(true);
+								setUserType(userType);
+								navigate('/');
+							}, 2501);
+						};
+						fetchData();
+					}
 				} else {
 					notify(data[1]);
 				}
 
-				// 				localStorage.setItem('session_token', data[1]);
+				// localStorage.setItem('session_token', data[1]);
 
-				// 				setIsLoggedIn(true);
-				// 				if (data[0] === 200) {
-				// 					const fetchData = async () => {
-				// 						try {
-				// 							const response = await fetch('http://localhost:3000/get_cur_user', {
-				// 								method: 'GET',
-				// 								headers: {
-				// 									'Content-Type': 'application/json',
-				// 									token: `session_token=${localStorage.getItem('session_token')}`,
-				// 								},
-				// 							});
-				// 							const data = await response.json();
-				// 							console.log(data.userrole);
-				// 							setUserType(data.userrole);
-				// 						} catch (error) {
-				// 							console.error('Error fetching data:', error);
-				// 						}
-				// 					};
-				// 					fetchData();
-				// 					navigate('/');
-				// 				}
+				// setIsLoggedIn(true);
+				// if (data[0] === 200) {
+				// 	const fetchData = async () => {
+				// 		try {
+				// 			const response = await fetch('http://localhost:3000/get_cur_user', {
+				// 				method: 'GET',
+				// 				headers: {
+				// 					'Content-Type': 'application/json',
+				// 					token: `session_token=${localStorage.getItem('session_token')}`,
+				// 				},
+				// 			});
+				// 			const data = await response.json();
+				// 			console.log(data.userrole);
+				// 			setUserType(data.userrole);
+				// 		} catch (error) {
+				// 			console.error('Error fetching data:', error);
+				// 		}
+				// 	};
+				// 	fetchData();
+				// 	navigate('/');
+				// }
 			});
 		// 			.catch((error) => console.log(error));
 	};

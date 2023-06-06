@@ -39,6 +39,14 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
@@ -53,11 +61,13 @@ const View_subscription = () => {
 	const [subscribeModal, setSubscribeModal] = React.useState(false);
 	const [modalDuration, setModalDuration] = React.useState('');
 	const [modalRides, setModalRides] = React.useState('');
+
 	const [cardType, setCardType] = useState('');
 	const [holderName, setHolderName] = useState('');
 	const [cardNumber, setCardNumber] = useState('');
 	const [cardCVV, setCardCVV] = useState('');
 	const [expDate, setExpDate] = useState(true);
+	const [subZones, setSubZones] = React.useState('');
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -90,6 +100,8 @@ const View_subscription = () => {
 			trans_id: '------',
 			status: '-----',
 			maxnumberofusages: '------',
+			minimumstations: '------',
+			maximumstations: '------',
 			numberofusages: '------',
 			user_id: '------',
 			amount: '------',
@@ -139,7 +151,10 @@ const View_subscription = () => {
 			e.preventDefault();
 			setModalDuration(duration);
 			setModalRides(rides);
-			setSubscribeModal(!subscribeModal);
+			setSubscribeModal(true);
+		};
+		const closeSubscribeModal = (e) => {
+			setSubscribeModal(false);
 		};
 
 		const handleExpandClick = () => {
@@ -186,7 +201,8 @@ const View_subscription = () => {
 			// });
 		};
 
-		const handleSubscribed = () => {
+		const handleSubscribed = (e) => {
+			e.preventDefault();
 			if (
 				cardType === '' ||
 				holderName === '' ||
@@ -195,6 +211,8 @@ const View_subscription = () => {
 				cardCVV === ''
 			) {
 				alert('Incomplete Payment Information!');
+			} else if (subZones === '') {
+				alert('Incomplete Zone Information!');
 			} else {
 				fetch('http://localhost:3000/api/v1/payment/subscriptions/', {
 					method: 'POST',
@@ -207,6 +225,7 @@ const View_subscription = () => {
 						card_type: cardType,
 						credit_card: cardNumber,
 						holder_name: holderName,
+						zone_id: subZones,
 					}),
 				})
 					.then((response) => response.json())
@@ -219,10 +238,10 @@ const View_subscription = () => {
 							alert('You are already subscribed to an active plan');
 						}
 					})
-					.catch((error) => console.error(error, 'THIS IS THE ERROR'));
-				// .catch((error) => {
-				// 	alert('BIG ERROR');
-				// });
+					// .catch((error) => console.error(error, 'THIS IS THE ERROR'));
+					.catch((error) => {
+						alert('BIG ERROR');
+					});
 			}
 		};
 
@@ -285,10 +304,15 @@ const View_subscription = () => {
 														Your unique subscription ID number: {subData.sub_id}
 													</Typography>
 													<Typography paragraph>Type: {subData.duration}</Typography>
+													<Typography paragraph>
+														Zones: {subData.minimumstations}
+														{' - '}
+														{subData.maximumstations}
+													</Typography>
 													<Typography paragraph>Status: {subData.status}</Typography>
 													<Typography paragraph>
-														Usages: {subData.numberofusages}
-														out of {subData.maxnumberofusages}
+														Usages: {subData.numberofusages} out of{' '}
+														{subData.maxnumberofusages}
 													</Typography>
 													<Typography paragraph>Price: {subData.amount}</Typography>
 													<Typography paragraph>
@@ -412,20 +436,46 @@ const View_subscription = () => {
 
 					{subscribeModal && (
 						<div className="VSmodal">
-							<div onClick={toggleSubscribeModal} className="VSoverlay">
+							<div className="VSoverlay">
 								<div className="VS-modal-form">
 									<h2>Subscribe to the following plan</h2>
 									<p>--Plan Information--</p>
+
 									<p>
 										Type: {modalDuration} <br />
-										You will recieve {modalRides}
+										You will recieve {modalRides} <br />
+										Zone ID: RetroM{'('}
+										{subZones}
+										{')'}
 									</p>
-
+									<FormControl
+										sx={{
+											m: 1,
+											minWidth: 120,
+										}}
+									>
+										<InputLabel htmlFor="demo-dialog-native">Zones</InputLabel>
+										<Select
+											native
+											onChange={(event) => setSubZones(event.target.value)}
+											input={<OutlinedInput label="Zones" id="demo-dialog-native" />}
+										>
+											<option value={1}>1 - 9</option>
+											<option value={2}>10 - 16</option>
+											<option value={3}>17+</option>
+										</Select>
+									</FormControl>
 									<div className="VSmodal-Refundcolumn">
-										<button className="close-model" onClick={toggleSubscribeModal}>
+										<button
+											className="close-model"
+											onClick={(event) => closeSubscribeModal(event)}
+										>
 											Back
 										</button>
-										<button className="close-model" onClick={handleSubscribed}>
+										<button
+											className="close-model"
+											onClick={(event) => handleSubscribed(event)}
+										>
 											Subscribe
 										</button>
 									</div>

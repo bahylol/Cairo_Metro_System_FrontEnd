@@ -3,6 +3,7 @@ import './Signup-Login.css';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from '../Footer/Footer.js';
 
 function RegistrationForm({ setIsLoggedIn, setUserType }) {
 	const navigate = useNavigate();
@@ -155,6 +156,7 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 				</section>
 			</div>
 			<ToastContainer />
+			<Footer />
 		</>
 	);
 }

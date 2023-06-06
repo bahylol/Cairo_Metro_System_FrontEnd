@@ -1,6 +1,4 @@
 import Footer from '../Footer/Footer.js';
-import soundEffect from '../../Assets/ChooChoo.mp3';
-import React, { useRef } from 'react';
 
 import './Get_Ticket.css';
 
@@ -11,10 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const GetTicket = () => {
-	const audioRef = useRef(null);
-	const chooChooSound = () => {
-		audioRef.current.play();
-	};
 	const navigate = useNavigate();
 
 	const [origin, setOrigin] = useState('');
@@ -58,7 +52,6 @@ const GetTicket = () => {
 				.then((data) => {
 					// localStorage.setItem('session_token', data[0]);
 					if (data[0] === 200) {
-						chooChooSound();
 						alert('Ticket successfully booked!');
 						navigate('/tickets/purchase');
 					} else if (data[0] === 401) {
@@ -108,7 +101,6 @@ const GetTicket = () => {
 				.then((data) => {
 					// localStorage.setItem('session_token', data[0]);
 					if (data[0] === 200) {
-						chooChooSound();
 						alert('Ticket successfully booked!');
 						navigate('/tickets/purchase');
 					} else if (data[0] === 401) {
@@ -165,12 +157,11 @@ const GetTicket = () => {
 						</div>
 
 						<a href="htt" onClick={(e) => handlePrintTicket(e)}>
-							Print TicketchooChooSound()
+							Print Ticket
 						</a>
 						<a href="htt" onClick={(e) => handleUseSub(e)}>
 							Use Subscription
 						</a>
-						<audio ref={audioRef} src={soundEffect} id="sound-effect" />
 					</div>
 				</div>
 			</div>

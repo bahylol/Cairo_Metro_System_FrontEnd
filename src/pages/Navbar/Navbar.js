@@ -209,7 +209,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 							<a href="/tickets">My Rides</a>
 						</li>
 						<li>
-							<a href="/tickets/purchase">Get Ticket</a>
+							<a href="/tickets/purchase">Book Ticket</a>
 						</li>
 						<li>
 							<a href="/subscription">Subscription</a>

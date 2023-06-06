@@ -5,8 +5,8 @@
 	flex-direction: column;
 
 	height: 500px;
-	padding-left: 170px;
-	padding-right: 170px;
+	padding-left: 150px;
+	padding-right: 150px;
 }
 
 .request-TP-table {
@@ -17,12 +17,16 @@
 
 	background: rgba(222, 222, 222, 0.8);
 }
+
 @media screen and (max-width: 900px) {
 	.request-TP-page {
 		padding-left: 0px;
 		padding-right: 0px;
 	}
-  }
+}
+
+
+
 /* ------------------------------------------------------------------------------------------------------- */
 
 /* .transaction-table {

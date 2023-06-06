@@ -259,10 +259,13 @@ const Refund_Request = () => {
 											BOARDING TIME
 											<br />
 											<span>
-												{new Date(ticket.start_time).toLocaleDateString('en-US', {
+												{new Date(ticket.start_time).toLocaleString('en-US', {
 													year: 'numeric',
 													month: 'long',
 													day: 'numeric',
+													hour: 'numeric',
+													minute: 'numeric',
+													hour12: true,
 												})}
 											</span>
 										</span>

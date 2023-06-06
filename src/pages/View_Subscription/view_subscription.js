@@ -66,7 +66,7 @@ const View_subscription = () => {
 	const [holderName, setHolderName] = useState('');
 	const [cardNumber, setCardNumber] = useState('');
 	const [cardCVV, setCardCVV] = useState('');
-	const [expDate, setExpDate] = useState(true);
+	const [expDate, setExpDate] = useState('');
 	const [subZones, setSubZones] = React.useState('');
 
 	useEffect(() => {

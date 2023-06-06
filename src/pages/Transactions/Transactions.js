@@ -32,9 +32,10 @@ const Transactions = () => {
 		{ field: 'id', headerName: 'Transaction ID', type: 'number', width: 120 },
 		{ field: 'amount', headerName: 'Amount', type: 'number', width: 130 },
 		{ field: 'trans_date', headerName: 'Date', width: 280 },
-		{ field: 'card_type', headerName: 'Card Type', width: 170 },
-		{ field: 'credit_card', headerName: 'Card Number', width: 220 },
-		{ field: 'holder_name', headerName: 'Holder Name', width: 100 },
+		/* UNCOMMENT TRANSACTION */
+		// { field: 'card_type', headerName: 'Card Type', width: 170 },
+		// { field: 'credit_card', headerName: 'Card Number', width: 220 },
+		// { field: 'holder_name', headerName: 'Holder Name', width: 100 },
 	];
 
 	const updatedTransactionData = transactionData.map((transaction) => {

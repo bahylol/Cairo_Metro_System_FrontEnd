@@ -4,6 +4,8 @@ import './view_subscription.css';
 import './cards.css';
 
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import image from '../../Assets/tickets.webp';
 import trainSub from '../../Assets/trainSub.jpg';
@@ -54,6 +56,30 @@ import Switch from '@mui/material/Switch';
 import { useState, useEffect } from 'react';
 
 const View_subscription = () => {
+	const notify = (alert) => {
+		toast.error(alert, {
+			position: 'top-center',
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
+	const confirm = (alert) => {
+		toast.success(alert, {
+			position: 'top-center',
+			autoClose: 2500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
 	const navigate = useNavigate();
 	const [subscriptionData, setSubscriptionData] = useState({});
 	const [expanded, setExpanded] = React.useState(false);
@@ -187,12 +213,14 @@ const View_subscription = () => {
 				.then((data) => {
 					// localStorage.setItem('session_token', data[0]);
 					if (data[0] === 200) {
-						alert('Subscription Successfully Canceled!');
-						navigate('/subscription');
+						confirm('Subscription Successfully Canceled!');
+						setTimeout(function () {
+							navigate('/subscription');
+						}, 2500);
 					} else if (data[0] === 401) {
-						alert('You are currently not subscribed to an active plan');
+						notify('You are currently not subscribed to an active plan');
 					} else if (data[0] === 402) {
-						alert('Error: Could not cancel subscription');
+						notify('Error: Could not cancel subscription');
 					}
 				})
 				.catch((error) => console.error(error, 'THIS IS THE ERROR'));
@@ -203,17 +231,20 @@ const View_subscription = () => {
 
 		const handleSubscribed = (e) => {
 			e.preventDefault();
-			if (
-				cardType === '' ||
-				holderName === '' ||
-				expDate === '' ||
-				cardNumber === '' ||
-				cardCVV === ''
-			) {
-				alert('Incomplete Payment Information!');
-			} else if (subZones === '') {
-				alert('Incomplete Zone Information!');
-			} else {
+			if (subZones === '') {
+				notify('Incomplete Zone Information!');
+			}
+			// UNCOMMENT TRANSACTION
+			// else if (
+			// 	cardType === '' ||
+			// 	holderName === '' ||
+			// 	expDate === '' ||
+			// 	cardNumber === '' ||
+			// 	cardCVV === ''
+			// ) {
+			// 	notify('Incomplete Payment Information!');
+			// }
+			else {
 				fetch('http://localhost:3000/api/v1/payment/subscriptions/', {
 					method: 'POST',
 					headers: {
@@ -222,9 +253,10 @@ const View_subscription = () => {
 					},
 					body: JSON.stringify({
 						duration: modalDuration,
-						card_type: cardType,
-						credit_card: cardNumber,
-						holder_name: holderName,
+						// UNCOMMENT TRANSACTION
+						// card_type: cardType,
+						// credit_card: cardNumber,
+						// holder_name: holderName,
 						zone_id: subZones,
 					}),
 				})
@@ -232,15 +264,17 @@ const View_subscription = () => {
 					.then((data) => {
 						// localStorage.setItem('session_token', data[0]);
 						if (data[0] === 200) {
-							alert('Successfully subscribed to a plan');
-							navigate('/subscription');
+							confirm('Successfully subscribed to a plan');
+							setTimeout(function () {
+								navigate('/subscription');
+							}, 2500);
 						} else if (data[0] === 400) {
-							alert('You are already subscribed to an active plan');
+							notify('You are already subscribed to an active plan');
 						}
 					})
 					// .catch((error) => console.error(error, 'THIS IS THE ERROR'));
 					.catch((error) => {
-						alert('BIG ERROR');
+						notify('BIG ERROR');
 					});
 			}
 		};
@@ -599,7 +633,8 @@ const View_subscription = () => {
 							</Grid>
 						</Grid>
 					</div>
-					<div className="SVPageContainer">
+					{/* UNCOMMENT TRANSACTION */}
+					{/* <div className="SVPageContainer">
 						<header className="VSCardsHeader">Payment Information</header>
 						<form className="GT-form">
 							<div className="GT-column">
@@ -664,7 +699,8 @@ const View_subscription = () => {
 								</FormGroup>
 							</div>
 						</form>
-					</div>
+					</div> */}
+					<ToastContainer />
 					<Footer className="exclude-from-padding" />
 				</div>
 			</>

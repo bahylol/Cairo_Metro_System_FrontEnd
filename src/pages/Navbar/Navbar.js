@@ -63,6 +63,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 
 	const phoneLogOut = (e) => {
 		e.preventDefault();
+		localStorage.setItem('session_token', null);
 		setIsLoggedIn(false);
 		setUserType('user');
 		navigate('/');
@@ -252,6 +253,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 									className="navbar-login-out-text-ID no-hover-animation"
 									onClick={(e) => {
 										e.preventDefault();
+										localStorage.setItem('session_token', null);
 										setIsLoggedIn(false);
 										setUserType('user');
 										navigate('/');

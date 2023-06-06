@@ -1,4 +1,4 @@
-.transactions-TP-page {
+.request-TP-page {
 	display: flexbox;
 	align-items: center;
 	justify-content: center;
@@ -9,7 +9,7 @@
 	padding-right: 170px;
 }
 
-.transaction-TP-table {
+.request-TP-table {
 	display: flexbox;
 	align-items: center;
 	justify-content: center;
@@ -17,6 +17,12 @@
 
 	background: rgba(222, 222, 222, 0.8);
 }
+@media screen and (max-width: 900px) {
+	.request-TP-page {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+  }
 /* ------------------------------------------------------------------------------------------------------- */
 
 /* .transaction-table {

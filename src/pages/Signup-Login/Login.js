@@ -20,8 +20,8 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 			theme: "colored",
 		});
 	};
-	const confirm = () => {
-		toast.success('Welcome back, You will be redirected to your home page', {
+	const confirm = (alert) => {
+		toast.success(alert, {
 			position: "top-center",
 			autoClose: 2500,
 			hideProgressBar: false,
@@ -78,7 +78,7 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 			.then((response) => response.json())
 			.then((data) => {
 				if (data[0] === 200) {
-					confirm();
+					confirm('Welcome back, You will be redirected to your home page');
 					localStorage.setItem('session_token', data[1]);
 					setIsLoggedIn(true);
 					setTimeout(function () {

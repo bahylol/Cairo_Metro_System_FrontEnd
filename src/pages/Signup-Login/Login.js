@@ -57,11 +57,13 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 			// 	// if (response.status === 200)
 			// 	// 	navigate("/test");
 			// })
+
 			.then((response) => response.json())
 			.then((data) => {
-				localStorage.setItem('session_token', data[0]);
+				localStorage.setItem('session_token', data[1]);
+
 				setIsLoggedIn(true);
-				if (data[1] === 200) {
+				if (data[0] === 200) {
 					const fetchData = async () => {
 						try {
 							const response = await fetch('http://localhost:3000/get_cur_user', {
@@ -79,7 +81,6 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 						}
 					};
 					fetchData();
-
 					navigate('/');
 				}
 			})

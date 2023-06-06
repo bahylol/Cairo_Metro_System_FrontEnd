@@ -176,7 +176,7 @@ const Refund_Request = () => {
 							<div className="ticket" onClick={() => openModal(ticket.ticket_id)}>
 								{/* <span className="airline">WetroMetro</span> */}
 								<span className="airline">Ticket ID: {ticket.ticket_id}</span>
-								<span className="airline airlineslip">WetroMetro</span>
+								<span className="airline airlineslip">RetroMetro</span>
 								<span className="boarding">Boarding pass</span>
 								<div className="contentTicket">
 									<div className="routeSection">
@@ -261,7 +261,7 @@ const Refund_Request = () => {
 									</span>
 									<span className="sfo sfoslip">------</span>
 									<div className="ticket-sub-content">
-										<span className="watermark">WetroMetro</span>
+										<span className="watermark">RetroMetro</span>
 										<span className="name">
 											PASSENGER NAME
 											<br />

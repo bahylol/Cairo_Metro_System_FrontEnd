@@ -144,3 +144,31 @@
 		row-gap: 15px;
 	}
 }
+
+.forgotPasswordLink {
+	color: lightblue;
+	text-decoration: none;
+	transition: color 0.3s;
+}
+
+.forgotPasswordLink:hover {
+	position: relative;
+	color: darkblue;
+}
+
+.forgotPasswordLink:hover::after {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background-color: blue;
+	transform: scaleX(0);
+	transform-origin: left center;
+	transition: transform 0.3s;
+}
+
+.forgotPasswordLink:hover::after {
+	transform: scaleX(1);
+}

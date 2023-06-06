@@ -16,6 +16,9 @@ import PageLoadingSkeleton from './pages/PageLoadingSkeleton.js/pageLoadSkel.js'
 import NavBarLoadingSkeleton from './pages/PageLoadingSkeleton.js/navbarLoadSkel';
 import AdminManageRequest from './pages/admin_manage_requests/AdminManageRequests.js';
 
+import ForgotPassword from './pages/Forgot_Password/forgot_password.js';
+import ForgotPasswordNewPassword from './pages/Forgot_Password/resetPage.js';
+
 function App() {
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -124,6 +127,11 @@ function App() {
 							<Route
 								path="/login"
 								element={<Login setIsLoggedIn={setIsLoggedIn} setUserType={setUserType} />}
+							/>
+							<Route path="/user/forgot-password" element={<ForgotPassword />} />
+							<Route
+								path="/user/forgot-password/new-password"
+								element={<ForgotPasswordNewPassword />}
 							/>
 							<Route path="/signup" element={<Signup />} />
 							<Route path="/general-page" element={<GeneralPage />} />

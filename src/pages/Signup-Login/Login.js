@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Signup-Login.css';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function RegistrationForm({ setIsLoggedIn, setUserType }) {
@@ -10,27 +10,27 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 	const [password, setPassword] = useState('');
 	const notify = (alert) => {
 		toast.error(alert, {
-			position: "top-center",
+			position: 'top-center',
 			autoClose: 3000,
 			hideProgressBar: false,
 			closeOnClick: true,
 			pauseOnHover: true,
 			draggable: true,
 			progress: undefined,
-			theme: "colored",
+			theme: 'colored',
 		});
 	};
 	const confirm = (alert) => {
 		toast.success(alert, {
-			position: "top-center",
+			position: 'top-center',
 			autoClose: 2500,
 			hideProgressBar: false,
 			closeOnClick: true,
 			pauseOnHover: true,
 			draggable: true,
 			progress: undefined,
-			theme: "colored",
-			});
+			theme: 'colored',
+		});
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -75,6 +75,7 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 			// 	// if (response.status === 200)
 			// 	// 	navigate("/test");
 			// })
+
 			.then((response) => response.json())
 			.then((data) => {
 				if (data[0] === 200) {
@@ -84,11 +85,35 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 					setTimeout(function () {
 						navigate('/');
 					}, 2501);
+				} else {
+					notify(data[1]);
 				}
-				else { notify(data[1]); }
 
-			})
-			.catch((error) => console.log(error));
+				// 				localStorage.setItem('session_token', data[1]);
+
+				// 				setIsLoggedIn(true);
+				// 				if (data[0] === 200) {
+				// 					const fetchData = async () => {
+				// 						try {
+				// 							const response = await fetch('http://localhost:3000/get_cur_user', {
+				// 								method: 'GET',
+				// 								headers: {
+				// 									'Content-Type': 'application/json',
+				// 									token: `session_token=${localStorage.getItem('session_token')}`,
+				// 								},
+				// 							});
+				// 							const data = await response.json();
+				// 							console.log(data.userrole);
+				// 							setUserType(data.userrole);
+				// 						} catch (error) {
+				// 							console.error('Error fetching data:', error);
+				// 						}
+				// 					};
+				// 					fetchData();
+				// 					navigate('/');
+				// 				}
+			});
+		// 			.catch((error) => console.log(error));
 	};
 
 	const handleEmail = (event) => {

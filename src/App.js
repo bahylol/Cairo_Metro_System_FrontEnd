@@ -15,6 +15,7 @@ import NotFound from './pages/NotFound/notFoundPage.js';
 import PageLoadingSkeleton from './pages/PageLoadingSkeleton.js/pageLoadSkel.js';
 import NavBarLoadingSkeleton from './pages/PageLoadingSkeleton.js/navbarLoadSkel';
 import AdminManageRequest from './pages/admin_manage_requests/AdminManageRequests.js';
+import SubscriptionStripe from './pages/stripe/SubscriptionStripe'
 
 function App() {
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -131,6 +132,7 @@ function App() {
 							<Route path="/tickets/purchase" element={<GetTicket />} />
 							<Route path="/transactions" element={<Transactions />} />
 							<Route path="/subscription" element={<ViewSubscription />} />
+							<Route path="/SubscriptionStripe" element={<SubscriptionStripe />} />
 							<Route path="/admin/managerequest" element={<AdminManageRequest />} />
 							<Route path="*" element={<NotFound />} />
 						</Routes>

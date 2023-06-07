@@ -264,6 +264,8 @@ const View_subscription = () => {
 					.then((data) => {
 						if (data[0] === 200) {
 							window.location.href = data[1];
+						} else if (data[0] === 400) {
+							notify('You are already subscribed to an active plan');
 						} else {
 							window.location.href = data[1];
 						}

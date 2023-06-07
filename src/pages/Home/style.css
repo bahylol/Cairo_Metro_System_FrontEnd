@@ -128,4 +128,22 @@
 /* train background CSS*/
 .home-train-image {
 	width: 100%;
+	margin-top: -119px;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 100px;
+	border-bottom-left-radius: 100px;
+}
+
+.thePrice {
+	border: 2px solid darkgreen;
+	color: darkgreen;
+	background-color: rgb(103, 199, 103);
+	padding: 5px 25px;
+	border-radius: 4px;
+	margin-left: 6px;
 }

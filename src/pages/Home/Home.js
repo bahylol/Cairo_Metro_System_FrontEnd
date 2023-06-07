@@ -1,21 +1,52 @@
 import Footer from '../Footer/Footer.js';
 import { Link } from 'react-router-dom';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './Home.css';
 import './style.css';
 import './articleCards.css';
 import './blogSlider.css';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import image from '../../Assets/HomePageTrain.png';
 import cardPic1 from '../../Assets/cardPic1.jpg';
 import cardPic2 from '../../Assets/cardPic2.png';
 import cardPic3 from '../../Assets/cardPic3.jpg';
 import cardPic4 from '../../Assets/cardPic4.jpg';
 import crowd from '../../Assets/home_crowd.jpg';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 import Swiper from 'swiper';
 
 const Home = () => {
+	const sectionRef = useRef(null);
+
+	const notify = (alert) => {
+		toast.error(alert, {
+			position: 'top-center',
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
+	const confirm = (alert) => {
+		toast.success(alert, {
+			position: 'top-center',
+			autoClose: 2500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
+
 	const currentDate = new Date();
 	const formattedCurrentDate = currentDate.toLocaleDateString('en-US', {
 		year: 'numeric',
@@ -65,9 +96,17 @@ const Home = () => {
 					<img className="home-train-image" src={image} alt="TRAIN-IMAGE" />
 				</div>
 				{/* --------------------------------------------------------------------------------- */}
-				<div className="home-get-ticket-container" style={{ height: '40vh' }}>
+				<div className="home-get-ticket-container" ref={sectionRef} style={{ height: '40vh' }}>
 					<div className="home-pickup">
-						<p>Where do you want to go?</p>
+						<p
+							onClick={() =>
+								sectionRef.current.scrollIntoView({
+									behavior: 'smooth',
+								})
+							}
+						>
+							Where do you want to go?
+						</p>
 
 						<div className="home-from-to">
 							<input
@@ -82,6 +121,10 @@ const Home = () => {
 								className="home-to"
 								placeholder="Station / stop / address"
 							/>
+							<LocalOfferIcon
+								className="priceIcon"
+								onClick={() => confirm('The Price is ...')}
+							/>
 						</div>
 
 						<div className="home-date">
@@ -92,6 +135,7 @@ const Home = () => {
 						<a href="/tickets/purchase">Get Ticket</a>
 					</div>
 				</div>
+
 				{/* --------------------------------------------------------------------------------- */}
 				<div className="container mt-5">
 					<div className="row">
@@ -230,6 +274,7 @@ const Home = () => {
 
 				{/* --------------------------------------------------------------------------------- */}
 			</div>
+			<ToastContainer />
 			<Footer />
 		</>
 	);

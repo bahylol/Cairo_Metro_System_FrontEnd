@@ -229,3 +229,12 @@
 /* REMEMBER PAYMENT INFO SWITCH CSS */
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 /* font-family: 'Share Tech Mono', monospace; */
+
+.priceIcon {
+	transition: color 2s, transform 2s;
+}
+
+.priceIcon:hover {
+	color: #079220;
+	transform: scale(1.2);
+}

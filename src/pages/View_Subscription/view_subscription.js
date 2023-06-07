@@ -245,7 +245,7 @@ const View_subscription = () => {
 			// 	notify('Incomplete Payment Information!');
 			// }
 			else {
-				fetch('http://localhost:3000/api/v1/payment/subscriptions/', {
+				fetch('http://localhost:3000/create-checkout-session-subscription', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -262,14 +262,10 @@ const View_subscription = () => {
 				})
 					.then((response) => response.json())
 					.then((data) => {
-						// localStorage.setItem('session_token', data[0]);
 						if (data[0] === 200) {
-							confirm('Successfully subscribed to a plan');
-							setTimeout(function () {
-								navigate('/subscription');
-							}, 2500);
-						} else if (data[0] === 400) {
-							notify('You are already subscribed to an active plan');
+							window.location.href = data[1];
+						} else {
+							window.location.href = data[1];
 						}
 					})
 					// .catch((error) => console.error(error, 'THIS IS THE ERROR'));

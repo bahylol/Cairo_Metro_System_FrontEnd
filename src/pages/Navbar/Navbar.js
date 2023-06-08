@@ -206,13 +206,13 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 							<a href="/">Home</a>
 						</li>
 						<li>
-							<a href="/tickets">My Rides</a>
+							<a href={isLoggedIn ? '/tickets' : '/login'}>My Rides</a>
 						</li>
 						<li>
-							<a href="/tickets/purchase">Book Ticket</a>
+							<a href={isLoggedIn ? '/tickets/purchase' : '/login'}>Book Ticket</a>
 						</li>
 						<li>
-							<a href="/subscription">Subscription</a>
+							<a href={isLoggedIn ? '/subscription' : '/login'}>Subscription</a>
 						</li>
 						{(userType === 'admin' || userType === 'superadmin') && (
 							<li
@@ -270,7 +270,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 							</a>
 						</li>
 						<li>
-							<a href="/transactions" className="special-link">
+							<a href={isLoggedIn ? '/transactions' : '/login'} className="special-link">
 								<AccountCircleIcon className="profileIcon" />
 							</a>
 						</li>

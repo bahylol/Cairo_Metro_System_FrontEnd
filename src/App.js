@@ -86,17 +86,18 @@ function App() {
 		localStorage.setItem('userType', userType);
 	}, [userType]);
 
-	useEffect(() => {
-		const handleBeforeUnload = (event) => {
-			localStorage.setItem('isLoggedIn', JSON.stringify(false));
-		};
+	// so when i close website and enter again it says log in
+	// useEffect(() => {
+	// 	const handleBeforeUnload = (event) => {
+	// 		localStorage.setItem('isLoggedIn', JSON.stringify(false));
+	// 	};
 
-		window.addEventListener('beforeunload', handleBeforeUnload);
+	// 	window.addEventListener('beforeunload', handleBeforeUnload);
 
-		return () => {
-			window.removeEventListener('beforeunload', handleBeforeUnload);
-		};
-	}, []);
+	// 	return () => {
+	// 		window.removeEventListener('beforeunload', handleBeforeUnload);
+	// 	};
+	// }, []);
 
 	// useEffect(() => {
 	// 	const cancelRouteChange = (e) => {

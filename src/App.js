@@ -21,6 +21,7 @@ import TicketStripe from './pages/stripe/TicketStripe';
 import OurTeam from './pages/OurTeam/OurTeam';
 import ForgotPassword from './pages/Forgot_Password/forgot_password.js';
 import ForgotPasswordNewPassword from './pages/Forgot_Password/resetPage.js';
+import Zones from './pages/zones/manage_zones.js';
 import SeniorRequest from './scenes/Senior_Request/senior_request';
 
 import TheDashBoard from './theDashBoard';
@@ -182,6 +183,8 @@ function App() {
 							<Route path="/SubscriptionStripe" element={<SubscriptionStripe />} />
 							<Route path="/TicketStripe" element={<TicketStripe />} />
 							<Route path="/admin/managerequest" element={<AdminManageRequest />} />
+							<Route path="/ourteam" element={<OurTeam/>}/>
+							<Route path="/zones" element={<Zones/>}/>
 							<Route path="/ourteam" element={<OurTeam />} />
 							<Route path="/dashboard" element={<TheDashBoard userType={userType} />} />
 							<Route path="/Dashboard/team" element={<Team />} />
@@ -198,7 +201,6 @@ function App() {
 							<Route path="/Dashboard/Profile" element={<Profile />} />
 							<Route path="/Dashboard/Reset_password" element={<Reset_password />} />
 							<Route path="/simulateRide__" element={<SimulateTheRide />} />
-
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 					)}

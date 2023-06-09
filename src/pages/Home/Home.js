@@ -16,6 +16,9 @@ import cardPic3 from '../../Assets/cardPic3.jpg';
 import cardPic4 from '../../Assets/k_metroo.jpg';
 import crowd from '../../Assets/k_metro.jpg';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 import Swiper from 'swiper';
 
@@ -24,6 +27,8 @@ const Home = ({ isLoggedIn }) => {
 	const [origin, setOrigin] = useState('');
 	const [dest, setDest] = useState('');
 	const [journeyTime, setJourneyTime] = useState('');
+	let [stations, setStations] = useState([]);
+
 	const notify = (alert) => {
 		toast.error(alert, {
 			position: 'top-center',
@@ -49,6 +54,30 @@ const Home = ({ isLoggedIn }) => {
 		});
 	};
 
+	useEffect(() => {
+		const getStations = async () => {
+			try {
+				const response = await fetch('http://localhost:3000/getAll/Stations', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				});
+				const data = await response.json();
+				stations = data.map((item) => item);
+				console.log(stations);
+				const allStations = stations.map(({ description: label, ...rest }) => ({
+					label,
+					...rest
+				}));
+				setStations(allStations);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
+		getStations();
+	}, []);
+
 	const currentDate = new Date();
 	const formattedCurrentDate = currentDate.toLocaleDateString('en-US', {
 		year: 'numeric',
@@ -64,16 +93,6 @@ const Home = ({ isLoggedIn }) => {
 		if (origin === '' || dest === '' || journeyTime === '') {
 			notify('Incomplete Journy Information!');
 		}
-		// UNCOMMENT TRANSACTION
-		// else if (
-		// 	cardType === '' ||
-		// 	holderName === '' ||
-		// 	expDate === '' ||
-		// 	cardNumber === '' ||
-		// 	cardCVV === ''
-		// ) {
-		// 	notify('Incomplete Payment Information!');
-		// }
 		else {
 			fetch('http://localhost:3000/create-checkout-session-ticket', {
 				method: 'POST',
@@ -82,18 +101,13 @@ const Home = ({ isLoggedIn }) => {
 					token: `session_token=${localStorage.getItem('session_token')}`,
 				},
 				body: JSON.stringify({
-					origin,
-					destination: dest,
+					origin: origin.label,
+					destination: dest.label,
 					start_time: journeyTime,
-					// UNCOMMENT TRANSACTION
-					// card_type: cardType,
-					// credit_card: cardNumber,
-					// holder_name: holderName,
 				}),
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					// localStorage.setItem('session_token', data[0]);
 					if (data[0] === 200) {
 						window.location.href = data[1];
 					} else {
@@ -101,9 +115,34 @@ const Home = ({ isLoggedIn }) => {
 					}
 				})
 				.catch((error) => console.error(error, 'THIS IS A BIGGGG ERROR'));
-			// .catch((error) => {
-			// 	alert('You are currently not subscribed to an active plan');
-			// });
+		}
+	};
+
+	const checkPrice = (e) => {
+		e.preventDefault();
+		if (origin === '' || dest === '') {
+			notify('Incomplete Journy Information!');
+		}
+		else {
+			fetch('http://localhost:3000/api/v1/payment/ticket/checkprice', {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					origin: origin.label,
+					destination: dest.label,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					if (data[0] === 200) {
+						confirm(data[1])
+					} else {
+						notify(data[1]);
+					}
+				})
+				.catch((error) => console.error(error, 'THIS IS A BIGGGG ERROR'));
 		}
 	};
 
@@ -160,34 +199,40 @@ const Home = ({ isLoggedIn }) => {
 						</p>
 
 						<div className="home-from-to">
-							<input
-								type="text"
+							<Autocomplete
+								disablePortal
 								className="GTBoxFrom"
-								placeholder="Station / stop / address"
-								required
-								onChange={(event) => setOrigin(event.target.value)}
+								options={stations}
+								value={origin}
+								onChange={(event, newValue) => {
+									setOrigin(newValue);
+								}}
+								renderInput={(params) => <TextField {...params} label="Origin" />}
 							/>
 							<i className="fa-solid fa-arrows-up-down"></i>
-							<input
-								type="text"
+							<Autocomplete
+								disablePortal
 								className="GTBoxFrom"
-								placeholder="Station / stop / address"
-								required
-								onChange={(event) => setDest(event.target.value)}
+								options={stations}
+								value={dest}
+								onChange={(event, newValue) => {
+									setDest(newValue);
+								}}
+								renderInput={(params) => <TextField {...params} label="Destination" />}
 							/>
 							<LocalOfferIcon
 								className="priceIcon"
-								onClick={() => confirm('The Price is ...')}
+								onClick={checkPrice}
 							/>
 						</div>
 
 						<div className="home-date">
-						<p>Choose Date</p>
-								<input
-									type="datetime-local"
-									required
-									onChange={(event) => setJourneyTime(event.target.value)}
-								/>
+							<p>Choose Date</p>
+							<input
+								type="datetime-local"
+								required
+								onChange={(event) => setJourneyTime(event.target.value)}
+							/>
 						</div>
 
 						<a href="htt" onClick={(e) => handlePurchase(e)}>

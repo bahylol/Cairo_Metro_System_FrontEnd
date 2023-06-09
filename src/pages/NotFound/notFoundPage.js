@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const NotFound = () => {
 	return (
-		<Stack sx={{ width: '100%' }} spacing={2}>
+		<Stack sx={{ width: '100%', padding: '10px' }} spacing={2}>
 			<Alert severity="warning">
 				<AlertTitle>Page Not Found {':('}</AlertTitle>
 				It seems like you entered an invalid page url!

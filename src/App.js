@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
+
 import Navbar from './pages/Navbar/Navbar.js';
 import GeneralPage from './pages/General_Page/General_Page.js';
 import Home from './pages/Home/Home.js';

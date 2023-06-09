@@ -106,14 +106,6 @@ const Dashboard = ({ userType }) => {
 							<ListItemText primary={'Home Page'} />
 						</ListItemButton>
 					</ListItem>
-					<ListItem key={'Dashboard'} disablePadding>
-						<ListItemButton to="/Dashboard">
-							<ListItemIcon>
-								<DashboardIcon />
-							</ListItemIcon>
-							<ListItemText primary={'Dashboard'} />
-						</ListItemButton>
-					</ListItem>
 
 					<ListItem key={'My Profile'} disablePadding>
 						<ListItemButton to="/Dashboard/Profile">
@@ -153,6 +145,14 @@ const Dashboard = ({ userType }) => {
 								<LocalAtmIcon />
 							</ListItemIcon>
 							<ListItemText primary={'Subscription'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'Senior Request'} disablePadding>
+						<ListItemButton to="/Dashboard/senior/request">
+							<ListItemIcon>
+								<ReceiptLongIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Senior Request'} />
 						</ListItemButton>
 					</ListItem>
 					<ListItem key={'My Transactions'} disablePadding>

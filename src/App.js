@@ -16,11 +16,36 @@ import PageLoadingSkeleton from './pages/PageLoadingSkeleton.js/pageLoadSkel.js'
 import NavBarLoadingSkeleton from './pages/PageLoadingSkeleton.js/navbarLoadSkel';
 import AdminManageRequest from './pages/admin_manage_requests/AdminManageRequests.js';
 import SubscriptionStripe from './pages/stripe/SubscriptionStripe';
+
 import TicketStripe from './pages/stripe/TicketStripe';
 import OurTeam from './pages/OurTeam/OurTeam';
 import ForgotPassword from './pages/Forgot_Password/forgot_password.js';
 import ForgotPasswordNewPassword from './pages/Forgot_Password/resetPage.js';
 import Zones from './pages/zones/manage_zones.js';
+import SeniorRequest from './scenes/Senior_Request/senior_request';
+
+import TheDashBoard from './theDashBoard';
+import Topbar from './scenes/global/Topbar';
+import Sidebar from './scenes/global/Sidebar';
+import Dashboard from './scenes/Dashboard';
+// import SimulateRide from "./pages/google map/Simulate Ride";
+
+// first put your new pages here
+
+import Team from './scenes/team';
+import Contacts from './scenes/contacts';
+import RefundRequest from './scenes/refundRequest';
+import Form from './scenes/form';
+import FAQ from './scenes/faq';
+import Bar from './scenes/bar';
+import Pie from './scenes/pie';
+
+import Line from './scenes/line';
+import Geography from './scenes/geography';
+import Calendar from './scenes/calander';
+import SimulateTheRide from './scenes/SimulateTheRidePage';
+import Profile from './scenes/profile';
+import Reset_password from './scenes/Reset_password';
 
 function App() {
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -160,6 +185,22 @@ function App() {
 							<Route path="/admin/managerequest" element={<AdminManageRequest />} />
 							<Route path="/ourteam" element={<OurTeam/>}/>
 							<Route path="/zones" element={<Zones/>}/>
+							<Route path="/ourteam" element={<OurTeam />} />
+							<Route path="/dashboard" element={<TheDashBoard userType={userType} />} />
+							<Route path="/Dashboard/team" element={<Team />} />
+							<Route path="/Dashboard/contacts" element={<Contacts />} />
+							<Route path="/Dashboard/refundRequest" element={<RefundRequest />} />
+							<Route path="/Dashboard/senior/request" element={<SeniorRequest />} />
+							<Route path="/Dashboard/calendar" element={<Calendar />} />
+							<Route path="/Dashboard/form" element={<Form />} />
+							<Route path="/Dashboard/faq" element={<FAQ />} />
+							<Route path="/Dashboard/bar" element={<Bar />} />
+							<Route path="/Dashboard/pie" element={<Pie />} />
+							<Route path="/Dashboard/line" element={<Line />} />
+							<Route path="/Dashboard/geography" element={<Geography />} />
+							<Route path="/Dashboard/Profile" element={<Profile />} />
+							<Route path="/Dashboard/Reset_password" element={<Reset_password />} />
+							<Route path="/simulateRide__" element={<SimulateTheRide />} />
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 					)}

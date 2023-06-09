@@ -20,6 +20,12 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
+import './../OurTeam/OurTeam.js';
+import joe from '../../Assets/Youssef_Elwy.jpeg';
+import osama from '../../Assets/Ahmed_Osama.jpeg';
+import yehia from '../../Assets/Ahmed_Yehia.jpeg';
+import bahy from '../../Assets/Bahy_Salama.jpeg';
+
 import Swiper from 'swiper';
 
 const Home = ({ isLoggedIn }) => {
@@ -165,6 +171,14 @@ const Home = ({ isLoggedIn }) => {
 		<>
 			<head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<link
+					rel="stylesheet"
+					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+				/>
+				<link
+					href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+					rel="stylesheet"
+				/>
 			</head>
 			<div className="Home">
 				{/* <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -236,7 +250,8 @@ const Home = ({ isLoggedIn }) => {
 						</div>
 
 						<a href="htt" onClick={(e) => handlePurchase(e)}>
-							Purchase Ticket</a>
+							Purchase Ticket
+						</a>
 					</div>
 				</div>
 
@@ -295,7 +310,7 @@ const Home = ({ isLoggedIn }) => {
 				<div className="projcard-container">
 					<div
 						className="projcard projcard-blue"
-					// style={{ marginLeft: "60px" }}
+						// style={{ marginLeft: "60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic1} />
@@ -318,7 +333,7 @@ const Home = ({ isLoggedIn }) => {
 
 					<div
 						className="projcard projcard-red"
-					// style={{ marginLeft: "-60px" }}
+						// style={{ marginLeft: "-60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic2} />
@@ -342,7 +357,7 @@ const Home = ({ isLoggedIn }) => {
 
 					<div
 						className="projcard projcard-green"
-					// style={{ marginLeft: "60px" }}
+						// style={{ marginLeft: "60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic3} />
@@ -365,7 +380,7 @@ const Home = ({ isLoggedIn }) => {
 
 					<div
 						className="projcard projcard-customcolor"
-					// style={{ marginLeft: "-60px" }}
+						// style={{ marginLeft: "-60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic4} />
@@ -390,6 +405,98 @@ const Home = ({ isLoggedIn }) => {
 
 				{/* --------------------------------------------------------------------------------- */}
 			</div>
+			<section class="team-section">
+				<div class="team-row">
+					<h1 id="team-h1">Our Team</h1>
+				</div>
+				<div class="team-row">
+					<div class="team-column">
+						<div class="team-card">
+							<div class="team-img-container">
+								<img src={osama} />
+							</div>
+							<h3>Ahmed Osama</h3>
+							<p>Software Engineer</p>
+							<div class="team-icons">
+								<a href="https://www.linkedin.com/in/ahmedosamadiab" target="_blank">
+									<i class="fab fa-linkedin"></i>
+								</a>
+								<a href="https://github.com/AhmedOsamaAli" target="_blank">
+									<i class="fab fa-github"></i>
+								</a>
+								<a href="mailto:ahmedosamadiab@gmail.com" target="_blank">
+									<i class="fas fa-envelope"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="team-column">
+						<div class="team-card">
+							<div class="team-img-container">
+								<img src={yehia} />
+							</div>
+							<h3>Ahmed Yehia</h3>
+							<p>Software Engineer</p>
+							<div class="team-icons">
+								<a href="https://www.linkedin.com/in/ahmed-yehia-155629206" target="_blank">
+									<i class="fab fa-linkedin"></i>
+								</a>
+								<a href="https://github.com/AhmedHosny2" target="_blank">
+									<i class="fab fa-github"></i>
+								</a>
+								<a href="mailto:Ahmed.hosny4434@gmail.com" target="_blank">
+									<i class="fas fa-envelope"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="team-row">
+					<div class="team-column">
+						<div class="team-card">
+							<div class="team-img-container">
+								<img src={bahy} />
+							</div>
+							<h3>Bahy Salama</h3>
+							<p>Software Engineer</p>
+							<div class="team-icons">
+								<a href="https://www.linkedin.com/in/bahy-salama/" target="_blank">
+									<i class="fab fa-linkedin"></i>
+								</a>
+								<a href="https://github.com/bahylol" target="_blank">
+									<i class="fab fa-github"></i>
+								</a>
+								<a href="mailto:bahymohamed2010@gmail.com" target="_blank">
+									<i class="fas fa-envelope"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="team-column">
+						<div class="team-card">
+							<div class="team-img-container">
+								<img src={joe} />
+							</div>
+							<h3>Youssef Elwy</h3>
+							<p>Software Engineer</p>
+							<div class="team-icons">
+								<a
+									href="https://www.linkedin.com/in/youssef-elwy-427682268"
+									target="_blank"
+								>
+									<i class="fab fa-linkedin"></i>
+								</a>
+								<a href="https://github.com/youfiElwy" target="_blank">
+									<i class="fab fa-github"></i>
+								</a>
+								<a href="mailto:youssef47009@gmail.com" target="_blank">
+									<i class="fas fa-envelope"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 			<ToastContainer />
 			<Footer />
 		</>

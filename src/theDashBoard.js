@@ -1,27 +1,25 @@
 // import { ColorModeContext, useMode } from "./theme";
 // import { CssBaseline, ThemeProvider } from "@mui/material";
-import { Routes, Route } from "react-router-dom";
-import Dashboard from "./scenes/Dashboard";
+import { Routes, Route } from 'react-router-dom';
+import Dashboard from './scenes/Dashboard';
 // first put your new pages here
 // import Topbar from "./scenes/global/Topbar";
-import Sidebar from "./scenes/global/Sidebar";
-function theDashBoard( {userType}) {
-//   const [theme, colorMode] = useMode();
-console.log('dahhhhhhhhhh');
-  return (
-
-    // <ColorModeContext.Provider value={colorMode}>
-    //   <ThemeProvider theme={theme}>
-        // <CssBaseline />
-        <div className="app">
-            
-          {/* <Sidebar /> */}
-          <main className="content">
-            {/* <Sidebar   userType={userType}/> */}
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              {/* second put your page line here  */}
-              {/* <Route path="/Dashboard/team" element={<Team />} />
+import Sidebar from './scenes/global/Sidebar';
+function theDashBoard({ userType }) {
+	//   const [theme, colorMode] = useMode();
+	console.log('dahhhhhhhhhh');
+	return (
+		// <ColorModeContext.Provider value={colorMode}>
+		//   <ThemeProvider theme={theme}>
+		// <CssBaseline />
+		<div className="app">
+			{/* <Sidebar /> */}
+			<main className="content">
+				{/* <Sidebar   userType={userType}/> */}
+				<Routes>
+					<Route path="/" element={<Dashboard userType={userType} />} />
+					{/* second put your page line here  */}
+					{/* <Route path="/Dashboard/team" element={<Team />} />
               <Route path="/Dashboard/contacts" element={<Contacts />} />
               <Route
                 path="/Dashboard/refundRequest"
@@ -39,11 +37,10 @@ console.log('dahhhhhhhhhh');
                 path="/Dashboard/Reset_password"
                 element={<Reset_password />}
               /> */}
-            </Routes>
-          </main>
-        </div>
-
-  );
+				</Routes>
+			</main>
+		</div>
+	);
 }
 
 export default theDashBoard;

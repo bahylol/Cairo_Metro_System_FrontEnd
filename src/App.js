@@ -2,7 +2,6 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
-
 import Navbar from './pages/Navbar/Navbar.js';
 import GeneralPage from './pages/General_Page/General_Page.js';
 import Home from './pages/Home/Home.js';
@@ -16,7 +15,7 @@ import NotFound from './pages/NotFound/notFoundPage.js';
 import PageLoadingSkeleton from './pages/PageLoadingSkeleton.js/pageLoadSkel.js';
 import NavBarLoadingSkeleton from './pages/PageLoadingSkeleton.js/navbarLoadSkel';
 import AdminManageRequest from './pages/admin_manage_requests/AdminManageRequests.js';
-import SubscriptionStripe from './pages/stripe/SubscriptionStripe'
+import SubscriptionStripe from './pages/stripe/SubscriptionStripe';
 
 import ForgotPassword from './pages/Forgot_Password/forgot_password.js';
 import ForgotPasswordNewPassword from './pages/Forgot_Password/resetPage.js';
@@ -86,6 +85,18 @@ function App() {
 		localStorage.setItem('userType', userType);
 	}, [userType]);
 
+	useEffect(() => {
+		const handleBeforeUnload = (event) => {
+			localStorage.setItem('isLoggedIn', JSON.stringify(false));
+		};
+
+		window.addEventListener('beforeunload', handleBeforeUnload);
+
+		return () => {
+			window.removeEventListener('beforeunload', handleBeforeUnload);
+		};
+	}, []);
+
 	// useEffect(() => {
 	// 	const cancelRouteChange = (e) => {
 	// 		if (e.currentTarget.pathname === location.pathname) {
@@ -125,7 +136,7 @@ function App() {
 						<PageLoadingSkeleton />
 					) : (
 						<Routes location={location}>
-							<Route path="/" element={<Home />} />
+							<Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
 							<Route
 								path="/login"
 								element={<Login setIsLoggedIn={setIsLoggedIn} setUserType={setUserType} />}

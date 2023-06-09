@@ -226,15 +226,6 @@ const Dashboard = ({ userType }) => {
 						</ListItemButton>
 					</ListItem>
 
-					<ListItem key={'Dashboard'} disablePadding>
-						<ListItemButton to="/Dashboard">
-							<ListItemIcon>
-								<DashboardIcon />
-							</ListItemIcon>
-							<ListItemText primary={'Dashboard'} />
-						</ListItemButton>
-					</ListItem>
-
 					<ListItem key={'Manage Team'} disablePadding>
 						<ListItemButton to="/Dashboard/team">
 							<ListItemIcon>

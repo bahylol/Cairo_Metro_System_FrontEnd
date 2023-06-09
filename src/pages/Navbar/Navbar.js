@@ -40,6 +40,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 		{ text: 'Subscriptions', path: '/subscriptions' },
 	];
 
+
 	const [navSublinks, setNavSublinks] = useState([]);
 
 	const handleMouseEnterNavbarLink = (index) => {
@@ -69,10 +70,11 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 		navigate('/');
 	};
 
+
 	const list = (anchor) => (
 		<Box
-			sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-			role="presentation"
+    sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+    role="presentation"
 			onClick={toggleDrawer(anchor, false)}
 			onKeyDown={toggleDrawer(anchor, false)}
 		>
@@ -179,6 +181,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 		setState({ ...state, [anchor]: open });
 	};
 
+
 	return (
 		<nav className="navbar">
 			<link
@@ -214,6 +217,9 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 						<li>
 							<a href={isLoggedIn ? '/subscription' : '/login'}>Subscription</a>
 						</li>
+            <li>
+           <a href={isLoggedIn ?"/simulateRide__" : '/login'}>Start Ride</a>
+            </li>
 						{(userType === 'admin' || userType === 'superadmin') && (
 							<li
 								onMouseEnter={() => handleMouseEnterNavbarLink(1)}
@@ -294,7 +300,25 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 			</div>
 		</nav>
 	);
+
 };
+// var navbar = document.getElementById("navbar-container");
+
+// // Get the toggleNavbar element by its ID
+// var toggleNavbar = document.getElementById("toggleNavbar");
+
+// toggleNavbar.addEventListener("click", function () {
+//   console.log("let's goooooooo");
+//   // Check the current visibility state of the navbar
+//   var isNavbarVisible = navbar.style.visibility === "visible";
+
+//   // Toggle the visibility based on the current state
+//   if (isNavbarVisible) {
+//     navbar.style.visibility = "hidden";
+//   } else {
+//     navbar.style.visibility = "visible";
+//   }
+// });
 
 export default Navbar;
 

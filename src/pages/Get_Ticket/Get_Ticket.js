@@ -53,7 +53,7 @@ const GetTicket = () => {
 	const [cardCVV, setCardCVV] = useState('');
 	const [expDate, setExpDate] = useState('');
 
-	const handlePrintTicket = (e) => {
+	const handlePurchase = (e) => {
 		e.preventDefault();
 		if (origin === '' || dest === '' || journeyTime === '') {
 			notify('Incomplete Journy Information!');
@@ -195,7 +195,7 @@ const GetTicket = () => {
 							</div>
 
 							<div className="GTBoxDate">
-								<p>Outbound journey</p>
+								<p>Choose Date</p>
 								<input
 									type="datetime-local"
 									required
@@ -203,8 +203,8 @@ const GetTicket = () => {
 								/>
 							</div>
 
-							<a href="htt" onClick={(e) => handlePrintTicket(e)}>
-								Print Ticket
+							<a href="htt" onClick={(e) => handlePurchase(e)}>
+								Purchase Ticket
 							</a>
 							<a href="htt" onClick={(e) => handleUseSub(e)}>
 								Use Subscription

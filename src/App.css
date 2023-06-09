@@ -7,15 +7,17 @@
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #ff8589;
+	background-color: #ff0a12;
 	border-radius: 5px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #ff0a12;
+	background-color: #ff8589;
 }
 
 ::-webkit-scrollbar-thumb:active {
-	background-color: #b80006; /* Color when the scrollbar thumb is clicked and held */
+	background-color: #b80006;
+	/* Color when the scrollbar thumb is clicked and held */
 }
 
 /* Import Google font - Poppins */
@@ -39,7 +41,7 @@
 }
 
 html {
-	background-image: url('./Assets/minimal-Dot-Pattern.webp');
+	background-image: url('./Assets/K_background4.jpg');
 	/* margin: -10px; */
 }
 

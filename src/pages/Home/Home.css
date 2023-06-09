@@ -13,6 +13,15 @@
 	--text-color: #ededed; */
 }
 
+* {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.Home {
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
 .column {
 	flex-wrap: wrap;
 }
@@ -33,7 +42,6 @@
 .home-container {
 	position: relative;
 	max-width: 700px;
-	width: 100%;
 	background: var(--secondary-color);
 	padding: 25px;
 	border-radius: 8px;
@@ -122,6 +130,7 @@
 		flex-wrap: wrap;
 	}
 }
+
 /* ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------

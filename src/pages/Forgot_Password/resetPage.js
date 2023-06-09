@@ -64,7 +64,7 @@ const ResetPage = () => {
 					if (data[0] === 200) {
 						confirm('Password successfully reset!');
 						setTimeout(function () {
-							navigate('/login');
+							navigate('/');
 						}, 2500);
 					} else if (data[0] === 400) {
 						notify('Token invalid/ expired!');

@@ -25,7 +25,31 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-const Dashboard = () => {
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
+import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
+import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutlined';
+import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LockResetIcon from '@mui/icons-material/LockReset';
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import DirectionsSubwayFilledIcon from '@mui/icons-material/DirectionsSubwayFilled';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+
+import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import { Link } from 'react-router-dom';
+
+const Dashboard = ({ userType }) => {
 	const theme = useTheme();
 	const colors = tokens(theme.palette.mode);
 
@@ -44,6 +68,24 @@ const Dashboard = () => {
 		setState({ ...state, [anchor]: open });
 	};
 
+	const Item = ({ title, to, icon, selected, setSelected }) => {
+		const theme = useTheme();
+		const colors = tokens(theme.palette.mode);
+		return (
+			<MenuItem
+				active={selected === title}
+				style={{
+					color: colors.grey[100],
+				}}
+				onClick={() => setSelected(title)}
+				icon={icon}
+			>
+				<Typography>{title}</Typography>
+				<Link to={to} />
+			</MenuItem>
+		);
+	};
+
 	const list = (anchor) => (
 		<Box
 			sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -51,28 +93,241 @@ const Dashboard = () => {
 			onClick={toggleDrawer(anchor, false)}
 			onKeyDown={toggleDrawer(anchor, false)}
 		>
-			<List>
-				{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-					<ListItem key={text} disablePadding>
-						<ListItemButton>
-							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-							<ListItemText primary={text} />
+			{userType === 'user' ? (
+				<List>
+					<label style={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}>
+						User
+					</label>
+					<ListItem key={'Home Page'} disablePadding>
+						<ListItemButton to="/">
+							<ListItemIcon>
+								<HomeOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Home Page'} />
 						</ListItemButton>
 					</ListItem>
-				))}
-			</List>
-			<Divider />
-			<List>
-				{['All mail', 'Trash', 'Spam'].map((text, index) => (
-					<ListItem key={text} disablePadding>
-						<ListItemButton>
-							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-							<ListItemText primary={text} />
+					<ListItem key={'Dashboard'} disablePadding>
+						<ListItemButton to="/Dashboard">
+							<ListItemIcon>
+								<DashboardIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Dashboard'} />
 						</ListItemButton>
 					</ListItem>
-				))}
-			</List>
+
+					<ListItem key={'My Profile'} disablePadding>
+						<ListItemButton to="/Dashboard/Profile">
+							<ListItemIcon>
+								<AccountCircleIcon />
+							</ListItemIcon>
+							<ListItemText primary={'My Profile'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'Reset Password'} disablePadding>
+						<ListItemButton to="/Dashboard/Reset_password">
+							<ListItemIcon>
+								<LockResetIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Reset Password'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'Book Ticket'} disablePadding>
+						<ListItemButton to="/tickets/purchase">
+							<ListItemIcon>
+								<ConfirmationNumberIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Book Ticket'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'My Rides'} disablePadding>
+						<ListItemButton to="/tickets">
+							<ListItemIcon>
+								<DirectionsSubwayFilledIcon />
+							</ListItemIcon>
+							<ListItemText primary={'My Rides'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'Subscription'} disablePadding>
+						<ListItemButton to="/subscription">
+							<ListItemIcon>
+								<LocalAtmIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Subscription'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'My Transactions'} disablePadding>
+						<ListItemButton to="/transactions">
+							<ListItemIcon>
+								<ReceiptLongIcon />
+							</ListItemIcon>
+							<ListItemText primary={'My Transactions'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'Calendar'} disablePadding>
+						<ListItemButton to="/Dashboard/calendar">
+							<ListItemIcon>
+								<CalendarTodayOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Calendar'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'FAQ Page'} disablePadding>
+						<ListItemButton to="/Dashboard/faq">
+							<ListItemIcon>
+								<HelpOutlineOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'FAQ Page'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'Bar Chart'} disablePadding>
+						<ListItemButton to="/Dashboard/bar">
+							<ListItemIcon>
+								<BarChartOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Bar Chart'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'Pie Chart'} disablePadding>
+						<ListItemButton to="/Dashboard/pie">
+							<ListItemIcon>
+								<PieChartOutlineOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Pie Chart'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'Line Chart'} disablePadding>
+						<ListItemButton to="/Dashboard/line">
+							<ListItemIcon>
+								<TimelineOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Line Chart'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'Geography Chart'} disablePadding>
+						<ListItemButton to="/Dashboard/geography">
+							<ListItemIcon>
+								<MapOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Geography Chart'} />
+						</ListItemButton>
+					</ListItem>
+				</List>
+			) : (
+				<List>
+					<label style={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}>
+						Admin
+					</label>
+					<ListItem key={'Home'} disablePadding>
+						<ListItemButton to="/">
+							<ListItemIcon>
+								<HomeOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Home'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'Dashboard'} disablePadding>
+						<ListItemButton to="/Dashboard">
+							<ListItemIcon>
+								<DashboardIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Dashboard'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'Manage Team'} disablePadding>
+						<ListItemButton to="/Dashboard/team">
+							<ListItemIcon>
+								<PeopleOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Manage Team'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'Contact Information'} disablePadding>
+						<ListItemButton to="/Dashboard/contacts">
+							<ListItemIcon>
+								<ContactsOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Contact Information'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'Manage Requests'} disablePadding>
+						<ListItemButton to="/admin/managerequest">
+							<ListItemIcon>
+								<ReceiptOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Manage Requests'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'Profile Form'} disablePadding>
+						<ListItemButton to="/Dashboard">
+							<ListItemIcon>
+								<PersonOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Profile Form'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'Calendar'} disablePadding>
+						<ListItemButton to="/Dashboard/calendar">
+							<ListItemIcon>
+								<CalendarTodayOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Calendar'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'FAQ Page'} disablePadding>
+						<ListItemButton to="/Dashboard/faq">
+							<ListItemIcon>
+								<HelpOutlineOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'FAQ Page'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'Bar Chart'} disablePadding>
+						<ListItemButton to="/Dashboard/bar">
+							<ListItemIcon>
+								<BarChartOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Bar Chart'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'Pie Chart'} disablePadding>
+						<ListItemButton to="/Dashboard/pie">
+							<ListItemIcon>
+								<PieChartOutlineOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Pie Chart'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'Line Chart'} disablePadding>
+						<ListItemButton to="/Dashboard/line">
+							<ListItemIcon>
+								<TimelineOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Line Chart'} />
+						</ListItemButton>
+					</ListItem>
+
+					<ListItem key={'Geography Chart'} disablePadding>
+						<ListItemButton to="/Dashboard/geography">
+							<ListItemIcon>
+								<MapOutlinedIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Geography Chart'} />
+						</ListItemButton>
+					</ListItem>
+				</List>
+			)}
 		</Box>
+		// <Divider />
 	);
 
 	return (
@@ -96,8 +351,7 @@ const Dashboard = () => {
 							Download Reports
 							{/* //do onclick to this one  */}
 						</Button>
-						<ListIcon onClick={toggleDrawer('left', true)} />
-						<Button onClick={toggleDrawer('left', true)}>CLICK</Button>
+						<ListIcon style={{ fontSize: '35px' }} onClick={toggleDrawer('left', true)} />
 					</Box>
 				</Box>
 

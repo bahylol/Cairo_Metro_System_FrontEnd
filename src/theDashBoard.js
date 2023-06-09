@@ -17,7 +17,7 @@ function theDashBoard({ userType }) {
 			<main className="content">
 				{/* <Sidebar   userType={userType}/> */}
 				<Routes>
-					<Route path="/" element={<Dashboard />} />
+					<Route path="/" element={<Dashboard userType={userType} />} />
 					{/* second put your page line here  */}
 					{/* <Route path="/Dashboard/team" element={<Team />} />
               <Route path="/Dashboard/contacts" element={<Contacts />} />

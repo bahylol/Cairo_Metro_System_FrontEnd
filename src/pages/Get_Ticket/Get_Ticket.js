@@ -1,7 +1,9 @@
 import Footer from '../Footer/Footer.js';
 
 import './Get_Ticket.css';
-
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import soundEffect from '../../Assets/ChooChoo.mp3';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -47,27 +49,37 @@ const GetTicket = () => {
 	const [origin, setOrigin] = useState('');
 	const [dest, setDest] = useState('');
 	const [journeyTime, setJourneyTime] = useState('');
-	const [cardType, setCardType] = useState('');
-	const [holderName, setHolderName] = useState('');
-	const [cardNumber, setCardNumber] = useState('');
-	const [cardCVV, setCardCVV] = useState('');
-	const [expDate, setExpDate] = useState('');
+	let [stations, setStations] = useState([]);
+
+	useEffect(() => {
+		const getStations = async () => {
+			try {
+				const response = await fetch('http://localhost:3000/getAll/Stations', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				});
+				const data = await response.json();
+				stations = data.map((item) => item);
+				console.log(stations);
+				const allStations = stations.map(({ description: label, ...rest }) => ({
+					label,
+					...rest
+				}));
+				setStations(allStations);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
+		getStations();
+	}, []);
 
 	const handlePurchase = (e) => {
 		e.preventDefault();
 		if (origin === '' || dest === '' || journeyTime === '') {
 			notify('Incomplete Journy Information!');
 		}
-		// UNCOMMENT TRANSACTION
-		// else if (
-		// 	cardType === '' ||
-		// 	holderName === '' ||
-		// 	expDate === '' ||
-		// 	cardNumber === '' ||
-		// 	cardCVV === ''
-		// ) {
-		// 	notify('Incomplete Payment Information!');
-		// }
 		else {
 			fetch('http://localhost:3000/create-checkout-session-ticket', {
 				method: 'POST',
@@ -76,18 +88,13 @@ const GetTicket = () => {
 					token: `session_token=${localStorage.getItem('session_token')}`,
 				},
 				body: JSON.stringify({
-					origin,
-					destination: dest,
+					origin: origin.label,
+					destination: dest.label,
 					start_time: journeyTime,
-					// UNCOMMENT TRANSACTION
-					// card_type: cardType,
-					// credit_card: cardNumber,
-					// holder_name: holderName,
 				}),
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					// localStorage.setItem('session_token', data[0]);
 					if (data[0] === 200) {
 						window.location.href = data[1];
 					} else {
@@ -95,9 +102,34 @@ const GetTicket = () => {
 					}
 				})
 				.catch((error) => console.error(error, 'THIS IS A BIGGGG ERROR'));
-			// .catch((error) => {
-			// 	alert('You are currently not subscribed to an active plan');
-			// });
+		}
+	};
+
+	const checkPrice = (e) => {
+		e.preventDefault();
+		if (origin === '' || dest === '') {
+			notify('Incomplete Journy Information!');
+		}
+		else {
+			fetch('http://localhost:3000/api/v1/payment/ticket/checkprice', {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					origin: origin.label,
+					destination: dest.label,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					if (data[0] === 200) {
+						confirm(data[1])
+					} else {
+						notify(data[1]);
+					}
+				})
+				.catch((error) => console.error(error, 'THIS IS A BIGGGG ERROR'));
 		}
 	};
 
@@ -123,8 +155,8 @@ const GetTicket = () => {
 					token: `session_token=${localStorage.getItem('session_token')}`,
 				},
 				body: JSON.stringify({
-					origin,
-					destination: dest,
+					origin: origin.label,
+					destination: dest.label,
 					start_time: journeyTime,
 					// card_type: cardType,
 					// credit_card: cardNumber,
@@ -173,24 +205,31 @@ const GetTicket = () => {
 						<div className="GTBoxPickup">
 							<p>Where do you want to go?</p>
 							<div className="GTBoxFromTo">
-								<input
-									type="text"
+								<Autocomplete
+									disablePortal
 									className="GTBoxFrom"
-									placeholder="Station / stop / address"
-									required
-									onChange={(event) => setOrigin(event.target.value)}
+									options={stations}
+									value={origin}
+									onChange={(event, newValue) => {
+										setOrigin(newValue);
+									}}
+									renderInput={(params) => <TextField {...params} label="Origin" />}
 								/>
 								<i className="fa-solid fa-arrows-up-down"></i>
-								<input
-									type="text"
-									className="GTBoxFrom"
-									placeholder="Station / stop / address"
-									required
-									onChange={(event) => setDest(event.target.value)}
-								/>
+								<div className='GTBoxForm'>
+									<Autocomplete
+										disablePortal
+										className="GTBoxFrom"
+										options={stations}
+										value={dest}
+										onChange={(event, newValue) => {
+											setDest(newValue);
+										}}
+										renderInput={(params) => <TextField {...params} label="Destination" />}
+									/></div>
 								<LocalOfferIcon
 									className="priceIcon"
-									onClick={() => confirm('The Price is ...')}
+									onClick={checkPrice}
 								/>
 							</div>
 

@@ -29,6 +29,7 @@ import TheDashBoard from "./theDashBoard";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/Dashboard";
+// import SimulateRide from "./pages/google map/Simulate Ride";
 // first put your new pages here
 
 import Team from "./scenes/team";
@@ -42,7 +43,7 @@ import Pie from "./scenes/pie";
 import Line from "./scenes/line";
 import Geography from "./scenes/geography";
 import Calendar from "./scenes/calander";
-
+import SimulateTheRide from "./scenes/SimulateTheRidePage";
 import Profile from "./scenes/profile";
 import Reset_password from "./scenes/Reset_password";
 function App() {
@@ -181,7 +182,12 @@ function App() {
                 path="/admin/managerequest"
                 element={<AdminManageRequest />}
               />
-              <Route path="/dashboard" element={<TheDashBoard   userType={userType}/>} />
+              {/* <Route path="/SimulateRide" element={<SimulateRide />} /> */}
+              <Route
+                path="/dashboard"
+                element={<TheDashBoard userType={userType} />}
+              />
+              {/* <Route path ="/simulateRide"  element={<SimulateRide />} /> */}
               <Route path="/Dashboard/team" element={<Team />} />
               <Route path="/Dashboard/contacts" element={<Contacts />} />
               <Route
@@ -199,6 +205,10 @@ function App() {
               <Route
                 path="/Dashboard/Reset_password"
                 element={<Reset_password />}
+              />
+                 <Route
+                path="/simulateRide__"
+                element={<SimulateTheRide />}
               />
               <Route path="*" element={<NotFound />} />
             </Routes>

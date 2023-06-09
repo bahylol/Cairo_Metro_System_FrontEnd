@@ -17,7 +17,7 @@ console.log('dahhhhhhhhhh');
             
           {/* <Sidebar /> */}
           <main className="content">
-            <Sidebar   userType={userType}/>
+            {/* <Sidebar   userType={userType}/> */}
             <Routes>
               <Route path="/" element={<Dashboard />} />
               {/* second put your page line here  */}

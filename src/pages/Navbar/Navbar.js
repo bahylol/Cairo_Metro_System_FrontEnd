@@ -44,6 +44,8 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
     { text: "My Tickets", path: "/tickets" },
     { text: "Get Ticket", path: "/tickets/purchase" },
     { text: "Subscriptions", path: "/subscriptions" },
+    { text: "Start The Ride", path: "/simulateTheRide" },
+   
   ];
 
   const [navSublinks, setNavSublinks] = useState([]);
@@ -176,6 +178,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
                 {index === 3 && (
                   <ListItemIcon>{<SubscriptionsIcon />}</ListItemIcon>
                 )}
+                
                 <ListItemText primary={text} />
               </ListItemButton>
             </Link>
@@ -235,6 +238,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
                 </li>
                 <li>
                   <a href="/subscription">Subscription</a>
+                  <a href="/simulateRide__" >Start Ride</a>
                 </li>
                 {(userType === "admin" || userType === "superadmin") && (
                   <li

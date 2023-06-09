@@ -214,6 +214,9 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 						<li>
 							<a href={isLoggedIn ? '/subscription' : '/login'}>Subscription</a>
 						</li>
+						<li>
+							<a href={isLoggedIn ? '/simulateRide__' : '/login'}>Start Ride</a>
+						</li>
 						{(userType === 'admin' || userType === 'superadmin') && (
 							<li
 								onMouseEnter={() => handleMouseEnterNavbarLink(1)}
@@ -272,7 +275,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 							)}
 						</li>
 						<li>
-							<a href={isLoggedIn ? '/' : '/login'} className="special-link">
+							<a href={isLoggedIn ? '/dashboard' : '/login'} className="special-link">
 								<AccountCircleIcon className="profileIcon" />
 							</a>
 						</li>
@@ -295,6 +298,23 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 		</nav>
 	);
 };
+// var navbar = document.getElementById("navbar-container");
+
+// // Get the toggleNavbar element by its ID
+// var toggleNavbar = document.getElementById("toggleNavbar");
+
+// toggleNavbar.addEventListener("click", function () {
+//   console.log("let's goooooooo");
+//   // Check the current visibility state of the navbar
+//   var isNavbarVisible = navbar.style.visibility === "visible";
+
+//   // Toggle the visibility based on the current state
+//   if (isNavbarVisible) {
+//     navbar.style.visibility = "hidden";
+//   } else {
+//     navbar.style.visibility = "visible";
+//   }
+// });
 
 export default Navbar;
 

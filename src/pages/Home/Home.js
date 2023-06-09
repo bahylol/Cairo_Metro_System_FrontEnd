@@ -8,7 +8,7 @@ import './Home.css';
 import './style.css';
 import './articleCards.css';
 import './blogSlider.css';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import image from '../../Assets/HomePageTrain.png';
 import cardPic1 from '../../Assets/cardPic1.jpg';
 import cardPic2 from '../../Assets/cardPic2.png';
@@ -21,7 +21,9 @@ import Swiper from 'swiper';
 
 const Home = ({ isLoggedIn }) => {
 	const sectionRef = useRef(null);
-
+	const [origin, setOrigin] = useState('');
+	const [dest, setDest] = useState('');
+	const [journeyTime, setJourneyTime] = useState('');
 	const notify = (alert) => {
 		toast.error(alert, {
 			position: 'top-center',
@@ -56,6 +58,54 @@ const Home = ({ isLoggedIn }) => {
 	const dateParts = formattedCurrentDate.split(' ');
 	const day = parseInt(dateParts[1]);
 	const month = dateParts[0];
+
+	const handlePurchase = (e) => {
+		e.preventDefault();
+		if (origin === '' || dest === '' || journeyTime === '') {
+			notify('Incomplete Journy Information!');
+		}
+		// UNCOMMENT TRANSACTION
+		// else if (
+		// 	cardType === '' ||
+		// 	holderName === '' ||
+		// 	expDate === '' ||
+		// 	cardNumber === '' ||
+		// 	cardCVV === ''
+		// ) {
+		// 	notify('Incomplete Payment Information!');
+		// }
+		else {
+			fetch('http://localhost:3000/create-checkout-session-ticket', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					token: `session_token=${localStorage.getItem('session_token')}`,
+				},
+				body: JSON.stringify({
+					origin,
+					destination: dest,
+					start_time: journeyTime,
+					// UNCOMMENT TRANSACTION
+					// card_type: cardType,
+					// credit_card: cardNumber,
+					// holder_name: holderName,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					// localStorage.setItem('session_token', data[0]);
+					if (data[0] === 200) {
+						window.location.href = data[1];
+					} else {
+						notify(data[1]);
+					}
+				})
+				.catch((error) => console.error(error, 'THIS IS A BIGGGG ERROR'));
+			// .catch((error) => {
+			// 	alert('You are currently not subscribed to an active plan');
+			// });
+		}
+	};
 
 	useEffect(() => {
 		const swiper = new Swiper('.blog-slider', {
@@ -112,15 +162,18 @@ const Home = ({ isLoggedIn }) => {
 						<div className="home-from-to">
 							<input
 								type="text"
-								className="home-from"
+								className="GTBoxFrom"
 								placeholder="Station / stop / address"
+								required
+								onChange={(event) => setOrigin(event.target.value)}
 							/>
 							<i className="fa-solid fa-arrows-up-down"></i>
-
 							<input
 								type="text"
-								className="home-to"
+								className="GTBoxFrom"
 								placeholder="Station / stop / address"
+								required
+								onChange={(event) => setDest(event.target.value)}
 							/>
 							<LocalOfferIcon
 								className="priceIcon"
@@ -129,11 +182,16 @@ const Home = ({ isLoggedIn }) => {
 						</div>
 
 						<div className="home-date">
-							<p>Outbound journey</p>
-							<input type="datetime-local" />
+						<p>Choose Date</p>
+								<input
+									type="datetime-local"
+									required
+									onChange={(event) => setJourneyTime(event.target.value)}
+								/>
 						</div>
 
-						<a href={isLoggedIn ? '/tickets/purchase' : '/login'}>Book Ticket</a>
+						<a href="htt" onClick={(e) => handlePurchase(e)}>
+							Purchase Ticket</a>
 					</div>
 				</div>
 
@@ -192,7 +250,7 @@ const Home = ({ isLoggedIn }) => {
 				<div className="projcard-container">
 					<div
 						className="projcard projcard-blue"
-						// style={{ marginLeft: "60px" }}
+					// style={{ marginLeft: "60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic1} />
@@ -215,7 +273,7 @@ const Home = ({ isLoggedIn }) => {
 
 					<div
 						className="projcard projcard-red"
-						// style={{ marginLeft: "-60px" }}
+					// style={{ marginLeft: "-60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic2} />
@@ -239,7 +297,7 @@ const Home = ({ isLoggedIn }) => {
 
 					<div
 						className="projcard projcard-green"
-						// style={{ marginLeft: "60px" }}
+					// style={{ marginLeft: "60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic3} />
@@ -262,7 +320,7 @@ const Home = ({ isLoggedIn }) => {
 
 					<div
 						className="projcard projcard-customcolor"
-						// style={{ marginLeft: "-60px" }}
+					// style={{ marginLeft: "-60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic4} />

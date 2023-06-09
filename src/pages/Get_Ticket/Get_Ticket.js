@@ -53,7 +53,7 @@ const GetTicket = () => {
 	const [cardCVV, setCardCVV] = useState('');
 	const [expDate, setExpDate] = useState('');
 
-	const handlePrintTicket = (e) => {
+	const handlePurchase = (e) => {
 		e.preventDefault();
 		if (origin === '' || dest === '' || journeyTime === '') {
 			notify('Incomplete Journy Information!');
@@ -69,7 +69,7 @@ const GetTicket = () => {
 		// 	notify('Incomplete Payment Information!');
 		// }
 		else {
-			fetch('http://localhost:3000/api/v1/payment/ticket/', {
+			fetch('http://localhost:3000/create-checkout-session-ticket', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -89,17 +89,9 @@ const GetTicket = () => {
 				.then((data) => {
 					// localStorage.setItem('session_token', data[0]);
 					if (data[0] === 200) {
-						confirm('Ticket successfully booked!');
-						audioRef.current.play();
-						setTimeout(function () {
-							navigate('/tickets/purchase');
-						}, 2500);
-					} else if (data[0] === 401) {
-						notify('You already booked a ticket to this ride');
-					} else if (data[0] === 402) {
-						notify('Error: Could not book ticket');
-					} else if (data[0] === 400) {
-						notify('Invalid Origin-> Destination Information!');
+						window.location.href = data[1];
+					} else {
+						notify(data[1]);
 					}
 				})
 				.catch((error) => console.error(error, 'THIS IS A BIGGGG ERROR'));
@@ -203,7 +195,7 @@ const GetTicket = () => {
 							</div>
 
 							<div className="GTBoxDate">
-								<p>Outbound journey</p>
+								<p>Choose Date</p>
 								<input
 									type="datetime-local"
 									required
@@ -211,8 +203,8 @@ const GetTicket = () => {
 								/>
 							</div>
 
-							<a href="htt" onClick={(e) => handlePrintTicket(e)}>
-								Print Ticket
+							<a href="htt" onClick={(e) => handlePurchase(e)}>
+								Purchase Ticket
 							</a>
 							<a href="htt" onClick={(e) => handleUseSub(e)}>
 								Use Subscription

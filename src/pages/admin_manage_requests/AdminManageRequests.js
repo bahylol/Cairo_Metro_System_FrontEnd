@@ -12,6 +12,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AdminManageRequests = () => {
 	const navigate = useNavigate();
+	const confirm = (alert) => {
+		toast.success(alert, {
+			position: 'top-center',
+			autoClose: 2500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
 	const notify = (alert) => {
 		toast.error(alert, {
 			position: "top-center",
@@ -32,53 +44,183 @@ const AdminManageRequests = () => {
 	}
 	const [seniorRequests, setSeniorRequests] = useState([]);
 	const [refundRequests, setRefundRequests] = useState([]);
-	useEffect(() => {
-		const fetchSenior = async () => {
-			try {
-				const response = await fetch('http://localhost:3000/api/v1/requests/getsenior', {
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-						token: `session_token=${localStorage.getItem('session_token')}`,
-					},
-				});
-				const data = await response.json();
-				if (data[0] === 200) {
-					setSeniorRequests(data[1]);
-				}
-				else {
-					notify(data[1]);
-				}
-			} catch (error) {
-				console.error('Error fetching data:', error);
-			}
-		};
+	const [seniorPopup, setSeniorPopup] = useState(false);
+	const [refundPopup, setRefundPopup] = useState(false);
 
+	const openSeniorPopup = (id) => {
+		localStorage.setItem('requestId', id);
+		setSeniorPopup(true);
+	};
+
+	const closeSeniorPopup = () => {
+		localStorage.setItem('requestId', '');
+		setSeniorPopup(false);
+	};
+	const openRefundPopup = (id) => {
+		localStorage.setItem('requestId', id);
+		setRefundPopup(true);
+	};
+
+	const closeRefundPopup = () => {
+		localStorage.setItem('requestId', '');
+		setRefundPopup(false);
+	};
+	const acceptSenior = async () => {
+		let requestId = localStorage.getItem('requestId');
+		try {
+			const response = await fetch(`http://localhost:3000/api/v1/requests/senior/${requestId}`, {
+				method: 'Put',
+				headers: {
+					'Content-Type': 'application/json',
+					token: `session_token=${localStorage.getItem('session_token')}`,
+				},
+				body: JSON.stringify({
+					request_state: "accepted"
+				}),
+			});
+			const data = await response.json();
+			if (data[0] === 200) {
+				confirm(data[1])
+				fetchSenior();
+			}
+			else {
+				notify(data[1]);
+			}
+			closeSeniorPopup();
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	}
+
+	const rejectSenior = async () => {
+		let requestId = localStorage.getItem('requestId');
+		try {
+			const response = await fetch(`http://localhost:3000/api/v1/requests/senior/${requestId}`, {
+				method: 'Put',
+				headers: {
+					'Content-Type': 'application/json',
+					token: `session_token=${localStorage.getItem('session_token')}`,
+				},
+				body: JSON.stringify({
+					request_state: "rejected"
+				}),
+			});
+			const data = await response.json();
+			if (data[0] === 200) {
+				confirm(data[1])
+				fetchSenior();
+			}
+			else {
+				notify(data[1]);
+			}
+			closeSeniorPopup();
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	}
+
+	const acceptRefund = async () => {
+		let requestId = localStorage.getItem('requestId');
+		try {
+			const response = await fetch(`http://localhost:3000/api/v1/requests/refunds/${requestId}`, {
+				method: 'Put',
+				headers: {
+					'Content-Type': 'application/json',
+					token: `session_token=${localStorage.getItem('session_token')}`,
+				},
+				body: JSON.stringify({
+					request_state: "accepted"
+				}),
+			});
+			const data = await response.json();
+			if (data[0] === 200) {
+				confirm(data[1])
+				fetchRefund();
+			}
+			else {
+				notify(data[1]);
+			}
+			closeRefundPopup();
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	}
+
+	const rejectRefund = async () => {
+		let requestId = localStorage.getItem('requestId');
+		try {
+			const response = await fetch(`http://localhost:3000/api/v1/requests/refunds/${requestId}`, {
+				method: 'Put',
+				headers: {
+					'Content-Type': 'application/json',
+					token: `session_token=${localStorage.getItem('session_token')}`,
+				},
+				body: JSON.stringify({
+					request_state: "rejected"
+				}),
+			});
+			const data = await response.json();
+			if (data[0] === 200) {
+				confirm(data[1])
+				fetchRefund();
+			}
+			else {
+				notify(data[1]);
+			}
+			closeRefundPopup();
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	}
+
+
+	const fetchSenior = async () => {
+		try {
+			const response = await fetch('http://localhost:3000/api/v1/requests/getsenior', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					token: `session_token=${localStorage.getItem('session_token')}`,
+				},
+			});
+			const data = await response.json();
+			if (data[0] === 200) {
+				setSeniorRequests(data[1]);
+			}
+			else {
+				notify(data[1]);
+			}
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	};
+
+	const fetchRefund = async () => {
+		try {
+			const response = await fetch('http://localhost:3000/api/v1/requests/getrefund', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					token: `session_token=${localStorage.getItem('session_token')}`,
+				},
+			});
+			const data = await response.json();
+			if (data[0] === 200) {
+				setRefundRequests(data[1]);
+			}
+			else {
+				notify(data[1]);
+			}
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	};
+
+	useEffect(() => {
 		fetchSenior();
 	}, []);
 
 	useEffect(() => {
-		const fetchRefund = async () => {
-			try {
-				const response = await fetch('http://localhost:3000/api/v1/requests/getrefund', {
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-						token: `session_token=${localStorage.getItem('session_token')}`,
-					},
-				});
-				const data = await response.json();
-				if (data[0] === 200) {
-					setRefundRequests(data[1]);
-				}
-				else {
-					notify(data[1]);
-				}
-			} catch (error) {
-				console.error('Error fetching data:', error);
-			}
-		};
-
 		fetchRefund();
 	}, []);
 
@@ -94,7 +236,7 @@ const AdminManageRequests = () => {
 			minWidth: 200,
 			flex: 1,
 			renderCell: (params) => (
-				<Button variant="contained" onClick={() => console.log(params.id)} color="primary" startIcon={<CheckCircleSharpIcon />} endIcon={<CancelSharpIcon />}>
+				<Button variant="contained" style={{backgroundColor: "#da2c43"}} onClick={() => openSeniorPopup(params.id)} color="primary" startIcon={<CheckCircleSharpIcon />} endIcon={<CancelSharpIcon />}>
 					Accept/Reject
 				</Button>
 			),
@@ -121,7 +263,7 @@ const AdminManageRequests = () => {
 			minWidth: 200,
 			flex: 1,
 			renderCell: (params) => (
-				<Button variant="contained" onClick={() => console.log(params.id)} color="primary" startIcon={<CheckCircleSharpIcon />} endIcon={<CancelSharpIcon />}>
+				<Button variant="contained" style={{backgroundColor: "#da2c43"}} onClick={() => openRefundPopup(params.id)} color="primary" startIcon={<CheckCircleSharpIcon />} endIcon={<CancelSharpIcon />}>
 					Accept/Reject
 				</Button>
 			),
@@ -148,14 +290,14 @@ const AdminManageRequests = () => {
 							},
 						}}
 						pageSizeOptions={[5, 10]}
-						// slots={{
-						// 	toolbar: GridToolbar,
-						//   }}
-						// slots={{
-						// 	noRowsOverlay: CustomNoRowsOverlay,
-						//   }}
-						//   {...data}
-						//   rows={[]}
+					// slots={{
+					// 	toolbar: GridToolbar,
+					//   }}
+					// slots={{
+					// 	noRowsOverlay: CustomNoRowsOverlay,
+					//   }}
+					//   {...data}
+					//   rows={[]}
 					/>
 				</div>
 			</div>
@@ -174,6 +316,48 @@ const AdminManageRequests = () => {
 					/>
 				</div>
 			</div>
+			{seniorPopup && (
+				<div className="VSmodal">
+					<div className="VSoverlay">
+						<div className="VS-modal-form">
+							<h2>Cancel Your Current Subscription</h2>
+							<p>
+								--Caneling, will lead to the loss of your remaining ticket-usages--
+							</p>
+							<div className="VSmodal-Refundcolumn">
+								<Button variant="contained" style={{backgroundColor: "#000000"}} onClick={closeSeniorPopup}>
+									Back
+								</Button>
+								<Button variant="contained" style={{backgroundColor: "#00ff00"}} onClick={acceptSenior} startIcon={<CheckCircleSharpIcon />}>
+								</Button>
+								<Button variant="contained" style={{backgroundColor: "#ff0000"}} onClick={rejectSenior} startIcon={<CancelSharpIcon />}>
+								</Button>
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
+			{refundPopup && (
+				<div className="VSmodal">
+					<div className="VSoverlay">
+						<div className="VS-modal-form">
+							<h2>Cancel Your Current Subscription</h2>
+							<p>
+								--Caneling, will lead to the loss of your remaining ticket-usages--
+							</p>
+							<div className="VSmodal-Refundcolumn">
+								<Button variant="contained" style={{backgroundColor: "#00000"}} onClick={closeRefundPopup}>
+									Back
+								</Button>
+								<Button variant="contained" style={{backgroundColor: "#00ff00"}} onClick={acceptRefund} startIcon={<CheckCircleSharpIcon />}>
+								</Button>
+								<Button variant="contained" style={{backgroundColor: "#ff0000"}} onClick={rejectRefund} startIcon={<CancelSharpIcon />}>
+								</Button>
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
 			<Footer />
 			<ToastContainer />
 		</>

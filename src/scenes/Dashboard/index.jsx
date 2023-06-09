@@ -96,7 +96,8 @@ const Dashboard = () => {
 							Download Reports
 							{/* //do onclick to this one  */}
 						</Button>
-						<ListIcon onClick={() => alert('HI')} />
+						<ListIcon onClick={toggleDrawer('left', true)} />
+						<Button onClick={toggleDrawer('left', true)}>CLICK</Button>
 					</Box>
 				</Box>
 
@@ -313,18 +314,11 @@ const Dashboard = () => {
 				</Box>
 			</Box>
 			<div>
-				{['left', 'right', 'top', 'bottom'].map((anchor) => (
-					<React.Fragment key={anchor}>
-						<Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-						<Drawer
-							anchor={anchor}
-							open={state[anchor]}
-							onClose={toggleDrawer(anchor, false)}
-						>
-							{list(anchor)}
-						</Drawer>
-					</React.Fragment>
-				))}
+				<React.Fragment>
+					<Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
+						{list('left')}
+					</Drawer>
+				</React.Fragment>
 			</div>
 		</>
 	);

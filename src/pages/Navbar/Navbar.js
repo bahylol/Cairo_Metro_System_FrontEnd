@@ -25,6 +25,12 @@ import ListItemText from "@mui/material/ListItemText";
 import logo from "../../Assets/logo.png";
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const handleProfileClick = () => {
+    console.log('hererererer');
+    setIsNavbarVisible(false);
+    console.log("ffedf   ", isNavbarVisible);
+  };
   const navigate = useNavigate();
   const menuItems = [
     { text: "Profile", path: "/" },
@@ -191,134 +197,160 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
   };
 
   return (
-    <nav className="navbar">
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-      />
+    <div>
+      {isNavbarVisible && (
+        <nav className="navbar">
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+          />
 
-      <div className="navbar-container">
-        <div className="navbar-logo-section">
-          <a href="/" className="navbar-logo">
-            <img className="transparentLogo" src={logo} alt="" />
-          </a>
-        </div>
-        <div className={`navbar-menu`}>
-          <div
-            className="navbar-hamburger-menu"
-            onClick={toggleDrawer("left", true)}
-          >
-            <span className="navbar-line"></span>
-            <span className="navbar-line"></span>
-            <span className="navbar-line"></span>
-          </div>
-          <ul className="navbar-nav-links">
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/tickets">My Rides</a>
-            </li>
-            <li>
-              <a href="/tickets/purchase">Book Ticket</a>
-            </li>
-            <li>
-              <a href="/subscription">Subscription</a>
-            </li>
-            {(userType === "admin" || userType === "superadmin") && (
-              <li
-                onMouseEnter={() => handleMouseEnterNavbarLink(1)}
-                onMouseLeave={() => handleMouseLeaveNavbarLink(1)}
+          <div className="navbar-container">
+            <div className="navbar-logo-section">
+              <a href="/" className="navbar-logo">
+                <img className="transparentLogo" src={logo} alt="" />
+              </a>
+            </div>
+            <div className={`navbar-menu`}>
+              <div
+                className="navbar-hamburger-menu"
+                onClick={toggleDrawer("left", true)}
               >
-                <a href="htt">Manage Stations</a>
-                {navSublinks[1] && (
-                  <div className="sublinks-container">
-                    <ul className="sublinks">
-                      <li>
-                        <a href="htt">Create Station</a>
-                      </li>
-                      <li>
-                        <a href="htt">Update Station</a>
-                      </li>
-                      <li>
-                        <a href="htt">Delete Station</a>
-                      </li>
-                    </ul>
-                  </div>
+                <span className="navbar-line"></span>
+                <span className="navbar-line"></span>
+                <span className="navbar-line"></span>
+              </div>
+              <ul className="navbar-nav-links">
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="/tickets">My Rides</a>
+                </li>
+                <li>
+                  <a href="/tickets/purchase">Book Ticket</a>
+                </li>
+                <li>
+                  <a href="/subscription">Subscription</a>
+                </li>
+                {(userType === "admin" || userType === "superadmin") && (
+                  <li
+                    onMouseEnter={() => handleMouseEnterNavbarLink(1)}
+                    onMouseLeave={() => handleMouseLeaveNavbarLink(1)}
+                  >
+                    <a href="htt">Manage Stations</a>
+                    {navSublinks[1] && (
+                      <div className="sublinks-container">
+                        <ul className="sublinks">
+                          <li>
+                            <a href="htt">Create Station</a>
+                          </li>
+                          <li>
+                            <a href="htt">Update Station</a>
+                          </li>
+                          <li>
+                            <a href="htt">Delete Station</a>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </li>
                 )}
-              </li>
-            )}
-            <div
-              className="navbar-spacer"
-              onClick={toggleDrawer("left", true)}
-            ></div>
+                <div
+                  className="navbar-spacer"
+                  onClick={toggleDrawer("left", true)}
+                ></div>
 
-            {!isLoggedIn && (
-              <li className="navbar-login-out-ID">
-                <a
-                  href="/login"
-                  className="navbar-login-out-text-ID no-hover-animation"
-                >
-                  Log In
-                </a>
-              </li>
-            )}
-            {isLoggedIn && (
-              <li className="navbar-login-out-ID">
-                <a
-                  href="ONCLICK METHOD"
-                  className="navbar-login-out-text-ID no-hover-animation"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    localStorage.setItem("session_token", null);
-                    setIsLoggedIn(false);
-                    setUserType("user");
-                    navigate("/");
-                  }}
-                >
-                  Log Out
-                </a>
-              </li>
-            )}
+                {!isLoggedIn && (
+                  <li className="navbar-login-out-ID">
+                    <a
+                      href="/login"
+                      className="navbar-login-out-text-ID no-hover-animation"
+                    >
+                      Log In
+                    </a>
+                  </li>
+                )}
+                {isLoggedIn && (
+                  <li className="navbar-login-out-ID">
+                    <a
+                      href="ONCLICK METHOD"
+                      className="navbar-login-out-text-ID no-hover-animation"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        localStorage.setItem("session_token", null);
+                        setIsLoggedIn(false);
+                        setUserType("user");
+                        navigate("/");
+                      }}
+                    >
+                      Log Out
+                    </a>
+                  </li>
+                )}
 
-            <li>
-              {!isLoggedIn && (
-                <a href="/signup" className="special-link signUpLink">
-                  Sign Up
-                </a>
-              )}
-            </li>
-            <li>
-              <a href="/transactions" className="special-link">
-                <AccountCircleIcon className="profileIcon" />
-              </a>
-            </li>
-            <li>
-              <a href="/" className="special-link">
-                <SettingsIcon className="settingsIcon" />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+                <li>
+                  {!isLoggedIn && (
+                    <a href="/signup" className="special-link signUpLink">
+                      Sign Up
+                    </a>
+                  )}
+                </li>
+                <li>
+                  <a
+                    href="/dashboard"
+                    className="special-link"
+                    id="toggleNavbar"
+                    onClick={handleProfileClick}
+                  >
+                    <AccountCircleIcon className="profileIcon" />
+                  </a>
+                </li>
+                <li>
+                  <a href="/" className="special-link">
+                    <SettingsIcon className="settingsIcon" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-      <div>
-        <React.Fragment>
-          <Drawer
-            anchor={"left"}
-            open={state["left"]}
-            onClose={toggleDrawer("left", false)}
-          >
-            {list("left")}
-          </Drawer>
-        </React.Fragment>
-      </div>
-    </nav>
+          <div>
+            <React.Fragment>
+              <Drawer
+                anchor={"left"}
+                open={state["left"]}
+                onClose={toggleDrawer("left", false)}
+              >
+                {list("left")}
+              </Drawer>
+            </React.Fragment>
+          </div>
+        </nav>
+      )}
+    </div>
   );
 };
+// var navbar = document.getElementById("navbar-container");
+
+// // Get the toggleNavbar element by its ID
+// var toggleNavbar = document.getElementById("toggleNavbar");
+
+// toggleNavbar.addEventListener("click", function () {
+//   console.log("let's goooooooo");
+//   // Check the current visibility state of the navbar
+//   var isNavbarVisible = navbar.style.visibility === "visible";
+
+//   // Toggle the visibility based on the current state
+//   if (isNavbarVisible) {
+//     navbar.style.visibility = "hidden";
+//   } else {
+//     navbar.style.visibility = "visible";
+//   }
+// });
 
 export default Navbar;
 

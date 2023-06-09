@@ -4,8 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const TicketStripe = () => {
     const params = new URLSearchParams(window.location.search);
-    const duration = params.get("duration");
-    const zone_id = params.get("zone_id");
+    const origin = params.get("routeOrigin");
+    const start_time = params.get("start_time");
+    const destination = params.get("routeDestination");
     const status = params.get("status");
     const payment_token = params.get("payment_token");
     const notify = (alert) => {
@@ -39,8 +40,9 @@ const TicketStripe = () => {
                     const response = await fetch('http://localhost:3000/api/v1/payment/ticket/', {
                         method: 'POST',
                         body: JSON.stringify({
-                            duration: duration,
-                            zone_id: zone_id,
+                            origin: origin,
+                            start_time: start_time,
+                            destination:destination,
                             payment_token: payment_token
                         }),
                         headers: {
@@ -52,13 +54,13 @@ const TicketStripe = () => {
                     if (data[0] === 200) {
                         confirm("Congratulations you purchased ticket succesfully");
                         setTimeout(function () {
-                            window.location.href = 'http://localhost:5000/subscription';
+                            window.location.href = 'http://localhost:5000/tickets';
                         }, 2501);
                     }
                     else {
                         notify(data[1]);
                         setTimeout(function () {
-                            window.location.href = 'http://localhost:5000/subscription';
+                            window.location.href = 'http://localhost:5000/tickets';
                         }, 2501);
                     }
                 } catch (error) {
@@ -81,7 +83,7 @@ const TicketStripe = () => {
                     const data = await response.json();
                     notify("error has occured while purchasing your ticket");
                     setTimeout(function () {
-                        window.location.href = 'http://localhost:5000/subscription';
+                        window.location.href = 'http://localhost:5000/tickets';
                     }, 2501);
                 } catch (error) {
                     console.error('Error fetching data:', error);

@@ -9,6 +9,8 @@ import Switch from '@mui/material/Switch';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 
@@ -193,6 +195,10 @@ const GetTicket = () => {
 									placeholder="Station / stop / address"
 									required
 									onChange={(event) => setDest(event.target.value)}
+								/>
+								<LocalOfferIcon
+									className="priceIcon"
+									onClick={() => confirm('The Price is ...')}
 								/>
 							</div>
 

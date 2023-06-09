@@ -25,9 +25,23 @@
 	-moz-box-shadow: 0px 3px 11px 0px rgba(117, 117, 117, 1);
 	box-shadow: 0px 3px 11px 0px rgba(117, 117, 117, 1);
 	padding: 15px;
-	width: 1000px;
-	background-color: var(--secondary-color);
-	margin-bottom: 150px;
+	width: 750px;
+	background-color: #f8f8f8;
+	margin: auto;
+	/*margin-bottom: 150px;
+		khateebwashere*/
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-o-border-radius: 6px;
+}
+
+@media (max-width: 767px) {
+	.home-get-ticket-container .home-pickup {
+		width: 100%;
+		font-size: 15px;
+	}
 }
 
 .home-get-ticket-container .home-pickup p {
@@ -128,4 +142,22 @@
 /* train background CSS*/
 .home-train-image {
 	width: 100%;
+	margin-top: -119px;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 100px;
+	border-bottom-left-radius: 100px;
+}
+
+.thePrice {
+	border: 2px solid darkgreen;
+	color: darkgreen;
+	background-color: rgb(103, 199, 103);
+	padding: 5px 25px;
+	border-radius: 4px;
+	margin-left: 6px;
 }

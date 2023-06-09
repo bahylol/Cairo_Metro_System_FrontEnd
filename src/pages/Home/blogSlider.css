@@ -4,6 +4,17 @@
 	--HOMEtext-color: #333;
 }
 
+body {
+	margin: 0;
+}
+
+.col-12 {
+display: flex;
+justify-content: center;
+align-items: center;
+	/* khateeb was here */
+}
+
 .date__box {
 	position: absolute;
 	display: flex;
@@ -23,6 +34,8 @@
 .blog-card {
 	padding: 30px;
 	position: relative;
+	width: 90%;
+	/* khateeb was here */
 }
 
 .blog-card .date__box {

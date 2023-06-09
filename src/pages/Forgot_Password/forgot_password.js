@@ -122,7 +122,9 @@ const ForgotPassword = () => {
 							)}
 						</div>
 
-						<button onClick={(e) => handleSendEmail(e)}>Send Verification Email</button>
+						{!phase1 && (
+							<button onClick={(e) => handleSendEmail(e)}>Send Verification Email</button>
+						)}
 						{phase1 && (
 							<button onClick={(e) => handleSendResetToken(e)}>Send Reset Page</button>
 						)}

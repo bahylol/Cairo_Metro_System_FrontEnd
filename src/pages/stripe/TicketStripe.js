@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const SubscriptionStripe = () => {
+const TicketStripe = () => {
     const params = new URLSearchParams(window.location.search);
     const duration = params.get("duration");
     const zone_id = params.get("zone_id");
@@ -36,7 +36,7 @@ const SubscriptionStripe = () => {
         if (status === "accepted") {
             const fetchData = async () => {
                 try {
-                    const response = await fetch('http://localhost:3000/api/v1/payment/subscriptions/', {
+                    const response = await fetch('http://localhost:3000/api/v1/payment/ticket/', {
                         method: 'POST',
                         body: JSON.stringify({
                             duration: duration,
@@ -50,7 +50,7 @@ const SubscriptionStripe = () => {
                     });
                     const data = await response.json();
                     if (data[0] === 200) {
-                        confirm("Congratulations you purchased subscription succesfully");
+                        confirm("Congratulations you purchased ticket succesfully");
                         setTimeout(function () {
                             window.location.href = 'http://localhost:5000/subscription';
                         }, 2501);
@@ -79,7 +79,7 @@ const SubscriptionStripe = () => {
                         },
                     });
                     const data = await response.json();
-                    notify("error has occured while purchasing your subscription");
+                    notify("error has occured while purchasing your ticket");
                     setTimeout(function () {
                         window.location.href = 'http://localhost:5000/subscription';
                     }, 2501);
@@ -99,4 +99,4 @@ const SubscriptionStripe = () => {
     );
 };
 
-export default SubscriptionStripe;
+export default TicketStripe;

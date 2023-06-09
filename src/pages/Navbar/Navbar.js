@@ -22,7 +22,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-import logo from '../../Assets/logo2.png';
+import logo from '../../Assets/logo.png';
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 	const navigate = useNavigate();
@@ -206,13 +206,13 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 							<a href="/">Home</a>
 						</li>
 						<li>
-							<a href="/tickets">My Rides</a>
+							<a href={isLoggedIn ? '/tickets' : '/login'}>My Rides</a>
 						</li>
 						<li>
-							<a href="/tickets/purchase">Book Ticket</a>
+							<a href={isLoggedIn ? '/tickets/purchase' : '/login'}>Book Ticket</a>
 						</li>
 						<li>
-							<a href="/subscription">Subscription</a>
+							<a href={isLoggedIn ? '/subscription' : '/login'}>Subscription</a>
 						</li>
 						{(userType === 'admin' || userType === 'superadmin') && (
 							<li
@@ -265,12 +265,14 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 						)}
 
 						<li>
-							<a href="/signup" className="special-link signUpLink">
-								Sign Up
-							</a>
+							{!isLoggedIn && (
+								<a href="/signup" className="special-link signUpLink">
+									Sign Up
+								</a>
+							)}
 						</li>
 						<li>
-							<a href="/transactions" className="special-link">
+							<a href={isLoggedIn ? '/' : '/login'} className="special-link">
 								<AccountCircleIcon className="profileIcon" />
 							</a>
 						</li>

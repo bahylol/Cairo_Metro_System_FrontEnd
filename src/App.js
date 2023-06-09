@@ -18,6 +18,8 @@ import AdminManageRequest from './pages/admin_manage_requests/AdminManageRequest
 import SubscriptionStripe from './pages/stripe/SubscriptionStripe';
 import TicketStripe from './pages/stripe/TicketStripe';
 import OurTeam from './pages/OurTeam/OurTeam';
+import ForgotPassword from './pages/Forgot_Password/forgot_password.js';
+import ForgotPasswordNewPassword from './pages/Forgot_Password/resetPage.js';
 
 function App() {
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -84,6 +86,18 @@ function App() {
 		localStorage.setItem('userType', userType);
 	}, [userType]);
 
+	useEffect(() => {
+		const handleBeforeUnload = (event) => {
+			localStorage.setItem('isLoggedIn', JSON.stringify(false));
+		};
+
+		window.addEventListener('beforeunload', handleBeforeUnload);
+
+		return () => {
+			window.removeEventListener('beforeunload', handleBeforeUnload);
+		};
+	}, []);
+
 	// useEffect(() => {
 	// 	const cancelRouteChange = (e) => {
 	// 		if (e.currentTarget.pathname === location.pathname) {
@@ -123,10 +137,15 @@ function App() {
 						<PageLoadingSkeleton />
 					) : (
 						<Routes location={location}>
-							<Route path="/" element={<Home />} />
+							<Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
 							<Route
 								path="/login"
 								element={<Login setIsLoggedIn={setIsLoggedIn} setUserType={setUserType} />}
+							/>
+							<Route path="/user/forgot-password" element={<ForgotPassword />} />
+							<Route
+								path="/user/forgot-password/new-password"
+								element={<ForgotPasswordNewPassword />}
 							/>
 							<Route path="/signup" element={<Signup />} />
 							<Route path="/general-page" element={<GeneralPage />} />

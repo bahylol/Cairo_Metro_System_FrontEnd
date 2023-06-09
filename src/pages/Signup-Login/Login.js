@@ -181,6 +181,12 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 								required
 							/>
 						</div>
+						<a
+							href="http://localhost:5000/user/forgot-password"
+							className="forgotPasswordLink"
+						>
+							forgot password
+						</a>
 
 						<button onClick={handleSubmit}>Log in</button>
 					</form>

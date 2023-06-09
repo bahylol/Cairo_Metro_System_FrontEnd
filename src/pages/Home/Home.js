@@ -1,21 +1,52 @@
 import Footer from '../Footer/Footer.js';
 import { Link } from 'react-router-dom';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './Home.css';
 import './style.css';
 import './articleCards.css';
 import './blogSlider.css';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import image from '../../Assets/HomePageTrain.png';
 import cardPic1 from '../../Assets/cardPic1.jpg';
 import cardPic2 from '../../Assets/cardPic2.png';
 import cardPic3 from '../../Assets/cardPic3.jpg';
-import cardPic4 from '../../Assets/cardPic4.jpg';
-import crowd from '../../Assets/home_crowd.jpg';
+import cardPic4 from '../../Assets/k_metroo.jpg';
+import crowd from '../../Assets/k_metro.jpg';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 import Swiper from 'swiper';
 
-const Home = () => {
+const Home = ({ isLoggedIn }) => {
+	const sectionRef = useRef(null);
+
+	const notify = (alert) => {
+		toast.error(alert, {
+			position: 'top-center',
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
+	const confirm = (alert) => {
+		toast.success(alert, {
+			position: 'top-center',
+			autoClose: 2500,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'colored',
+		});
+	};
+
 	const currentDate = new Date();
 	const formattedCurrentDate = currentDate.toLocaleDateString('en-US', {
 		year: 'numeric',
@@ -47,27 +78,36 @@ const Home = () => {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			</head>
 			<div className="Home">
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+				{/* <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> */}
+				{/* <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+          rel="stylesheet"
+        /> */}
 				<link
-					href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
 					rel="stylesheet"
-				/>
-				<link
-					rel="stylesheet"
-					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+					// href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+
 					integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 					crossorigin="anonymous"
 					referrerpolicy="no-referrer"
 				/>
 
-				<div>
-					<img className="home-train-image" src={image} alt="TRAIN-IMAGE" />
-				</div>
+				{/* <div>
+          <img className="home-train-image" src={image} alt="TRAIN-IMAGE" />
+        </div> */}
 				{/* --------------------------------------------------------------------------------- */}
-				<div className="home-get-ticket-container" style={{ height: '40vh' }}>
+				<div className="home-get-ticket-container" ref={sectionRef} style={{ height: '40vh' }}>
 					<div className="home-pickup">
-						<p>Where do you want to go?</p>
+						<p
+							onClick={() =>
+								sectionRef.current.scrollIntoView({
+									behavior: 'smooth',
+								})
+							}
+						>
+							Where do you want to go?
+						</p>
 
 						<div className="home-from-to">
 							<input
@@ -82,6 +122,10 @@ const Home = () => {
 								className="home-to"
 								placeholder="Station / stop / address"
 							/>
+							<LocalOfferIcon
+								className="priceIcon"
+								onClick={() => confirm('The Price is ...')}
+							/>
 						</div>
 
 						<div className="home-date">
@@ -89,9 +133,10 @@ const Home = () => {
 							<input type="datetime-local" />
 						</div>
 
-						<a href="/tickets/purchase">Get Ticket</a>
+						<a href={isLoggedIn ? '/tickets/purchase' : '/login'}>Book Ticket</a>
 					</div>
 				</div>
+
 				{/* --------------------------------------------------------------------------------- */}
 				<div className="container mt-5">
 					<div className="row">
@@ -145,7 +190,10 @@ const Home = () => {
 				{/* --------------------------------------------------------------------------------- */}
 
 				<div className="projcard-container">
-					<div className="projcard projcard-blue" style={{ marginLeft: '60px' }}>
+					<div
+						className="projcard projcard-blue"
+						// style={{ marginLeft: "60px" }}
+					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic1} />
 							<div className="projcard-textbox">
@@ -165,7 +213,10 @@ const Home = () => {
 						</div>
 					</div>
 
-					<div className="projcard projcard-red" style={{ marginLeft: '-60px' }}>
+					<div
+						className="projcard projcard-red"
+						// style={{ marginLeft: "-60px" }}
+					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic2} />
 							<div className="projcard-textbox">
@@ -186,7 +237,10 @@ const Home = () => {
 						</div>
 					</div>
 
-					<div className="projcard projcard-green" style={{ marginLeft: '60px' }}>
+					<div
+						className="projcard projcard-green"
+						// style={{ marginLeft: "60px" }}
+					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic3} />
 							<div className="projcard-textbox">
@@ -206,7 +260,10 @@ const Home = () => {
 						</div>
 					</div>
 
-					<div className="projcard projcard-customcolor" style={{ marginLeft: '-60px' }}>
+					<div
+						className="projcard projcard-customcolor"
+						// style={{ marginLeft: "-60px" }}
+					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic4} />
 							<div className="projcard-textbox">
@@ -230,6 +287,7 @@ const Home = () => {
 
 				{/* --------------------------------------------------------------------------------- */}
 			</div>
+			<ToastContainer />
 			<Footer />
 		</>
 	);

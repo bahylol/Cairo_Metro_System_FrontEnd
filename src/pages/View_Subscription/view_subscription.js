@@ -264,6 +264,8 @@ const View_subscription = () => {
 					.then((data) => {
 						if (data[0] === 200) {
 							window.location.href = data[1];
+						} else if (data[0] === 400) {
+							notify('You are already subscribed to an active plan');
 						} else {
 							window.location.href = data[1];
 						}
@@ -489,9 +491,34 @@ const View_subscription = () => {
 											onChange={(event) => setSubZones(event.target.value)}
 											input={<OutlinedInput label="Zones" id="demo-dialog-native" />}
 										>
-											<option value={1}>1 - 9</option>
+											<option value={1}>
+												1 - 9{' stations/ Price: '}
+												{modalDuration === 'monthly'
+													? '100LE'
+													: modalDuration === 'quarterly'
+													? '120LE'
+													: '150LE'}
+											</option>
+											<option value={2}>
+												10 - 16{' stations/ Price: '}
+												{modalDuration === 'monthly'
+													? '200LE'
+													: modalDuration === 'quarterly'
+													? '240LE'
+													: '300LE'}
+											</option>
+											<option value={3}>
+												17+{' stations/ Price: '}
+												{modalDuration === 'monthly'
+													? '400LE'
+													: modalDuration === 'quarterly'
+													? '480LE'
+													: '600LE'}
+											</option>
+
+											{/* <option value={1}>1 - 9</option>
 											<option value={2}>10 - 16</option>
-											<option value={3}>17+</option>
+											<option value={3}>17+</option> */}
 										</Select>
 									</FormControl>
 									<div className="VSmodal-Refundcolumn">

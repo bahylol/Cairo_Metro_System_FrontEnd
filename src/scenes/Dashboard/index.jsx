@@ -255,7 +255,7 @@ const Dashboard = ({ userType }) => {
 					</ListItem>
 
 					<ListItem key={'Profile Form'} disablePadding>
-						<ListItemButton to="/Dashboard/Profile">
+						<ListItemButton to="/Dashboard/form">
 							<ListItemIcon>
 								<PersonOutlinedIcon />
 							</ListItemIcon>

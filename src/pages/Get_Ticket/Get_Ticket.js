@@ -65,7 +65,7 @@ const GetTicket = () => {
 				console.log(stations);
 				const allStations = stations.map(({ description: label, ...rest }) => ({
 					label,
-					...rest
+					...rest,
 				}));
 				setStations(allStations);
 			} catch (error) {
@@ -79,8 +79,7 @@ const GetTicket = () => {
 		e.preventDefault();
 		if (origin === '' || dest === '' || journeyTime === '') {
 			notify('Incomplete Journy Information!');
-		}
-		else {
+		} else {
 			fetch('http://localhost:3000/create-checkout-session-ticket', {
 				method: 'POST',
 				headers: {
@@ -96,6 +95,7 @@ const GetTicket = () => {
 				.then((response) => response.json())
 				.then((data) => {
 					if (data[0] === 200) {
+						audioRef.current.play();
 						window.location.href = data[1];
 					} else {
 						notify(data[1]);
@@ -109,8 +109,7 @@ const GetTicket = () => {
 		e.preventDefault();
 		if (origin === '' || dest === '') {
 			notify('Incomplete Journy Information!');
-		}
-		else {
+		} else {
 			fetch('http://localhost:3000/api/v1/payment/ticket/checkprice', {
 				method: 'PUT',
 				headers: {
@@ -124,7 +123,7 @@ const GetTicket = () => {
 				.then((response) => response.json())
 				.then((data) => {
 					if (data[0] === 200) {
-						confirm(data[1])
+						confirm(data[1]);
 					} else {
 						notify(data[1]);
 					}
@@ -216,7 +215,7 @@ const GetTicket = () => {
 									renderInput={(params) => <TextField {...params} label="Origin" />}
 								/>
 								<i className="fa-solid fa-arrows-up-down"></i>
-								<div className='GTBoxForm'>
+								<div className="GTBoxForm">
 									<Autocomplete
 										disablePortal
 										className="GTBoxFrom"
@@ -225,12 +224,12 @@ const GetTicket = () => {
 										onChange={(event, newValue) => {
 											setDest(newValue);
 										}}
-										renderInput={(params) => <TextField {...params} label="Destination" />}
-									/></div>
-								<LocalOfferIcon
-									className="priceIcon"
-									onClick={checkPrice}
-								/>
+										renderInput={(params) => (
+											<TextField {...params} label="Destination" />
+										)}
+									/>
+								</div>
+								<LocalOfferIcon className="priceIcon" onClick={checkPrice} />
 							</div>
 
 							<div className="GTBoxDate">

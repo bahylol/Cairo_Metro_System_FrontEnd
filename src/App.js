@@ -29,6 +29,7 @@ import Topbar from './scenes/global/Topbar';
 import Sidebar from './scenes/global/Sidebar';
 import Dashboard from './scenes/Dashboard';
 // import SimulateRide from "./pages/google map/Simulate Ride";
+import AdminSignup from './pages/adminSignUp/adminSignUp.js';
 
 // first put your new pages here
 
@@ -47,17 +48,13 @@ import SimulateTheRide from './scenes/SimulateTheRidePage';
 import Profile from './scenes/profile';
 import Reset_password from './scenes/Reset_password';
 
+import UpdateRoute from './pages/UpdateRoute';
+import CreateRoute from './pages/CreateRoute';
+import DeleteRoute from './pages/DeleteRoute';
 
-import UpdateRoute from "./pages/UpdateRoute"
-import CreateRoute from "./pages/CreateRoute";
-import DeleteRoute from "./pages/DeleteRoute"
-
-
-
-import CreateStation from "./pages/CreatStation";
-import UpdateStation from "./pages/UpdateStation"
-import DeleteStation from "./pages/DeleteStation";
-
+import CreateStation from './pages/CreatStation';
+import UpdateStation from './pages/UpdateStation';
+import DeleteStation from './pages/DeleteStation';
 
 function App() {
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -216,9 +213,11 @@ function App() {
 							<Route path="/CreatRoute" element={<CreateRoute />} />
 							<Route path="/UpdateRoute" element={<UpdateRoute />} />
 							<Route path="/DeleteRoute" element={<DeleteRoute />} />
-  <Route path="/CreateStation" element={<CreateStation />} />
-              <Route path="/UpdateStation" element={<UpdateStation />} />
-              <Route path="/DeleteStation" element={<DeleteStation />} />
+							<Route path="/admin/signup" element={<AdminSignup />} />
+
+							<Route path="/CreateStation" element={<CreateStation />} />
+							<Route path="/UpdateStation" element={<UpdateStation />} />
+							<Route path="/DeleteStation" element={<DeleteStation />} />
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 					)}

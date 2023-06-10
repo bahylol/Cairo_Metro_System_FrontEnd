@@ -20,6 +20,7 @@ import TicketStripe from './pages/stripe/TicketStripe';
 import OurTeam from './pages/OurTeam/OurTeam';
 import ForgotPassword from './pages/Forgot_Password/forgot_password.js';
 import ForgotPasswordNewPassword from './pages/Forgot_Password/resetPage.js';
+import Zones from './pages/zones/manage_zones.js';
 
 function App() {
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -158,6 +159,7 @@ function App() {
 							<Route path="/TicketStripe" element={<TicketStripe />} />
 							<Route path="/admin/managerequest" element={<AdminManageRequest />} />
 							<Route path="/ourteam" element={<OurTeam/>}/>
+							<Route path="/zones" element={<Zones/>}/>
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 					)}

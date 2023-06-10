@@ -47,6 +47,13 @@ import SimulateTheRide from './scenes/SimulateTheRidePage';
 import Profile from './scenes/profile';
 import Reset_password from './scenes/Reset_password';
 
+
+import UpdateRoute from "./pages/UpdateRoute"
+import CreateRoute from "./pages/CreateRoute";
+import DeleteRoute from   "./pages/DeleteRoute"
+
+
+
 function App() {
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -201,6 +208,10 @@ function App() {
 							<Route path="/Dashboard/Profile" element={<Profile />} />
 							<Route path="/Dashboard/Reset_password" element={<Reset_password />} />
 							<Route path="/simulateRide__" element={<SimulateTheRide />} />
+							   <Route path="/CreatRoute" element={<CreateRoute />} />
+              <Route path="/UpdateRoute" element={<UpdateRoute />} />
+              <Route path="/DeleteRoute" element={<DeleteRoute />} />
+
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 					)}

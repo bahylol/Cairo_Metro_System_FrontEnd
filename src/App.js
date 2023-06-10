@@ -216,9 +216,9 @@ function App() {
 							<Route path="/CreatRoute" element={<CreateRoute />} />
 							<Route path="/UpdateRoute" element={<UpdateRoute />} />
 							<Route path="/DeleteRoute" element={<DeleteRoute />} />
-  <Route path="/CreateStation" element={<CreateStation />} />
-              <Route path="/UpdateStation" element={<UpdateStation />} />
-              <Route path="/DeleteStation" element={<DeleteStation />} />
+							<Route path="/CreateStation" element={<CreateStation />} />
+							<Route path="/UpdateStation" element={<UpdateStation />} />
+							<Route path="/DeleteStation" element={<DeleteStation />} />
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 					)}

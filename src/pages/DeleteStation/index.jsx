@@ -5,7 +5,13 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as React from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
+import { useState, useEffect, useRef } from 'react';
+
 const DeleteStation = () => {
+  let [stations, setStations] = useState([]);
+  const [station1, setStation1] = useState('');
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const confirm = (alert) => {
     toast.success(alert, {
@@ -32,8 +38,35 @@ const DeleteStation = () => {
     });
   };
 
+  useEffect(() => {
+    const getStations = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/getAll/Stations', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        stations = data.map((item) => item);
+        console.log(stations);
+        const allStations = stations.map(({ description: label, ...rest }) => ({
+          label,
+          ...rest
+        }));
+        setStations(allStations);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    getStations();
+  }, []);
+
   const handleFormSubmit = (values) => {
-    console.log(values);
+    if (station1 === '') {
+      notify('Enter Station you want to delete');
+      return;
+    }
     fetch("http://localhost:3000/station", {
       method: "delete",
       headers: {
@@ -41,7 +74,7 @@ const DeleteStation = () => {
         token: `session_token=${localStorage.getItem("session_token")}`,
       },
       body: JSON.stringify({
-        description: values.description1,
+        description: station1.label,
       }),
     })
       .then((data) => {
@@ -59,8 +92,6 @@ const DeleteStation = () => {
 
       <Formik
         onSubmit={handleFormSubmit}
-        initialValues={initialValues}
-        validationSchema={checkoutSchema}
       >
         {({
           values,
@@ -79,17 +110,15 @@ const DeleteStation = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-              <TextField
-                fullWidth
-                variant="filled"
-                label="Name "
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.origin1}
-                name="description1"
-                error={!!touched.description1 && !!errors.description1}
-                helperText={touched.description1 && errors.description1}
-                sx={{ gridColumn: "span 4" }}
+              <Autocomplete
+                disablePortal
+                className="GTBoxFrom"
+                options={stations}
+                value={station1}
+                onChange={(event, newValue) => {
+                  setStation1(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} label="Station name" />}
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
@@ -97,9 +126,10 @@ const DeleteStation = () => {
                 type="submit"
                 color="secondary"
                 variant="contained"
+
                 style={{ margin: "0 auto" }}
               >
-                Delete description1
+                Delete Station
               </Button>
             </Box>
           </form>
@@ -110,11 +140,5 @@ const DeleteStation = () => {
   );
 };
 
-const checkoutSchema = yup.object().shape({
-  description1: yup.string().required("required"),
-});
-const initialValues = {
-  description1: "",
-};
 
 export default DeleteStation;

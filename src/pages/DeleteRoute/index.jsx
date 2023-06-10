@@ -65,8 +65,10 @@ const DeleteRoute = () => {
 
   const handleFormSubmit = (values) => {
     if (origin === '' || destination === '') {
-			notify('Incomplete Journy Information!');
-		}
+      notify('Please enter origin and destination');
+      return;
+    }
+    console.log(values);
     fetch("http://localhost:3000/route", {
       method: "delete",
       headers: {
@@ -139,7 +141,7 @@ const DeleteRoute = () => {
                 variant="contained"
                 style={{ margin: "0 auto" }}
               >
-                Update origin
+                Update origin1
               </Button>
             </Box>
           </form>

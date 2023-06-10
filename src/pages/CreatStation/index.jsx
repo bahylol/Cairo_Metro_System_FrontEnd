@@ -82,7 +82,7 @@ const CreateStation = () => {
               <TextField
                 fullWidth
                 variant="filled"
-                label="Name"
+                label="description"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.description1}

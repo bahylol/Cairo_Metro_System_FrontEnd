@@ -217,6 +217,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 						<li>
 							<a href={isLoggedIn ? '/simulateRide__' : '/login'}>Start Ride</a>
 						</li>
+
 						{(userType === 'admin' || userType === 'superadmin') && (
 							<li
 								onMouseEnter={() => handleMouseEnterNavbarLink(1)}
@@ -238,8 +239,15 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
                     </ul>
 									</div>
 								)}
+							</li>
+						)}
+						{(userType === 'admin' || userType === 'superadmin') && (
+							<li
+								onMouseEnter={() => handleMouseEnterNavbarLink(2)}
+								onMouseLeave={() => handleMouseLeaveNavbarLink(2)}
+							>
 								<a href="htt">Manage Routes</a>
-								{navSublinks[1] && (
+								{navSublinks[2] && (
 									<div className="sublinks-container">
 										<ul className="sublinks">
 											<li>
@@ -254,6 +262,11 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 										</ul>
 									</div>
 								)}
+							</li>
+						)}
+						{(userType === 'admin' || userType === 'superadmin') && (
+							<li>
+								<a href="/zones">Zones</a>
 							</li>
 						)}
 						<div className="navbar-spacer" onClick={toggleDrawer('left', true)}></div>

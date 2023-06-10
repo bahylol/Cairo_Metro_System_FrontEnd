@@ -41,7 +41,8 @@ const CreateRoute = () => {
 
   const handleFormSubmit = (values) => {
     if (origin === '' || destination === '') {
-			notify('Incomplete Journy Information!');
+			notify('Please enter origin and destination');
+      return;
 		}
     fetch("http://localhost:3000/route", {
       method: "put",

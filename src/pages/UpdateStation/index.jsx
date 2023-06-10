@@ -5,13 +5,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import * as React from 'react';
-import Autocomplete from '@mui/material/Autocomplete';
-import { useState, useEffect, useRef } from 'react';
-
 const CreateStation = () => {
-  let [stations, setStations] = useState([]);
-  const [station1, setStation1] = useState('');
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const confirm = (alert) => {
     toast.success(alert, {
@@ -38,37 +32,9 @@ const CreateStation = () => {
     });
   };
 
-  useEffect(() => {
-    const getStations = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/getAll/Stations', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        const data = await response.json();
-        stations = data.map((item) => item);
-        console.log(stations);
-        const allStations = stations.map(({ description: label, ...rest }) => ({
-          label,
-          ...rest
-        }));
-        setStations(allStations);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    getStations();
-  }, []);
-
   const handleFormSubmit = (values) => {
-    if (station1 === '') {
-      notify('Enter Station you want to Update');
-      return;
-    }
     console.log(values);
-    fetch(`http://localhost:3000/station/${station1.label}`, {
+    fetch(`http://localhost:3000/station/${values.id1}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -114,15 +80,17 @@ const CreateStation = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-              <Autocomplete
-                disablePortal
-                className="GTBoxFrom"
-                options={stations}
-                value={station1}
-                onChange={(event, newValue) => {
-                  setStation1(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} label="Old Station name" />}
+                <TextField
+                fullWidth
+                variant="filled"
+                label="Old Station Name"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.id1}
+                name="id1"
+                error={!!touched.id1 && !!errors.id1}
+                helperText={touched.id1 && errors.id1}
+                sx={{ gridColumn: "span 4" }}
               />
               <TextField
                 fullWidth
@@ -157,9 +125,11 @@ const CreateStation = () => {
 
 const checkoutSchema = yup.object().shape({
   description1: yup.string().required("required"),
+  id1: yup.string().required("required"),
 });
 const initialValues = {
   description1: "",
+  id1:""
 };
 
 export default CreateStation;

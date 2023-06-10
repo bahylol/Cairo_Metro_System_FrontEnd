@@ -5,14 +5,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import * as React from 'react';
-import Autocomplete from '@mui/material/Autocomplete';
-import { useState, useEffect, useRef } from 'react';
-
-const CreateRoute = () => {
-  let [stations, setStations] = useState([]);
-  const [origin, setOrigin] = useState('');
-  const [destination, setDestination] = useState('');
+const CreateStation = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const confirm = (alert) => {
     toast.success(alert, {
@@ -40,56 +33,30 @@ const CreateRoute = () => {
   };
 
   const handleFormSubmit = (values) => {
-    if (origin === '' || destination === '') {
-			notify('Incomplete Journy Information!');
-		}
-    fetch("http://localhost:3000/route", {
+    console.log(values);
+    fetch(`http://localhost:3000/station/${values.id1}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
         token: `session_token=${localStorage.getItem("session_token")}`,
       },
       body: JSON.stringify({
-        origin: origin.label,
-        destination: destination.label,
-        name: values.name1,
+        description: values.description1,
       }),
     })
       .then((data) => {
         const { status } = data;
         if (status === 200) confirm("Route Name Updated !!");
-        else if (status === 400) notify("This route does not exist");
+        else if (status === 402) notify("This station does not exist");
+        else if (status === 401) notify("Error you are not an admin");
+        else if (status === 403) notify("This Name is taken choose other name");
       })
       .catch((error) => console.error(error));
   };
 
-  useEffect(() => {
-    const getStations = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/getAll/Stations', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        const data = await response.json();
-        stations = data.map((item) => item);
-        console.log(stations);
-        const allStations = stations.map(({ description: label, ...rest }) => ({
-          label,
-          ...rest
-        }));
-        setStations(allStations);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    getStations();
-  }, []);
-
   return (
     <Box m="20px">
-      <Header title="Create Route" subtitle="Create your Route here !" />
+      <Header title="Create Station" subtitle="Create your Station here !" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -113,35 +80,28 @@ const CreateRoute = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-              <Autocomplete
-                disablePortal
-                className="GTBoxFrom"
-                options={stations}
-                value={origin}
-                onChange={(event, newValue) => {
-                  setOrigin(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} label="Origin" />}
-              />
-              <Autocomplete
-                disablePortal
-                className="GTBoxFrom"
-                options={stations}
-                value={destination}
-                onChange={(event, newValue) => {
-                  setDestination(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} label="Destination" />}
+                <TextField
+                fullWidth
+                variant="filled"
+                label="Old Station Name"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.id1}
+                name="id1"
+                error={!!touched.id1 && !!errors.id1}
+                helperText={touched.id1 && errors.id1}
+                sx={{ gridColumn: "span 4" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
-                label="New Route Name"
+                label="New Station Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                name="name1"
-                error={!!touched.name1 && !!errors.name1}
-                helperText={touched.name1 && errors.name1}
+                value={values.description1}
+                name="description1"
+                error={!!touched.description1 && !!errors.description1}
+                helperText={touched.description1 && errors.description1}
                 sx={{ gridColumn: "span 4" }}
               />
             </Box>
@@ -152,7 +112,7 @@ const CreateRoute = () => {
                 variant="contained"
                 style={{ margin: "0 auto" }}
               >
-                Update origin1
+                Update Station
               </Button>
             </Box>
           </form>
@@ -164,10 +124,12 @@ const CreateRoute = () => {
 };
 
 const checkoutSchema = yup.object().shape({
-  name1: yup.string().required("required"),
+  description1: yup.string().required("required"),
+  id1: yup.string().required("required"),
 });
 const initialValues = {
-  name1: "",
+  description1: "",
+  id1:""
 };
 
-export default CreateRoute;
+export default CreateStation;

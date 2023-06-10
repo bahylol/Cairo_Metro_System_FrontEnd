@@ -50,8 +50,13 @@ import Reset_password from './scenes/Reset_password';
 
 import UpdateRoute from "./pages/UpdateRoute"
 import CreateRoute from "./pages/CreateRoute";
-import DeleteRoute from   "./pages/DeleteRoute"
+import DeleteRoute from "./pages/DeleteRoute"
 
+
+
+import CreateStation from "./pages/CreatStation";
+import UpdateStation from "./pages/UpdateStation"
+import DeleteStation from "./pages/DeleteStation";
 
 
 function App() {
@@ -190,8 +195,8 @@ function App() {
 							<Route path="/SubscriptionStripe" element={<SubscriptionStripe />} />
 							<Route path="/TicketStripe" element={<TicketStripe />} />
 							<Route path="/admin/managerequest" element={<AdminManageRequest />} />
-							<Route path="/ourteam" element={<OurTeam/>}/>
-							<Route path="/zones" element={<Zones/>}/>
+							<Route path="/ourteam" element={<OurTeam />} />
+							<Route path="/zones" element={<Zones />} />
 							<Route path="/ourteam" element={<OurTeam />} />
 							<Route path="/dashboard" element={<TheDashBoard userType={userType} />} />
 							<Route path="/Dashboard/team" element={<Team />} />
@@ -208,10 +213,12 @@ function App() {
 							<Route path="/Dashboard/Profile" element={<Profile />} />
 							<Route path="/Dashboard/Reset_password" element={<Reset_password />} />
 							<Route path="/simulateRide__" element={<SimulateTheRide />} />
-							   <Route path="/CreatRoute" element={<CreateRoute />} />
-              <Route path="/UpdateRoute" element={<UpdateRoute />} />
-              <Route path="/DeleteRoute" element={<DeleteRoute />} />
-
+							<Route path="/CreatRoute" element={<CreateRoute />} />
+							<Route path="/UpdateRoute" element={<UpdateRoute />} />
+							<Route path="/DeleteRoute" element={<DeleteRoute />} />
+  <Route path="/CreateStation" element={<CreateStation />} />
+              <Route path="/UpdateStation" element={<UpdateStation />} />
+              <Route path="/DeleteStation" element={<DeleteStation />} />
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 					)}

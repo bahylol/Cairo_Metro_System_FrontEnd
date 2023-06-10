@@ -5,7 +5,14 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as React from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
+import { useState, useEffect, useRef } from 'react';
+
 const CreateRoute = () => {
+  let [stations, setStations] = useState([]);
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const confirm = (alert) => {
     toast.success(alert, {
@@ -33,7 +40,9 @@ const CreateRoute = () => {
   };
 
   const handleFormSubmit = (values) => {
-    console.log(values);
+    if (origin === '' || destination === '') {
+			notify('Incomplete Journy Information!');
+		}
     fetch("http://localhost:3000/route", {
       method: "put",
       headers: {
@@ -41,8 +50,8 @@ const CreateRoute = () => {
         token: `session_token=${localStorage.getItem("session_token")}`,
       },
       body: JSON.stringify({
-        origin: values.origin1,
-        destination: values.destination1,
+        origin: origin.label,
+        destination: destination.label,
         name: values.name1,
       }),
     })
@@ -53,6 +62,30 @@ const CreateRoute = () => {
       })
       .catch((error) => console.error(error));
   };
+
+  useEffect(() => {
+    const getStations = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/getAll/Stations', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        stations = data.map((item) => item);
+        console.log(stations);
+        const allStations = stations.map(({ description: label, ...rest }) => ({
+          label,
+          ...rest
+        }));
+        setStations(allStations);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    getStations();
+  }, []);
 
   return (
     <Box m="20px">
@@ -80,29 +113,25 @@ const CreateRoute = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-              <TextField
-                fullWidth
-                variant="filled"
-                label="origin"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.origin1}
-                name="origin1"
-                error={!!touched.origin1 && !!errors.origin1}
-                helperText={touched.origin1 && errors.origin1}
-                sx={{ gridColumn: "span 4" }}
+              <Autocomplete
+                disablePortal
+                className="GTBoxFrom"
+                options={stations}
+                value={origin}
+                onChange={(event, newValue) => {
+                  setOrigin(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} label="Origin" />}
               />
-              <TextField
-                fullWidth
-                variant="filled"
-                label="New destination"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.destination1}
-                name="destination1"
-                error={!!touched.destination1 && !!errors.destination1}
-                helperText={touched.destination1 && errors.destination1}
-                sx={{ gridColumn: "span 4" }}
+              <Autocomplete
+                disablePortal
+                className="GTBoxFrom"
+                options={stations}
+                value={destination}
+                onChange={(event, newValue) => {
+                  setDestination(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} label="Destination" />}
               />
               <TextField
                 fullWidth
@@ -135,13 +164,9 @@ const CreateRoute = () => {
 };
 
 const checkoutSchema = yup.object().shape({
-  origin1: yup.string().required("required"),
-  destination1: yup.string().required("required"),
   name1: yup.string().required("required"),
 });
 const initialValues = {
-  origin1: "",
-  destination1: "",
   name1: "",
 };
 

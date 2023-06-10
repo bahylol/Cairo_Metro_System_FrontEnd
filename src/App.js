@@ -50,7 +50,7 @@ import Reset_password from './scenes/Reset_password';
 
 import UpdateRoute from "./pages/UpdateRoute"
 import CreateRoute from "./pages/CreateRoute";
-import DeleteRoute from   "./pages/DeleteRoute"
+import DeleteRoute from "./pages/DeleteRoute"
 
 
 
@@ -190,8 +190,8 @@ function App() {
 							<Route path="/SubscriptionStripe" element={<SubscriptionStripe />} />
 							<Route path="/TicketStripe" element={<TicketStripe />} />
 							<Route path="/admin/managerequest" element={<AdminManageRequest />} />
-							<Route path="/ourteam" element={<OurTeam/>}/>
-							<Route path="/zones" element={<Zones/>}/>
+							<Route path="/ourteam" element={<OurTeam />} />
+							<Route path="/zones" element={<Zones />} />
 							<Route path="/ourteam" element={<OurTeam />} />
 							<Route path="/dashboard" element={<TheDashBoard userType={userType} />} />
 							<Route path="/Dashboard/team" element={<Team />} />
@@ -208,9 +208,9 @@ function App() {
 							<Route path="/Dashboard/Profile" element={<Profile />} />
 							<Route path="/Dashboard/Reset_password" element={<Reset_password />} />
 							<Route path="/simulateRide__" element={<SimulateTheRide />} />
-							   <Route path="/CreatRoute" element={<CreateRoute />} />
-              <Route path="/UpdateRoute" element={<UpdateRoute />} />
-              <Route path="/DeleteRoute" element={<DeleteRoute />} />
+							<Route path="/CreatRoute" element={<CreateRoute />} />
+							<Route path="/UpdateRoute" element={<UpdateRoute />} />
+							<Route path="/DeleteRoute" element={<DeleteRoute />} />
 
 							<Route path="*" element={<NotFound />} />
 						</Routes>

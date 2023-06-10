@@ -6,9 +6,11 @@ import Header from '../../components/Header';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const SeniorForm = () => {
 	const navigate = useNavigate();
+	const [ageEntered, setAgeEntered] = useState('');
 
 	const isNonMobile = useMediaQuery('(min-width:600px)');
 	const confirm = (alert) => {
@@ -36,9 +38,8 @@ const SeniorForm = () => {
 		});
 	};
 	const handleFormSubmit = (values) => {
-		console.log(values.senRequest);
-		if (values.senRequest === '') {
-			notify('3e43d');
+		if (ageEntered === '') {
+			notify('Please provide your age');
 		} else {
 			console.log(values);
 			fetch('http://localhost:3000/api/v1/senior/request', {
@@ -91,7 +92,10 @@ const SeniorForm = () => {
 								type="number"
 								label="Your Age"
 								onBlur={handleBlur}
-								onChange={handleChange}
+								onChange={(event) => {
+									handleChange(event);
+									setAgeEntered(event.target.value);
+								}}
 								value={values.senRequest}
 								name="senRequest"
 								sx={{ gridColumn: 'span 4' }}
@@ -103,6 +107,7 @@ const SeniorForm = () => {
 								color="secondary"
 								variant="contained"
 								style={{ margin: '0 auto' }}
+								onClick={handleFormSubmit}
 							>
 								Send Request
 							</Button>

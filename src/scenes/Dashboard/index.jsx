@@ -155,6 +155,7 @@ const Dashboard = ({ userType }) => {
 							<ListItemText primary={'Senior Request'} />
 						</ListItemButton>
 					</ListItem>
+
 					<ListItem key={'My Transactions'} disablePadding>
 						<ListItemButton to="/transactions">
 							<ListItemIcon>
@@ -254,7 +255,7 @@ const Dashboard = ({ userType }) => {
 					</ListItem>
 
 					<ListItem key={'Profile Form'} disablePadding>
-						<ListItemButton to="/Dashboard/Profile">
+						<ListItemButton to="/Dashboard/form">
 							<ListItemIcon>
 								<PersonOutlinedIcon />
 							</ListItemIcon>

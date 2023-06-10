@@ -13,7 +13,7 @@ const Footer = () => {
 				<div className="footer__addr">
 					<h1 className="footer__logo">RetroMetro</h1>
 
-					<h2>Contact Us</h2>
+					<a href="/ourteam">Contact Us</a>
 
 					<address>
 						5534 Somewhere In. The World 22193-10212

@@ -225,17 +225,17 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 								<a href="htt">Manage Stations</a>
 								{navSublinks[1] && (
 									<div className="sublinks-container">
-										<ul className="sublinks">
-											<li>
-												<a href="htt">Create Station</a>
-											</li>
-											<li>
-												<a href="htt">Update Station</a>
-											</li>
-											<li>
-												<a href="htt">Delete Station</a>
-											</li>
-										</ul>
+										 <ul className="sublinks">
+                      <li>
+                        <a href="/CreateStation">Create Station</a>
+                      </li>
+                      <li>
+                        <a href="/UpdateStation">Update Station</a>
+                      </li>
+                      <li>
+                        <a href="/DeleteStation">Delete Station</a>
+                      </li>
+                    </ul>
 									</div>
 								)}
 								<a href="htt">Manage Routes</a>

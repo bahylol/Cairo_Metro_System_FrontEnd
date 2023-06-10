@@ -25,10 +25,13 @@ import joe from '../../Assets/Youssef_Elwy.jpeg';
 import osama from '../../Assets/Ahmed_Osama.jpeg';
 import yehia from '../../Assets/Ahmed_Yehia.jpeg';
 import bahy from '../../Assets/Bahy_Salama.jpeg';
+import { useNavigate } from 'react-router-dom';
 
 import Swiper from 'swiper';
 
 const Home = ({ isLoggedIn }) => {
+	const navigate = useNavigate();
+
 	const sectionRef = useRef(null);
 	const [origin, setOrigin] = useState('');
 	const [dest, setDest] = useState('');
@@ -74,7 +77,7 @@ const Home = ({ isLoggedIn }) => {
 				console.log(stations);
 				const allStations = stations.map(({ description: label, ...rest }) => ({
 					label,
-					...rest
+					...rest,
 				}));
 				setStations(allStations);
 			} catch (error) {
@@ -95,32 +98,38 @@ const Home = ({ isLoggedIn }) => {
 	const month = dateParts[0];
 
 	const handlePurchase = (e) => {
-		e.preventDefault();
-		if (origin === '' || dest === '' || journeyTime === '') {
-			notify('Incomplete Journy Information!');
-		}
-		else {
-			fetch('http://localhost:3000/create-checkout-session-ticket', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					token: `session_token=${localStorage.getItem('session_token')}`,
-				},
-				body: JSON.stringify({
-					origin: origin.label,
-					destination: dest.label,
-					start_time: journeyTime,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					if (data[0] === 200) {
-						window.location.href = data[1];
-					} else {
-						notify(data[1]);
-					}
+		if (!isLoggedIn) {
+			notify('Please login first!');
+			setTimeout(function () {
+				navigate('/login');
+			}, 2500);
+		} else {
+			e.preventDefault();
+			if (origin === '' || dest === '' || journeyTime === '') {
+				notify('Incomplete Journy Information!');
+			} else {
+				fetch('http://localhost:3000/create-checkout-session-ticket', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						token: `session_token=${localStorage.getItem('session_token')}`,
+					},
+					body: JSON.stringify({
+						origin: origin.label,
+						destination: dest.label,
+						start_time: journeyTime,
+					}),
 				})
-				.catch((error) => console.error(error, 'THIS IS A BIGGGG ERROR'));
+					.then((response) => response.json())
+					.then((data) => {
+						if (data[0] === 200) {
+							window.location.href = data[1];
+						} else {
+							notify(data[1]);
+						}
+					})
+					.catch((error) => console.error(error, 'THIS IS A BIGGGG ERROR'));
+			}
 		}
 	};
 
@@ -128,8 +137,7 @@ const Home = ({ isLoggedIn }) => {
 		e.preventDefault();
 		if (origin === '' || dest === '') {
 			notify('Incomplete Journy Information!');
-		}
-		else {
+		} else {
 			fetch('http://localhost:3000/api/v1/payment/ticket/checkprice', {
 				method: 'PUT',
 				headers: {
@@ -143,7 +151,7 @@ const Home = ({ isLoggedIn }) => {
 				.then((response) => response.json())
 				.then((data) => {
 					if (data[0] === 200) {
-						confirm(data[1])
+						confirm(data[1]);
 					} else {
 						notify(data[1]);
 					}
@@ -234,10 +242,7 @@ const Home = ({ isLoggedIn }) => {
 								}}
 								renderInput={(params) => <TextField {...params} label="Destination" />}
 							/>
-							<LocalOfferIcon
-								className="priceIcon"
-								onClick={checkPrice}
-							/>
+							<LocalOfferIcon className="priceIcon" onClick={checkPrice} />
 						</div>
 
 						<div className="home-date">
@@ -249,8 +254,8 @@ const Home = ({ isLoggedIn }) => {
 							/>
 						</div>
 
-						<a href="htt" onClick={(e) => handlePurchase(e)}>
-							Purchase Ticket
+						<a href="/login" onClick={(e) => handlePurchase(e)}>
+							Book Ticket
 						</a>
 					</div>
 				</div>

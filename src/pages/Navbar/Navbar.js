@@ -238,6 +238,22 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 										</ul>
 									</div>
 								)}
+								<a href="htt">Manage Routes</a>
+								{navSublinks[1] && (
+									<div className="sublinks-container">
+										<ul className="sublinks">
+											<li>
+												<a href="/CreatRoute">Create Route</a>
+											</li>
+											<li>
+												<a href="UpdateRoute">Update Route</a>
+											</li>
+											<li>
+												<a href="DeleteRoute">Delete Route</a>
+											</li>
+										</ul>
+									</div>
+								)}
 							</li>
 						)}
 						<div className="navbar-spacer" onClick={toggleDrawer('left', true)}></div>

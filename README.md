@@ -1,3 +1,19 @@
+Frontend Part of the Cairo-Metro-System Project.
+Book, refund and manage metro tickets easily. Also subscribe to premium ticket plans to fasilitate ticket booking for you.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

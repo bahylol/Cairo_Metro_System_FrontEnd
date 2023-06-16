@@ -1,5 +1,5 @@
 Frontend Part of the Cairo-Metro-System Project.
-Book, refund and manage metro tickets easily. Also subscribe to premium ticket plans to fasilitate ticket booking for you.
+Book, refund and manage metro tickets easily. Also subscribe to premium ticket plans to facilitate ticket booking for you.
 
 
 

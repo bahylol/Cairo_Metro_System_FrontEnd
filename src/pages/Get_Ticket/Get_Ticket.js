@@ -96,7 +96,9 @@ const GetTicket = () => {
 				.then((data) => {
 					if (data[0] === 200) {
 						audioRef.current.play();
-						window.location.href = data[1];
+						setTimeout(function () {
+							window.location.href = data[1];
+						}, 2500);
 					} else {
 						notify(data[1]);
 					}

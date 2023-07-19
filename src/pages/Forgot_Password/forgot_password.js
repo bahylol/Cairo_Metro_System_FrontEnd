@@ -67,10 +67,8 @@ const ForgotPassword = () => {
 		event.preventDefault();
 		if (email === '') {
 			notify('Please provide a valid email');
-		} else if (resetToken === '') {
-			notify('Please provide the reset token');
 		} else {
-			fetch(`http://localhost:3000/api/v1/users/forgot_password/verify?token=${resetToken}`, {
+			fetch(`http://localhost:3000/api/v1/users/forgot_password/verify`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -109,22 +107,9 @@ const ForgotPassword = () => {
 								onChange={(event) => setEmail(event.target.value)}
 							/>
 							<br /> <br />
-							{phase1 && (
-								<div>
-									<label>Reset Token</label>
-									<input
-										type="text"
-										placeholder="Enter Reset Token"
-										required
-										onChange={(event) => setResetToken(event.target.value)}
-									/>
-								</div>
-							)}
 						</div>
 
-						{!phase1 && (
-							<button onClick={(e) => handleSendEmail(e)}>Send Verification Email</button>
-						)}
+						{!phase1 && <button onClick={(e) => handleSendEmail(e)}>Send Reset Token</button>}
 						{phase1 && (
 							<button onClick={(e) => handleSendResetToken(e)}>Send Reset Page</button>
 						)}

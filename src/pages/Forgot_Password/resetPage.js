@@ -102,7 +102,7 @@ const ResetPage = () => {
 							<label>Your Token</label>
 							<input
 								type="text"
-								placeholder="Enter Your Token Again"
+								placeholder="Enter Your Token"
 								required
 								onChange={(event) => setResetToken(event.target.value)}
 							/>

@@ -161,6 +161,14 @@
 	-o-transform: rotate(90deg);
 }
 
+
+@media (max-width: 1200px) {
+	.GTSection1 .GTBoxPickup .GTBoxFromTo i {
+		font-size: 10px;
+
+	}
+}
+
 .GTSection1 .GTBoxPickup .GTBoxFromTo input {
 	width: 40%;
 	height: 45px;
@@ -184,6 +192,13 @@
 	font-weight: bold;
 }
 
+@media (max-width: 1199px) {
+	.GTSection1 .GTBoxPickup .GTBoxFromTo input{
+		width: 80px;
+		padding: 0;
+		margin: 0;
+	}
+}
 .GTSection1 .GT-box-pickup .GTBoxDate {
 	display: flex;
 	justify-content: center;

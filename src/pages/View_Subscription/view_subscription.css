@@ -11,25 +11,27 @@
 }
 
 .SVPageContainer {
-	display: flexbox;
-	align-items: center;
-	justify-content: center;
-	flex-direction: row;
-
+	display: flex;
+	flex-wrap: wrap;
 	position: relative;
 	left: auto;
 	right: auto;
-	max-width: 3000px;
+	width: 100%;
 	background: var(--general-GP-secondary-color);
 	padding: 25px;
 	border-radius: 8px;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
-	min-width: 1100px;
-	margin-left: 50px;
-	margin-right: 50px;
-	margin-bottom: 50px;
+
+	margin: 10px 0;
+
 }
+@media (max-width: 1199px) {
+	.SVPageContainer{
+		width: 100%;
+	}
+}
+
 
 /* POPUP MODAL CSS */
 
@@ -167,8 +169,14 @@
 	justify-content: center;
 	overflow: hidden;
 }
+@media (max-width: 1199px) {
+	.VSSubTrainImage{
+		display: none;
+		
+	}
+}
 .VSImage2 {
-	width: 100%;
+	width: 50%;
 	object-fit: cover;
 	border: 10px solid #4c4c4c;
 	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);

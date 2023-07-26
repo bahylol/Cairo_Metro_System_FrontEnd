@@ -12,6 +12,9 @@ import AddHomeIcon from '@mui/icons-material/AddHome';
 import TrainIcon from '@mui/icons-material/Train';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import TrafficIcon from '@mui/icons-material/Traffic';
+import DirectionsSubwayFilledIcon from '@mui/icons-material/DirectionsSubwayFilled';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -27,7 +30,6 @@ import logo from '../../Assets/logo.png';
 const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 	const navigate = useNavigate();
 	const menuItems = [
-	
 		{ text: 'Log In', path: '/login' },
 		{ text: 'Sign Up', path: '/signup' },
 		{ text: 'Settings', path: '/' },
@@ -78,97 +80,133 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 			onKeyDown={toggleDrawer(anchor, false)}
 		>
 			<List>
-				{menuItems.map(({ text, path }, index) => (
-					<ListItem key={text} disablePadding>
-						{path && !isLoggedIn ? (
-							<Link to={path} className="link-style">
-								<ListItemButton>
-									{index === 0 && (
-										<ListItemIcon>
-											<AccountCircleIcon />
-										</ListItemIcon>
-									)}
-									{!isLoggedIn && index === 1 && (
-										<ListItemIcon>
-											<LoginIcon />
-										</ListItemIcon>
-									)}
-									{isLoggedIn && index === 1 && (
-										<ListItemIcon>
-											<LogoutIcon />
-										</ListItemIcon>
-									)}
-									{index === 2 && (
-										<ListItemIcon>
-											<ExitToAppIcon />
-										</ListItemIcon>
-									)}
-									{index === 3 && (
-										<ListItemIcon>
-											<SettingsIcon />
-										</ListItemIcon>
-									)}
-									<ListItemText
-										primary={index === 1 ? (isLoggedIn ? 'Log Out' : 'Log In') : text}
-									/>
-								</ListItemButton>
-							</Link>
-						) : (
-							<ListItemButton
-								className="link-style"
-								onClick={(e) => {
-									phoneLogOut(e);
-								}}
-							>
-								{index === 0 && (
-									<ListItemIcon>
-										<AccountCircleIcon />
-									</ListItemIcon>
-								)}
-								{!isLoggedIn && index === 1 && (
-									<ListItemIcon>
-										<LoginIcon />
-									</ListItemIcon>
-								)}
-								{isLoggedIn && index === 1 && (
-									<ListItemIcon>
-										<LogoutIcon />
-									</ListItemIcon>
-								)}
-								{index === 2 && (
-									<ListItemIcon>
-										<ExitToAppIcon />
-									</ListItemIcon>
-								)}
-								{index === 3 && (
-									<ListItemIcon>
-										<SettingsIcon />
-									</ListItemIcon>
-								)}
-								<ListItemText
-									primary={index === 1 ? (isLoggedIn ? 'Log Out' : 'Log In') : text}
-								/>
+				<ListItem key={'Home Page'} disablePadding>
+					<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/'}>
+						<ListItemIcon>
+							<AddHomeIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Home Page'} />
+					</ListItemButton>
+				</ListItem>
+				<ListItem key={'Profile'} disablePadding>
+					<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/Dashboard'}>
+						<ListItemIcon>
+							<AccountCircleIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Profile'} />
+					</ListItemButton>
+				</ListItem>
+				{!isLoggedIn ? (
+					<>
+						<ListItem key={'Signup'} disablePadding>
+							<ListItemButton component={Link} to="/signup">
+								<ListItemIcon>
+									<PersonAddIcon />
+								</ListItemIcon>
+								<ListItemText primary={'Signup'} />
 							</ListItemButton>
-						)}
+						</ListItem>
+						<ListItem key={'Log In'} disablePadding>
+							<ListItemButton component={Link} to="/login">
+								<ListItemIcon>
+									<LoginIcon />
+								</ListItemIcon>
+								<ListItemText primary={'Log In'} />
+							</ListItemButton>
+						</ListItem>
+					</>
+				) : (
+					<ListItem key={'Log Out'} disablePadding>
+						<ListItemButton
+							to="/"
+							onClick={(e) => {
+								e.preventDefault();
+								localStorage.setItem('session_token', null);
+								setIsLoggedIn(false);
+								setUserType('user');
+								navigate('/');
+							}}
+						>
+							<ListItemIcon>
+								<LogoutIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Log Out'} />
+						</ListItemButton>
 					</ListItem>
-				))}
+				)}
+				<ListItem key={'Settings'} disablePadding>
+					<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/'}>
+						<ListItemIcon>
+							<SettingsIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Settings'} />
+					</ListItemButton>
+				</ListItem>
 			</List>
+
 			<Divider />
 			<List>
-				{secondaryMenuItems.map(({ text, path }, index) => (
-					<ListItem key={text} disablePadding>
-						<Link to={path} className="link-style">
-							<ListItemButton>
-								{index === 0 && <ListItemIcon>{<AddHomeIcon />}</ListItemIcon>}
-								{index === 1 && <ListItemIcon>{<TrainIcon />}</ListItemIcon>}
-								{index === 2 && <ListItemIcon>{<ConfirmationNumberIcon />}</ListItemIcon>}
-								{index === 3 && <ListItemIcon>{<SubscriptionsIcon />}</ListItemIcon>}
-								<ListItemText primary={text} />
-							</ListItemButton>
-						</Link>
-					</ListItem>
-				))}
+				<ListItem key={'My Rides'} disablePadding>
+					<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/tickets'}>
+						<ListItemIcon>
+							<TrainIcon />
+						</ListItemIcon>
+						<ListItemText primary={'My Rides'} />
+					</ListItemButton>
+				</ListItem>
+				<ListItem key={'Book Ticket'} disablePadding>
+					<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/tickets/purchase'}>
+						<ListItemIcon>
+							<ConfirmationNumberIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Book Ticket'} />
+					</ListItemButton>
+				</ListItem>
+				<ListItem key={'Subscriptions'} disablePadding>
+					<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/subscription'}>
+						<ListItemIcon>
+							<SubscriptionsIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Subscriptions'} />
+					</ListItemButton>
+				</ListItem>
+				<ListItem key={'Start Ride'} disablePadding>
+					<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/simulateRide__'}>
+						<ListItemIcon>
+							<DirectionsSubwayFilledIcon />
+						</ListItemIcon>
+						<ListItemText primary={'Start Ride'} />
+					</ListItemButton>
+				</ListItem>
 			</List>
+			{userType !== 'user' && (
+				<>
+					<ListItem key={'Create Station'} disablePadding>
+						<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/CreateStation'}>
+							<ListItemIcon>
+								<TrafficIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Create Station'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'UpdateStation'} disablePadding>
+						<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/UpdateStation'}>
+							<ListItemIcon>
+								<TrafficIcon />
+							</ListItemIcon>
+							<ListItemText primary={'UpdateStation'} />
+						</ListItemButton>
+					</ListItem>
+					<ListItem key={'Delete Station'} disablePadding>
+						<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/DeleteStation'}>
+							<ListItemIcon>
+								<TrafficIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Delete Station'} />
+						</ListItemButton>
+					</ListItem>
+				</>
+			)}
 		</Box>
 	);
 
@@ -227,17 +265,17 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 								<a href="htt">Manage Stations</a>
 								{navSublinks[1] && (
 									<div className="sublinks-container">
-										 <ul className="sublinks">
-                      <li>
-                        <a href="/CreateStation">Create Station</a>
-                      </li>
-                      <li>
-                        <a href="/UpdateStation">Update Station</a>
-                      </li>
-                      <li>
-                        <a href="/DeleteStation">Delete Station</a>
-                      </li>
-                    </ul>
+										<ul className="sublinks">
+											<li>
+												<a href="/CreateStation">Create Station</a>
+											</li>
+											<li>
+												<a href="/UpdateStation">Update Station</a>
+											</li>
+											<li>
+												<a href="/DeleteStation">Delete Station</a>
+											</li>
+										</ul>
 									</div>
 								)}
 							</li>

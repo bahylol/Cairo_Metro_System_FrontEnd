@@ -227,7 +227,7 @@
 
 .special-link:hover .settingsIcon {
 	color: #b0b0b0; /* Change to the desired color on hover */
-}
+} 
 
 .navbar-login-out-ID:hover {
 	transform: translate(0, -3px);

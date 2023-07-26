@@ -27,17 +27,18 @@ import logo from '../../Assets/logo.png';
 const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 	const navigate = useNavigate();
 	const menuItems = [
-		{ text: 'Profile', path: '/' },
+	
 		{ text: 'Log In', path: '/login' },
 		{ text: 'Sign Up', path: '/signup' },
 		{ text: 'Settings', path: '/' },
 	];
 
 	const secondaryMenuItems = [
-		{ text: 'Home', path: '/' },
+		{ text: 'Profile', path: '/Dashboard/Profile' },
 		{ text: 'My Tickets', path: '/tickets' },
 		{ text: 'Get Ticket', path: '/tickets/purchase' },
-		{ text: 'Subscriptions', path: '/subscriptions' },
+		{ text: 'Subscriptions', path: '/subscription' },
+		{ text: 'Start Ride', path: '/simulateRide__' },
 	];
 
 	const [navSublinks, setNavSublinks] = useState([]);

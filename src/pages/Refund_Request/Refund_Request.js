@@ -51,7 +51,7 @@ const Refund_Request = () => {
 			notify('Description is required!');
 		}
 
-		fetch('http://localhost:3000/api/v1/users/refund_request/', {
+		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/refund_request/`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ const Refund_Request = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch('http://localhost:3000/api/v1/users/tickets', {
+				const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/tickets`, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',

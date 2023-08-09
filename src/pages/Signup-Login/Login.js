@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../Footer/Footer.js';
 
 function RegistrationForm({ setIsLoggedIn, setUserType }) {
+	const forgotLink = `${process.env.REACT_APP_FRONTEND_URL}/user/forgot-password`
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -35,7 +36,7 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		fetch('http://localhost:3000/api/v1/users/login', {
+		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -93,7 +94,7 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 						let userType = 'user';
 						const fetchData = async () => {
 							try {
-								const response = await fetch('http://localhost:3000/get_cur_user', {
+								const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/get_cur_user`, {
 									method: 'GET',
 									headers: {
 										'Content-Type': 'application/json',
@@ -182,7 +183,7 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 							/>
 						</div>
 						<a
-							href="http://localhost:5000/user/forgot-password"
+							href={forgotLink}
 							className="forgotPasswordLink"
 						>
 							forgot password

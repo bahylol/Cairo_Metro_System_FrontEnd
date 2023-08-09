@@ -20,7 +20,7 @@ const Zones = () => {
 		console.log(requestId);
 		console.log(price);
 		try {
-			const response = await fetch(`http://localhost:3000/zones/${requestId}`, {
+			const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/zones/${requestId}`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const Zones = () => {
 	};
 	const fetchData = async () => {
 		try {
-			const response = await fetch('http://localhost:3000/zones', {
+			const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/zones`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',

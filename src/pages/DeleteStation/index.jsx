@@ -34,7 +34,7 @@ const DeleteStation = () => {
 
   const handleFormSubmit = (values) => {
     console.log(values);
-    fetch("http://localhost:3000/station", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/station`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",

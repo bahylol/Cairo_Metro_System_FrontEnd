@@ -87,7 +87,7 @@ function RegistrationForm() {
 			notify("passwords don't match");
 			return;
 		}
-		fetch('http://localhost:3000/api/v1/superadmin/registeradmin', {
+		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/superadmin/registeradmin`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

@@ -37,12 +37,12 @@ const TicketStripe = () => {
         if (status === "accepted") {
             const fetchData = async () => {
                 try {
-                    const response = await fetch('http://localhost:3000/api/v1/payment/ticket/', {
+                    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/payment/ticket/`, {
                         method: 'POST',
                         body: JSON.stringify({
                             origin: origin,
                             start_time: start_time,
-                            destination:destination,
+                            destination: destination,
                             payment_token: payment_token
                         }),
                         headers: {
@@ -54,13 +54,13 @@ const TicketStripe = () => {
                     if (data[0] === 200) {
                         confirm("Congratulations you purchased ticket succesfully");
                         setTimeout(function () {
-                            window.location.href = 'http://localhost:5000/tickets';
+                            window.location.href = `${process.env.REACT_APP_FRONTEND_URL}/tickets`;
                         }, 2501);
                     }
                     else {
                         notify(data[1]);
                         setTimeout(function () {
-                            window.location.href = 'http://localhost:5000/tickets';
+                            window.location.href = `${process.env.REACT_APP_FRONTEND_URL}/tickets`;
                         }, 2501);
                     }
                 } catch (error) {
@@ -73,7 +73,7 @@ const TicketStripe = () => {
         else {
             const fetchData = async () => {
                 try {
-                    const response = await fetch('http://localhost:3000/stripe/cancel', {
+                    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/stripe/cancel`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const TicketStripe = () => {
                     const data = await response.json();
                     notify("error has occured while purchasing your ticket");
                     setTimeout(function () {
-                        window.location.href = 'http://localhost:5000/tickets';
+                        window.location.href = `${process.env.REACT_APP_FRONTEND_URL}/tickets`;
                     }, 2501);
                 } catch (error) {
                     console.error('Error fetching data:', error);

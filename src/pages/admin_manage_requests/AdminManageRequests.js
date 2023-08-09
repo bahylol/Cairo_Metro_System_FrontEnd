@@ -68,7 +68,7 @@ const AdminManageRequests = () => {
 	const acceptSenior = async () => {
 		let requestId = localStorage.getItem('requestId');
 		try {
-			const response = await fetch(`http://localhost:3000/api/v1/requests/senior/${requestId}`, {
+			const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/requests/senior/${requestId}`, {
 				method: 'Put',
 				headers: {
 					'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ const AdminManageRequests = () => {
 	const rejectSenior = async () => {
 		let requestId = localStorage.getItem('requestId');
 		try {
-			const response = await fetch(`http://localhost:3000/api/v1/requests/senior/${requestId}`, {
+			const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/requests/senior/${requestId}`, {
 				method: 'Put',
 				headers: {
 					'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ const AdminManageRequests = () => {
 		let requestId = localStorage.getItem('requestId');
 		try {
 			const response = await fetch(
-				`http://localhost:3000/api/v1/requests/refunds/${requestId}`,
+				`${process.env.REACT_APP_BACKEND_URL}/api/v1/requests/refunds/${requestId}`,
 				{
 					method: 'Put',
 					headers: {
@@ -150,7 +150,7 @@ const AdminManageRequests = () => {
 		let requestId = localStorage.getItem('requestId');
 		try {
 			const response = await fetch(
-				`http://localhost:3000/api/v1/requests/refunds/${requestId}`,
+				`${process.env.REACT_APP_BACKEND_URL}/api/v1/requests/refunds/${requestId}`,
 				{
 					method: 'Put',
 					headers: {
@@ -177,7 +177,7 @@ const AdminManageRequests = () => {
 
 	const fetchSenior = async () => {
 		try {
-			const response = await fetch('http://localhost:3000/api/v1/requests/getsenior', {
+			const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/requests/getsenior`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ const AdminManageRequests = () => {
 
 	const fetchRefund = async () => {
 		try {
-			const response = await fetch('http://localhost:3000/api/v1/requests/getrefund', {
+			const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/requests/getrefund`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',

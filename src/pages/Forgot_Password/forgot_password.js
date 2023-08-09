@@ -40,7 +40,7 @@ const ForgotPassword = () => {
 		if (email === '') {
 			notify('Please provide a valid email');
 		}
-		fetch('http://localhost:3000/api/v1/users/forgot_password', {
+		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/forgot_password`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ const ForgotPassword = () => {
 		if (email === '') {
 			notify('Please provide a valid email');
 		} else {
-			fetch(`http://localhost:3000/api/v1/users/forgot_password/verify`, {
+			fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/forgot_password/verify`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

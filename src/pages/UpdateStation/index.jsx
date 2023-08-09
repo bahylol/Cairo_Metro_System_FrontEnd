@@ -34,7 +34,7 @@ const CreateStation = () => {
 
   const handleFormSubmit = (values) => {
     console.log(values);
-    fetch(`http://localhost:3000/station/${values.id1}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/station/${values.id1}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const CreateStation = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
-                <TextField
+              <TextField
                 fullWidth
                 variant="filled"
                 label="Old Station Name"
@@ -129,7 +129,7 @@ const checkoutSchema = yup.object().shape({
 });
 const initialValues = {
   description1: "",
-  id1:""
+  id1: ""
 };
 
 export default CreateStation;

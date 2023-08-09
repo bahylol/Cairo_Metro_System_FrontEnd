@@ -53,9 +53,9 @@ function RegistrationForm() {
 			draggable: true,
 			progress: undefined,
 			theme: "colored",
-			});
+		});
 	};
-	
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const someNull = Object.values(user).some((x) => x === '');
@@ -75,7 +75,7 @@ function RegistrationForm() {
 			notify("passwords don't match");
 			return;
 		}
-		fetch('http://localhost:3000/api/v1/users/signup', {
+		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/signup`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -96,9 +96,10 @@ function RegistrationForm() {
 			.then((data) => {
 				if (data[0] === 200) {
 					confirm();
-					setTimeout(function() {
+					setTimeout(function () {
 						navigate('/login');
-					  }, 2501);				}
+					}, 2501);
+				}
 				else { notify(data[1]); }
 
 			})

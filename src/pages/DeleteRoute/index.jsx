@@ -35,7 +35,7 @@ const DeleteRoute = () => {
 
   const handleFormSubmit = (values) => {
     console.log(values);
-    fetch("http://localhost:3000/route", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/route`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",

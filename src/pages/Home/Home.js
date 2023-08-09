@@ -66,7 +66,7 @@ const Home = ({ isLoggedIn }) => {
 	useEffect(() => {
 		const getStations = async () => {
 			try {
-				const response = await fetch('http://localhost:3000/getAll/Stations', {
+				const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getAll/Stations`, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ const Home = ({ isLoggedIn }) => {
 			if (origin === '' || dest === '' || journeyTime === '') {
 				notify('Incomplete Journy Information!');
 			} else {
-				fetch('http://localhost:3000/create-checkout-session-ticket', {
+				fetch(`${process.env.REACT_APP_BACKEND_URL}/create-checkout-session-ticket`, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ const Home = ({ isLoggedIn }) => {
 		if (origin === '' || dest === '') {
 			notify('Incomplete Journy Information!');
 		} else {
-			fetch('http://localhost:3000/api/v1/payment/ticket/checkprice', {
+			fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/payment/ticket/checkprice`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
@@ -315,7 +315,7 @@ const Home = ({ isLoggedIn }) => {
 				<div className="projcard-container">
 					<div
 						className="projcard projcard-blue"
-						// style={{ marginLeft: "60px" }}
+					// style={{ marginLeft: "60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic1} />
@@ -338,7 +338,7 @@ const Home = ({ isLoggedIn }) => {
 
 					<div
 						className="projcard projcard-red"
-						// style={{ marginLeft: "-60px" }}
+					// style={{ marginLeft: "-60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic2} />
@@ -362,7 +362,7 @@ const Home = ({ isLoggedIn }) => {
 
 					<div
 						className="projcard projcard-green"
-						// style={{ marginLeft: "60px" }}
+					// style={{ marginLeft: "60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic3} />
@@ -385,7 +385,7 @@ const Home = ({ isLoggedIn }) => {
 
 					<div
 						className="projcard projcard-customcolor"
-						// style={{ marginLeft: "-60px" }}
+					// style={{ marginLeft: "-60px" }}
 					>
 						<div className="projcard-innerbox">
 							<img className="projcard-img responsive-img" src={cardPic4} />

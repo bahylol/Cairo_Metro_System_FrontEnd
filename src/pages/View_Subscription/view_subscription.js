@@ -100,7 +100,7 @@ const View_subscription = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/api/v1/users/subscription",
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/users/subscription`,
           {
             method: "GET",
             headers: {
@@ -209,7 +209,7 @@ const View_subscription = () => {
     );
 
     const handleCancelSubscription = () => {
-      fetch("http://localhost:3000/api/v1/users/subscription/cancel", {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/subscription/cancel`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -252,7 +252,7 @@ const View_subscription = () => {
       // 	notify('Incomplete Payment Information!');
       // }
       else {
-        fetch("http://localhost:3000/create-checkout-session-subscription", {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/create-checkout-session-subscription`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -294,7 +294,7 @@ const View_subscription = () => {
                 <Grid item xs={0}>
                   <Item>
                     <Card
-                       sx={{ maxWidth: '100%',height:'1000px', fontFamily: 'Share Tech Mono, monospace', margin: '0px 10px' }}
+                      sx={{ maxWidth: '100%', height: '1000px', fontFamily: 'Share Tech Mono, monospace', margin: '0px 10px' }}
                     >
                       <CardHeader
                         action={
@@ -371,7 +371,7 @@ const View_subscription = () => {
 
                 <Grid >
                   <div
-                    style={{ width:'100%',display: "flex", gap:'10px', flexWrap:'Wrap' }}
+                    style={{ width: '100%', display: "flex", gap: '10px', flexWrap: 'Wrap' }}
                   >
                     <div >
                       <Box
@@ -522,24 +522,24 @@ const View_subscription = () => {
                         {modalDuration === "monthly"
                           ? "100LE"
                           : modalDuration === "quarterly"
-                          ? "120LE"
-                          : "150LE"}
+                            ? "120LE"
+                            : "150LE"}
                       </option>
                       <option value={2}>
                         10 - 16{" stations/ Price: "}
                         {modalDuration === "monthly"
                           ? "200LE"
                           : modalDuration === "quarterly"
-                          ? "240LE"
-                          : "300LE"}
+                            ? "240LE"
+                            : "300LE"}
                       </option>
                       <option value={3}>
                         17+{" stations/ Price: "}
                         {modalDuration === "monthly"
                           ? "400LE"
                           : modalDuration === "quarterly"
-                          ? "480LE"
-                          : "600LE"}
+                            ? "480LE"
+                            : "600LE"}
                       </option>
 
                       {/* <option value={1}>1 - 9</option>

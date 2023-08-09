@@ -46,7 +46,7 @@ const ResetPage = () => {
 		} else {
 			console.log(password);
 			console.log(resetToken);
-			fetch('http://localhost:3000/api/v1/users/forgot_password/new_password/', {
+			fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/forgot_password/new_password/`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',

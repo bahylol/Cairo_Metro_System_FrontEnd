@@ -34,7 +34,7 @@ const CreateRoute = () => {
 
   const handleFormSubmit = (values) => {
     console.log(values);
-    fetch("http://localhost:3000/route", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/route`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",

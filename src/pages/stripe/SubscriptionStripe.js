@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
- 
+
 const SubscriptionStripe = () => {
     const params = new URLSearchParams(window.location.search);
     const duration = params.get("duration");
@@ -36,7 +36,7 @@ const SubscriptionStripe = () => {
         if (status === "accepted") {
             const fetchData = async () => {
                 try {
-                    const response = await fetch('http://localhost:3000/api/v1/payment/subscriptions/', {
+                    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/payment/subscriptions/`, {
                         method: 'POST',
                         body: JSON.stringify({
                             duration: duration,
@@ -52,13 +52,13 @@ const SubscriptionStripe = () => {
                     if (data[0] === 200) {
                         confirm("Congratulations you purchased subscription succesfully");
                         setTimeout(function () {
-                            window.location.href = 'http://localhost:5000/subscription';
+                            window.location.href = `${process.env.REACT_APP_FRONTEND_URL}/subscription`;
                         }, 2501);
                     }
                     else {
                         notify(data[1]);
                         setTimeout(function () {
-                            window.location.href = 'http://localhost:5000/subscription';
+                            window.location.href = `${process.env.REACT_APP_FRONTEND_URL}/subscription`;
                         }, 2501);
                     }
                 } catch (error) {
@@ -71,7 +71,7 @@ const SubscriptionStripe = () => {
         else {
             const fetchData = async () => {
                 try {
-                    const response = await fetch('http://localhost:3000/stripe/cancel', {
+                    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/stripe/cancel`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ const SubscriptionStripe = () => {
                     const data = await response.json();
                     notify("error has occured while purchasing your subscription");
                     setTimeout(function () {
-                        window.location.href = 'http://localhost:5000/subscription';
+                        window.location.href = `${process.env.REACT_APP_FRONTEND_URL}/subscription`;
                     }, 2501);
                 } catch (error) {
                     console.error('Error fetching data:', error);

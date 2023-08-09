@@ -11,7 +11,7 @@ const Transactions = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch('http://localhost:3000/api/v1/users/transactions', {
+				const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/transactions`, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
@@ -29,10 +29,10 @@ const Transactions = () => {
 	}, []);
 
 	const columns = [
-		{ field: 'id', headerName: 'Transaction ID', type: 'number', minWidth: 150, flex: 1},
+		{ field: 'id', headerName: 'Transaction ID', type: 'number', minWidth: 150, flex: 1 },
 		{ field: 'amount', headerName: 'Amount', type: 'number', minWidth: 150, flex: 1 },
-		{ field: 'trans_date', headerName: 'Date', minWidth: 180, flex: 1},
-		{ field: 'transaction_to', headerName: 'Transaction type', minWidth: 150, flex: 1},
+		{ field: 'trans_date', headerName: 'Date', minWidth: 180, flex: 1 },
+		{ field: 'transaction_to', headerName: 'Transaction type', minWidth: 150, flex: 1 },
 		/* UNCOMMENT TRANSACTION */
 		// { field: 'card_type', headerName: 'Card Type', width: 170 },
 		// { field: 'credit_card', headerName: 'Card Number', width: 220 },

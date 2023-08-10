@@ -171,12 +171,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 					</ListItemButton>
 				</ListItem>
 				<ListItem disablePadding>
-					<Link
-						href="https://google-metro-location-service.vercel.app/"
-						underline="none"
-						target="_blank" // Open link in a new tab
-						rel="noopener noreferrer" // Recommended for security when using target="_blank"
-					>
+					<Link href="https://google-metro-location-service.vercel.app/" underline="none">
 						<ListItemIcon>
 							<DirectionsSubwayFilledIcon />
 						</ListItemIcon>

@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../Footer/Footer.js';
 
 function RegistrationForm({ setIsLoggedIn, setUserType }) {
-	const forgotLink = `${process.env.REACT_APP_FRONTEND_URL}/user/forgot-password`
+	const forgotLink = `${process.env.REACT_APP_FRONTEND_URL}/user/forgot-password`;
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -36,7 +36,7 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/login`, {
+		fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -94,13 +94,16 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 						let userType = 'user';
 						const fetchData = async () => {
 							try {
-								const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/get_cur_user`, {
-									method: 'GET',
-									headers: {
-										'Content-Type': 'application/json',
-										token: `session_token=${localStorage.getItem('session_token')}`,
-									},
-								});
+								const response = await fetch(
+									`${process.env.REACT_APP_BACKEND_URL}/get_cur_user`,
+									{
+										method: 'GET',
+										headers: {
+											'Content-Type': 'application/json',
+											token: `session_token=${localStorage.getItem('session_token')}`,
+										},
+									}
+								);
 								const data = await response.json();
 								console.log(data.userrole);
 								userType = data.userrole;
@@ -182,10 +185,7 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 								required
 							/>
 						</div>
-						<a
-							href={forgotLink}
-							className="forgotPasswordLink"
-						>
+						<a href={forgotLink} className="forgotPasswordLink">
 							forgot password
 						</a>
 

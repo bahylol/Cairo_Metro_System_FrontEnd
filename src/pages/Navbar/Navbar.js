@@ -170,15 +170,20 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 						<ListItemText primary={'Subscriptions'} />
 					</ListItemButton>
 				</ListItem>
-				<ListItem key={'Start Ride'} disablePadding>
+				<ListItem disablePadding>
 					<ListItemButton
-						component={Link}
-						to={'https://google-metro-location-service.vercel.app/'}
+						onClick={() =>
+							window.open('https://google-metro-location-service.vercel.app/', '_blank')
+						} // Attach the onClick event handler
+						component="a" // Change to "a" since it's not a react-router link
+						href="https://google-metro-location-service.vercel.app/"
+						target="_blank"
+						rel="noopener noreferrer"
 					>
 						<ListItemIcon>
 							<DirectionsSubwayFilledIcon />
 						</ListItemIcon>
-						<ListItemText primary={'Start Ride'} />
+						<ListItemText primary="Start Ride" />
 					</ListItemButton>
 				</ListItem>
 			</List>

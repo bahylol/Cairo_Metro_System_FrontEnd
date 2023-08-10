@@ -36,7 +36,7 @@ function RegistrationForm({ setIsLoggedIn, setUserType }) {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/users/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

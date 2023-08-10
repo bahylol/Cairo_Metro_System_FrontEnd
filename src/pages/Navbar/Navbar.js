@@ -29,19 +29,19 @@ import logo from '../../Assets/logo.png';
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 	const navigate = useNavigate();
-	const menuItems = [
-		{ text: 'Log In', path: '/login' },
-		{ text: 'Sign Up', path: '/signup' },
-		{ text: 'Settings', path: '/' },
-	];
+	// const menuItems = [
+	// 	{ text: 'Log In', path: '/login' },
+	// 	{ text: 'Sign Up', path: '/signup' },
+	// 	{ text: 'Settings', path: '/' },
+	// ];
 
-	const secondaryMenuItems = [
-		{ text: 'Profile', path: '/Dashboard/Profile' },
-		{ text: 'My Tickets', path: '/tickets' },
-		{ text: 'Get Ticket', path: '/tickets/purchase' },
-		{ text: 'Subscriptions', path: '/subscription' },
-		{ text: 'Start Ride', path: '/simulateRide__' },
-	];
+	// const secondaryMenuItems = [
+	// 	{ text: 'Profile', path: '/Dashboard/Profile' },
+	// 	{ text: 'My Tickets', path: '/tickets' },
+	// 	{ text: 'Get Ticket', path: '/tickets/purchase' },
+	// 	{ text: 'Subscriptions', path: '/subscription' },
+	// 	{ text: 'Start Ride', path: '/simulateRide__' },
+	// ];
 
 	const [navSublinks, setNavSublinks] = useState([]);
 
@@ -182,6 +182,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 					</ListItemButton>
 				</ListItem>
 			</List>
+
 			{userType !== 'user' && (
 				<>
 					<ListItem key={'Create Station'} disablePadding>

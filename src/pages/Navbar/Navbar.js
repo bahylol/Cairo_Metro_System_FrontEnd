@@ -170,16 +170,18 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 						<ListItemText primary={'Subscriptions'} />
 					</ListItemButton>
 				</ListItem>
-				<ListItem key={'Start Ride'} disablePadding>
-					<ListItemButton
-						component={Link}
-						to={'https://google-metro-location-service.vercel.app/'}
+				<ListItem disablePadding>
+					<Link
+						href="https://google-metro-location-service.vercel.app/"
+						underline="none"
+						target="_blank" // Open link in a new tab
+						rel="noopener noreferrer" // Recommended for security when using target="_blank"
 					>
 						<ListItemIcon>
 							<DirectionsSubwayFilledIcon />
 						</ListItemIcon>
-						<ListItemText primary={'Start Ride'} />
-					</ListItemButton>
+						<ListItemText primary="Start Ride" />
+					</Link>
 				</ListItem>
 			</List>
 			{userType !== 'user' && (

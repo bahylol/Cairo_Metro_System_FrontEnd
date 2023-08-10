@@ -171,7 +171,10 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 					</ListItemButton>
 				</ListItem>
 				<ListItem key={'Start Ride'} disablePadding>
-					<ListItemButton component={Link} to={!isLoggedIn ? '/login' : '/simulateRide__'}>
+					<ListItemButton
+						component={Link}
+						to={'https://google-metro-location-service.vercel.app/'}
+					>
 						<ListItemIcon>
 							<DirectionsSubwayFilledIcon />
 						</ListItemIcon>
@@ -254,7 +257,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, userType, setUserType }) => {
 							<a href={isLoggedIn ? '/subscription' : '/login'}>Subscription</a>
 						</li>
 						<li>
-							<a href={isLoggedIn ? '/simulateRide__' : '/login'}>Start Ride</a>
+							<a href={'https://google-metro-location-service.vercel.app/'}>Start Ride</a>
 						</li>
 
 						{(userType === 'admin' || userType === 'superadmin') && (

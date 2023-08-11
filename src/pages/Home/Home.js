@@ -263,7 +263,7 @@ const Home = ({ isLoggedIn }) => {
 				{/* --------------------------------------------------------------------------------- */}
 				<div className="container mt-5">
 					<div className="row">
-						<div className="col-12">
+						<div className="col-12" style="margin-top: 90px;">
 							<article className="blog-card">
 								<div className="blog-card__background">
 									<div className="card__background--wrapper">
